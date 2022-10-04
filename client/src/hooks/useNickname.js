@@ -11,19 +11,17 @@ function generateGuestNick() {
 }
 
 function loadNick() {
-  const alt = {
+  const nick = store.get('nick');
+  if (nick?.save) return nick;
+
+  return {
     value: generateGuestNick(),
     save: false,
   };
-  return store.get('nick', alt);
 }
 
 function saveNick(nick) {
-  if (nick.save) {
-    store.set('nick', nick);
-  } else {
-    store.remove('nick');
-  }
+  store.set('nick', nick);
 }
 
 function useNickname() {
