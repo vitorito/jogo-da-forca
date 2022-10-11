@@ -1,38 +1,16 @@
-import useNickname from '../../hooks/useNickname';
-import { Container } from '../../style/globalStyle';
-import { HomeContainer } from './styled';
+import HomeButtons from './components/HomeButtons';
+import HomeForm from './components/HomeForm';
+import HomeLogo from './components/HomeLogo';
 
 function Home() {
-  const [nick, setNick] = useNickname();
-
-  function handleInputChange(key, value) {
-    setNick((prev) => ({ ...prev, [key]: value }));
-  }
-
   return (
-    <Container>
-      <HomeContainer>
-        <label htmlFor="nick">
-          User
-          <input
-            id="nick"
-            type="text"
-            value={nick.value}
-            onChange={(e) => handleInputChange('value', e.target.value)}
-            maxLength={30}
-          />
-        </label>
-        <label htmlFor="save">
-          Save
-          <input
-            id="save"
-            type="checkbox"
-            checked={nick.save}
-            onChange={(e) => handleInputChange('save', e.target.checked)}
-          />
-        </label>
-      </HomeContainer>
-    </Container>
+    <div className="bg-blue-500 text-gray-900  flex flex-col items-center justify-around py-[10vh] px-10 w-screen h-screen tracking-wider font-bangers gap-10">
+      <HomeLogo />
+      <div className="flex flex-col gap-4 max-w-md w-full">
+        <HomeForm />
+        <HomeButtons />
+      </div>
+    </div>
   );
 }
 

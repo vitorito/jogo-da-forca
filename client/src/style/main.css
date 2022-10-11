@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .home-btn {
+    @apply p-3 bg-blue-700 text-white text-xl text-center font-medium w-full rounded-lg tracking-wider font-bangers hover:bg-blue-800;
+  }
+
+  .home-text-logo {
+    @apply text-6xl tracking-[4px] relative text-gray-900 font-bold font-mono after:block after:content-['F\00a0rca'] after:text-center after:w-fit after:cursor-text before:block before:absolute before:bg-[url('img/rope.png')] before:w-[50px] before:h-[50px] before:z-10 before:bottom-0 before:left-[16%] before:bg-no-repeat;
+    text-shadow: 1px 1px white;
+  }
+
+  .home-text-logo span:not(.sr-only) {
+    @apply block text-center p-2 drop-shadow;
+  }
+
+}
