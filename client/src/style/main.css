@@ -3,17 +3,36 @@
 @tailwind utilities;
 
 @layer components {
-  .home-btn {
-    @apply p-3 bg-blue-700 text-white text-xl text-center font-medium w-full rounded-lg tracking-wider font-bangers hover:bg-blue-800;
+  .main-container {
+    @apply bg-yellow-500
+      flex flex-col items-center
+      py-[10vh] px-10 m-auto w-screen h-screen max-w-[1280px] shadow-md shadow-black/70;
   }
 
   .home-text-logo {
-    @apply text-6xl tracking-[4px] relative text-gray-900 font-bold font-mono after:block after:content-['F\00a0rca'] after:text-center after:w-fit after:cursor-text before:block before:absolute before:bg-[url('img/rope.png')] before:w-[50px] before:h-[50px] before:z-10 before:bottom-0 before:left-[16%] before:bg-no-repeat;
-    text-shadow: 1px 1px white;
+    @apply relative text-white text-6xl md:text-7xl font-bold font-bangers tracking-[10px]
+      after:block after:content-['F\00a0\00a0rca'] after:text-center after:w-fit after:cursor-text
+      before:block before:absolute before:bottom-[1%] before:left-[11%] md:before:left-[10.5%]
+      before:w-[60px] md:before:w-[70px] before:h-[60px] md:before:h-[70px]
+      before:bg-[url('img/rope.png')] before:bg-no-repeat before:bg-cover;
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .home-btn {
+    @apply bg-blue-600 hover:bg-blue-800
+    text-white text-xl text-center font-medium font-bangers tracking-[1.5px]
+      p-3 w-full rounded-lg shadow-sm shadow-black;
+
+    text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
   }
 
   .home-text-logo span:not(.sr-only) {
     @apply block text-center p-2 drop-shadow;
   }
 
+  .input {
+    @apply block border-b-2 border-white rounded caret-blue-800
+    font-medium font-poppins text-2xl autofill:text-2xl
+    w-full h-12 px-2 pt-2 focus:outline-none shadow-sm shadow-black/50;
+  }
 }

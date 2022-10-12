@@ -15,7 +15,7 @@ function HomeForm() {
   return (
     <form action="" className="p-1">
       <label htmlFor="nick">
-        <span className="block">Apelido</span>
+        <span className="block text-lg">Apelido</span>
         <input
           id="nick"
           type="text"
@@ -23,7 +23,7 @@ function HomeForm() {
           onChange={handleNickChange}
           maxLength={20}
           spellCheck="false"
-          className="block border-b-2 border-white font-medium px-2 pt-2 focus:outline-none text-2xl w-full font-mono rounded autofill:text-2xl"
+          className="input"
         />
       </label>
       <label htmlFor="rememberNick" className="flex items-center gap-1 mt-2">
@@ -34,7 +34,7 @@ function HomeForm() {
           onChange={handleRememberNickChange}
           className="rounded checked:accent-blue-700"
         />
-        <small className="text-sm ml-1 pt-0 font-thin">Lembrar Apelido</small>
+        <span className="ml-1 pt-0 font-light">Lembrar Apelido</span>
       </label>
     </form>
   );
