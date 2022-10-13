@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{html,js,css,jsx}", "./index.html"],
+  content: ["./src/**/*.{html,js,jsx}", "./index.html"],
   theme: {
     fontFamily: {
       'mono': ['"Noto Sans Mono"', 'monospace'],

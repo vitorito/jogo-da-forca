@@ -4,9 +4,13 @@
 
 @layer components {
   .main-container {
-    @apply bg-yellow-500
+    @apply bg-yellow-500 relative
       flex flex-col items-center
-      py-[10vh] px-10 m-auto w-screen h-screen max-w-[1280px] shadow-md shadow-black/70;
+      py-[10vh] px-8 m-auto w-screen min-h-screen max-w-[1280px] shadow-md shadow-black/70;
+  }
+
+  .form-container {
+    @apply flex flex-col max-w-xs sm:max-w-sm w-full;
   }
 
   .home-text-logo {
@@ -18,10 +22,10 @@
     text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
   }
 
-  .home-btn {
-    @apply bg-blue-600 hover:bg-blue-800
-    text-white text-xl text-center font-medium font-bangers tracking-[1.5px]
-      p-3 w-full rounded-lg shadow-sm shadow-black;
+  .btn {
+    @apply bg-blue-600 hover:bg-blue-800 disabled:bg-slate-700
+    text-white text-lg sm:text-xl text-center font-medium font-bangers tracking-[1.5px]
+      p-2 sm:p-3 w-full rounded-lg shadow-sm shadow-black;
 
     text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
   }
@@ -32,7 +36,7 @@
 
   .input {
     @apply block border-b-2 border-white rounded caret-blue-800
-    font-medium font-poppins text-2xl autofill:text-2xl
-    w-full h-12 px-2 pt-2 focus:outline-none shadow-sm shadow-black/50;
+    font-medium font-poppins text-2xl autofill:text-2xl placeholder:text-lg
+    w-full h-10 sm:h-12 px-2 pt-2 focus:outline-none shadow-sm shadow-black/50;
   }
 }
