@@ -1,12 +1,11 @@
-/* eslint-disable no-use-before-define */
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import PrevPageButton from '../../components/PrevPageButton';
-import useNickname from '../../hooks/useNickname';
+import { NicknameContext } from '../../providers/NicknameProvider';
 
 const MAX_ROOM_ID = 9999;
 
-function EnterRoom() {
-  const [nick, _] = useNickname(); // eslint-disable-line no-unused-vars
+function JoinRoom() {
+  const { nick } = useContext(NicknameContext);
   const [roomId, setRoomId] = useState('');
   const [roomPassword, setRoomPassword] = useState('');
   const [isJoinRoomBtnDisabled, setIsJoinRoomBtnDisabled] = useState(true);
@@ -47,7 +46,6 @@ function EnterRoom() {
                 value={roomId}
                 onChange={handleRoomIdChange}
                 placeholder="4 Digits..."
-                min={1000}
                 max={9999}
                 className="input mb-2"
               />
@@ -89,4 +87,4 @@ function validateRoomPassword(roomPassword) {
   return hasCorrectLength;
 }
 
-export default EnterRoom;
+export default JoinRoom;

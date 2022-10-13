@@ -1,15 +1,15 @@
-import React from 'react';
-import useNickname from '../../../hooks/useNickname';
+import { useContext } from 'react';
+import { NicknameContext } from '../../../providers/NicknameProvider';
 
 function HomeForm() {
-  const [nick, setNick] = useNickname();
+  const { nick, setNick } = useContext(NicknameContext);
 
   function handleNickChange({ target }) {
-    setNick((prev) => ({ ...prev, value: target.value }));
+    setNick({ value: target.value.trim() });
   }
 
   function handleRememberNickChange({ target }) {
-    setNick((prev) => ({ ...prev, remember: target.checked }));
+    setNick({ remember: target.checked });
   }
 
   return (
