@@ -46,7 +46,7 @@ function JoinRoom() {
                 value={roomId}
                 onChange={handleRoomIdChange}
                 placeholder="4 Digits..."
-                max={9999}
+                max={MAX_ROOM_ID}
                 className="input mb-2"
               />
             </label>

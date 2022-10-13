@@ -4,6 +4,7 @@ import store from 'store2';
 
 export const NicknameContext = createContext(null);
 
+const NICK_STORE_KEY = 'nickname';
 const GUEST_NICK_BASE = 'Anonimo';
 const MIN_ID = 100;
 const MAX_ID = 999;
@@ -41,21 +42,25 @@ function generateGuestNick() {
 }
 
 function loadNick() {
-  const nick = store.get('nick');
-  if (nick?.remember) return nick;
+  let nick = store.get(NICK_STORE_KEY);
+  let remember = true;
+
+  if (!nick) {
+    nick = generateGuestNick();
+    remember = false;
+  }
 
   return {
-    value: generateGuestNick(),
-    remember: false,
+    value: nick,
+    remember,
   };
 }
 
 function saveNick(nick) {
-  console.log('banana');
   if (nick.remember) {
-    store.set('nick', nick);
+    store.set(NICK_STORE_KEY, nick.value);
   } else {
-    store.remove('nick');
+    store.remove(NICK_STORE_KEY);
   }
 }
 
