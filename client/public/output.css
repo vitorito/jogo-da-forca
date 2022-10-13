@@ -621,7 +621,7 @@ video {
   content: var(--tw-content);
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
   .home-text-logo {
     font-size: 4.5rem;
     line-height: 1;
@@ -800,10 +800,6 @@ video {
   display: flex;
 }
 
-.hidden {
-  display: none;
-}
-
 .h-screen {
   height: 100vh;
 }
@@ -824,10 +820,6 @@ video {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
-}
-
-.max-w-none {
-  max-width: none;
 }
 
 .origin-left {
@@ -890,21 +882,6 @@ video {
 .bg-yellow-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
-}
-
-.bg-yellow-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-}
-
-.bg-yellow-100 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(254 249 195 / var(--tw-bg-opacity));
-}
-
-.bg-yellow-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(250 204 21 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'img\/rope\.png\'\)\] {
@@ -979,35 +956,8 @@ video {
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
   }
 
-  .sm\:shadow {
-    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
-    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  }
-
   .sm\:shadow-yellow-600 {
     --tw-shadow-color: #ca8a04;
     --tw-shadow: var(--tw-shadow-colored);
-  }
-
-  .sm\:shadow-white {
-    --tw-shadow-color: #fff;
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-
-  .sm\:shadow-white\/10 {
-    --tw-shadow-color: rgb(255 255 255 / 0.1);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-
-  .sm\:shadow-white\/20 {
-    --tw-shadow-color: rgb(255 255 255 / 0.2);
-    --tw-shadow: var(--tw-shadow-colored);
-  }
-}
-
-@media (min-width: 1024px) {
-  .lg\:block {
-    display: block;
   }
 }
