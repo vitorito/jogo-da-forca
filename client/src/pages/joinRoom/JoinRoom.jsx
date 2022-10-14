@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import fetchRoom from '../../api/fetchRoom';
 import { NicknameContext } from '../../providers/NicknameProvider';
 
 const MAX_ROOM_ID = 9999;
@@ -23,6 +24,13 @@ function JoinRoom() {
     updateJoinRoomBtn(newRoomId);
   }
 
+  async function handleFormSubmit(e) {
+    e.preventDefault();
+
+    const room = await fetchRoom(roomId);
+    console.log(room);
+  }
+
   return (
     <div className="main-container sm:justify-center">
       <h1 className="text-3xl text-center mb-16">
@@ -33,7 +41,7 @@ function JoinRoom() {
           <div className="text-2xl text-center font-semibold mb-6">
             {nick.value}
           </div>
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <label htmlFor="roomId">
               <span>ID da Sala</span>
               <input
