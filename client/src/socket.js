@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import cfg from '../config';
+import cfg from './config/config';
 
 const socket = io(cfg.SERVER_URL);
 

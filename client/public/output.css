@@ -756,6 +756,10 @@ video {
   border-width: 0;
 }
 
+.fixed {
+  position: fixed;
+}
+
 .absolute {
   position: absolute;
 }
@@ -800,10 +804,6 @@ video {
   margin-left: 0.25rem;
 }
 
-.mb-auto {
-  margin-bottom: auto;
-}
-
 .block {
   display: block;
 }
@@ -816,16 +816,60 @@ video {
   height: 100vh;
 }
 
-.min-h-\[4000px\] {
-  min-height: 4000px;
+.min-h-\[40000px\] {
+  min-height: 40000px;
+}
+
+.min-h-\[400000px\] {
+  min-height: 400000px;
+}
+
+.min-h-\[\] {
+  min-height: ;
+}
+
+.min-h-\[500\] {
+  min-height: 500;
+}
+
+.min-h-\[500vh\] {
+  min-height: 500vh;
+}
+
+.min-h-\[1vh\] {
+  min-height: 1vh;
+}
+
+.min-h-\[10vh\] {
+  min-height: 10vh;
+}
+
+.min-h-\[100vh\] {
+  min-height: 100vh;
+}
+
+.min-h-\[500\%\] {
+  min-height: 500%;
+}
+
+.min-h-\[5000\%\] {
+  min-height: 5000%;
+}
+
+.min-h-\[300\%\] {
+  min-height: 300%;
+}
+
+.min-h-\[200\%\] {
+  min-height: 200%;
 }
 
 .w-screen {
   width: 100vw;
 }
 
-.w-\[300vw\] {
-  width: 300vw;
+.w-\[3000vw\] {
+  width: 3000vw;
 }
 
 .w-fit {
@@ -834,16 +878,52 @@ video {
   width: fit-content;
 }
 
-.grow {
-  flex-grow: 1;
+.w-\[30000vw\] {
+  width: 30000vw;
 }
 
-.grow-\[\] {
-  flex-grow: ;
+.w-\[3vw\] {
+  width: 3vw;
 }
 
-.grow-\[0\.5\] {
-  flex-grow: 0.5;
+.w-\[500vw\] {
+  width: 500vw;
+}
+
+.min-w-\[500vw\] {
+  min-width: 500vw;
+}
+
+.min-w-\[100vw\] {
+  min-width: 100vw;
+}
+
+.min-w-\[00vw\] {
+  min-width: 00vw;
+}
+
+.min-w-\[10vw\] {
+  min-width: 10vw;
+}
+
+.min-w-\[50\] {
+  min-width: 50;
+}
+
+.min-w-\[\] {
+  min-width: ;
+}
+
+.min-w-\[500\%\] {
+  min-width: 500%;
+}
+
+.min-w-\[300\%\] {
+  min-width: 300%;
+}
+
+.min-w-\[200\%\] {
+  min-width: 200%;
 }
 
 .origin-left {
@@ -887,32 +967,8 @@ video {
   gap: 0.25rem;
 }
 
-.self-start {
-  align-self: flex-start;
-}
-
 .self-center {
   align-self: center;
-}
-
-.justify-self-auto {
-  justify-self: auto;
-}
-
-.justify-self-start {
-  justify-self: start;
-}
-
-.justify-self-end {
-  justify-self: end;
-}
-
-.justify-self-center {
-  justify-self: center;
-}
-
-.justify-self-stretch {
-  justify-self: stretch;
 }
 
 .overflow-hidden {
@@ -996,16 +1052,8 @@ video {
     margin-bottom: 0.75rem;
   }
 
-  .sm\:mb-6 {
-    margin-bottom: 1.5rem;
-  }
-
   .sm\:justify-center {
     justify-content: center;
-  }
-
-  .sm\:justify-self-center {
-    justify-self: center;
   }
 
   .sm\:py-6 {

@@ -1,9 +1,5 @@
 import api from './api';
 
-const fetchRoom = async (roomId) => {
-  const res = await api.get(`/room/${roomId}`);
-  console.log(res);
-  return res.data;
-};
+const fetchRoom = async (roomId) => api.get(`/room/${roomId}`);
 
 export default fetchRoom;
