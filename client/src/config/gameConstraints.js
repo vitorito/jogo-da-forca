@@ -1,0 +1,5 @@
+export default {
+  MIN_MATCH_ROUNDS: 1,
+  MAX_MATCH_ROUNDS: 20,
+  ROOM_PASSWORD_LENGHT: 4,
+};
