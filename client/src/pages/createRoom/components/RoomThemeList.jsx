@@ -1,8 +1,10 @@
 import PropTypes from 'prop-types';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
+import gc from '../../../config/gameConstraints';
 import RoomTheme from './RoomTheme';
 
 function RoomThemeList({ roomData, setRoomData }) {
+  const [canAddTheme, setCanAddTheme] = useState(true);
   const themeInputRef = useRef();
   const themesDivRef = useRef();
 
@@ -10,6 +12,7 @@ function RoomThemeList({ roomData, setRoomData }) {
     setRoomData((prev) => {
       const themeList = [...prev.themeList];
       themeList.splice(index, 1);
+      setCanAddTheme(themeList.length < gc.MAX_ROOM_THEMES);
       return {
         ...prev,
         themeList,
@@ -31,13 +34,14 @@ function RoomThemeList({ roomData, setRoomData }) {
   }
 
   function handleAddTheme() {
-    const theme = themeInputRef.current.value;
+    const theme = themeInputRef.current.value.trim();
 
-    if (theme === '') return;
+    if (!theme) return;
 
     setRoomData((prev) => {
       const themeList = prev.themeList.filter((t) => t !== theme);
       themeList.push(theme);
+      setCanAddTheme(themeList.length < gc.MAX_ROOM_THEMES);
       return {
         ...prev,
         themeList,
@@ -77,6 +81,7 @@ function RoomThemeList({ roomData, setRoomData }) {
         />
         <button
           type="submit"
+          disabled={!canAddTheme}
           onClick={handleAddTheme}
           className="btn flex items-center justify-center font-mono text-4xl
             w-12 h-10 sm:h-12 rounded-t-none rounded-l-none overflow-hidden"
@@ -91,6 +96,7 @@ function RoomThemeList({ roomData, setRoomData }) {
 RoomThemeList.propTypes = {
   roomData: PropTypes.shape({
     rounds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    speed: PropTypes.oneOf(['lazy', 'medium', 'fast']),
     themeList: PropTypes.arrayOf(PropTypes.string).isRequired,
     password: PropTypes.string,
   }).isRequired,

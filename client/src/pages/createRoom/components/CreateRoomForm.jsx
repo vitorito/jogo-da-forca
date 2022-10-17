@@ -12,7 +12,7 @@ function CreateRoomForm({ roomData, setRoomData }) {
   }
 
   function handlePasswordChange(e) {
-    const password = e.target.value;
+    const password = e.target.value.replace(/\s/g, '');
     setRoomData((prev) => ({
       ...prev,
       password,
@@ -36,15 +36,15 @@ function CreateRoomForm({ roomData, setRoomData }) {
             className="input placeholder:text-base"
           />
         </label>
-        <label htmlFor="room-password" className='w-1/2'>
-          <span className='whitespace-nowrap'>Senha (Opcional)</span>
+        <label htmlFor="room-password" className="w-1/2">
+          <span className="whitespace-nowrap">Senha (Opcional)</span>
           <input
             id="room-password"
             type="password"
             required
             autoComplete="off"
-            maxLength={gc.ROOM_PASSWORD_LENGHT}
-            placeholder={`${gc.ROOM_PASSWORD_LENGHT} Dígitos...`}
+            maxLength={gc.ROOM_PASSWORD_LENGTH}
+            placeholder={`${gc.ROOM_PASSWORD_LENGTH} Dígitos...`}
             value={roomData.password}
             onChange={handlePasswordChange}
             className="input placeholder:text-base"
@@ -68,6 +68,7 @@ function validateRoundsNumber(rounds) {
 CreateRoomForm.propTypes = {
   roomData: PropTypes.shape({
     rounds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    speed: PropTypes.oneOf(['lazy', 'medium', 'fast']),
     themeList: PropTypes.arrayOf(PropTypes.string).isRequired,
     password: PropTypes.string,
   }).isRequired,

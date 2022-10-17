@@ -33,7 +33,15 @@
   .btn {
     @apply bg-blue-600 hover:bg-blue-800 disabled:bg-slate-700
     text-white text-lg sm:text-xl text-center font-medium font-bangers tracking-[1.5px]
-      p-2 sm:p-3 w-full rounded-lg shadow-sm shadow-black text-shadow;
+    p-2 sm:p-3 w-full rounded-lg shadow-sm shadow-black text-shadow;
+  }
+
+  .selectable-btn {
+    @apply btn hover:bg-blue-500;
+  }
+
+  .selectable-btn.selected {
+    @apply hover:bg-blue-700 outline outline-2 outline-white z-10;
   }
 
   .input {
@@ -45,5 +53,4 @@
   .page-title {
     @apply text-white text-4xl sm:text-5xl text-center font-bangers text-shadow;
   }
-
 }
