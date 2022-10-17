@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import fetchRoom from '../../api/fetchRoom';
+import api from '../../api';
 import { NicknameContext } from '../../providers/NicknameProvider';
 
 const MAX_ROOM_ID = 9999;
@@ -27,7 +27,7 @@ function JoinRoom() {
   async function handleFormSubmit(e) {
     e.preventDefault();
 
-    const room = await fetchRoom(roomId);
+    const room = await api.fetchRoom(roomId);
     console.log(room);
   }
 

@@ -1,5 +1,5 @@
-import api from './api';
+import _api from './_api';
 
-const fetchRoom = async (roomId) => api.get(`/room/${roomId}`);
+const fetchRoom = async (roomId) => _api.get(`/room/${roomId}`);
 
 export default fetchRoom;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../api';
 import gc from '../../config/gameConstraints';
 import CreateRoomForm from './components/CreateRoomForm';
 import RoomSpeedSelector from './components/RoomSpeedSelector';
@@ -19,6 +20,11 @@ function CreateRoom() {
     setIsValidRoomData(validRoomData);
   }, [roomData]);
 
+  async function handleCreateRoomSubmit() {
+    const room = await api.createRoom(roomData);
+    console.log(room);
+  }
+
   return (
     <div className="main-container justify-between sm:justify-center">
       <h1 className="page-title mb-10">Crie sua Sala</h1>
@@ -26,7 +32,12 @@ function CreateRoom() {
         <CreateRoomForm roomData={roomData} setRoomData={setRoomData} />
         <RoomSpeedSelector roomData={roomData} setRoomData={setRoomData} />
         <RoomThemeList roomData={roomData} setRoomData={setRoomData} />
-        <button type="button" disabled={!isValidRoomData} className="btn mt-3">
+        <button
+          type="submit"
+          disabled={!isValidRoomData}
+          onClick={handleCreateRoomSubmit}
+          className="btn mt-3"
+        >
           Criar Sala
         </button>
         <Link to="/" className="btn">
