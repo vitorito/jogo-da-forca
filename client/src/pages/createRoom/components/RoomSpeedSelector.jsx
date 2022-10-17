@@ -15,7 +15,7 @@ function RoomSpeedSelector({ roomData, setRoomData }) {
         <button
           type="button"
           onClick={() => handleSelectSpeed('lazy')}
-          className={`selectable-btn text-base sm:text-lg sm:p-2 rounded-r-none ${
+          className={`btn text-base sm:text-lg sm:p-2 rounded-r-none ${
             roomData.speed === 'lazy' ? 'selected' : ''
           }`}
         >
@@ -24,7 +24,7 @@ function RoomSpeedSelector({ roomData, setRoomData }) {
         <button
           type="button"
           onClick={() => handleSelectSpeed('medium')}
-          className={`selectable-btn text-base sm:text-lg sm:p-2 rounded-none ${
+          className={`btn text-base sm:text-lg sm:p-2 rounded-none ${
             roomData.speed === 'medium' ? 'selected' : ''
           }`}
         >
@@ -33,7 +33,7 @@ function RoomSpeedSelector({ roomData, setRoomData }) {
         <button
           type="button"
           onClick={() => handleSelectSpeed('fast')}
-          className={`selectable-btn text-base sm:text-lg sm:p-2 rounded-l-none ${
+          className={`btn text-base sm:text-lg sm:p-2 rounded-l-none ${
             roomData.speed === 'fast' ? 'selected' : ''
           }`}
         >

@@ -36,12 +36,8 @@
     p-2 sm:p-3 w-full rounded-lg shadow-sm shadow-black text-shadow;
   }
 
-  .selectable-btn {
-    @apply btn hover:bg-blue-500;
-  }
-
-  .selectable-btn.selected {
-    @apply hover:bg-blue-700 outline outline-2 outline-white z-10;
+  .btn.selected {
+    @apply bg-blue-800 text-yellow-400 outline outline-2 outline-white z-10;
   }
 
   .input {
