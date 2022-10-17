@@ -11,8 +11,8 @@ function CreateRoom() {
   });
 
   return (
-    <div className="main-container justify-between">
-      <h1 className="text-center text-3xl">Criar Sala</h1>
+    <div className="main-container justify-between sm:justify-center">
+      <h1 className="page-title mb-10">Crie sua Sala</h1>
       <div className="form-container gap-3">
         <CreateRoomForm roomData={roomData} setRoomData={setRoomData} />
         <RoomThemeList roomData={roomData} setRoomData={setRoomData} />

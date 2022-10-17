@@ -33,7 +33,7 @@ function JoinRoom() {
 
   return (
     <div className="main-container sm:justify-center">
-      <h1 className="text-3xl text-center mb-16">
+      <h1 className="page-title mb-28">
         <span>Junte-se a uma Sala</span>
       </h1>
       <div className="sm:shadow-lg sm:shadow-yellow-600 rounded-md sm:py-6 sm:px-5 m-auto sm:m-0">
