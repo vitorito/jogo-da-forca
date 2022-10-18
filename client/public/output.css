@@ -968,6 +968,10 @@ video {
   gap: 0.25rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .self-center {
   align-self: center;
 }
@@ -1063,9 +1067,22 @@ video {
   padding: 0.5rem;
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.py-6 {
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
 }
 
 .pb-1 {
