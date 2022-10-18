@@ -27,7 +27,7 @@
   }
 
   .home-text-logo span:not(.sr-only) {
-    @apply block text-center p-2 drop-shadow;
+    @apply block text-center drop-shadow;
   }
 
   .btn {
