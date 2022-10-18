@@ -28,7 +28,7 @@ function CreateRoom() {
   return (
     <div className="main-container justify-between sm:justify-center">
       <h1 className="page-title mb-10">Crie sua Sala</h1>
-      <div className="form-container gap-3">
+      <div className="sm-container gap-3">
         <CreateRoomForm roomData={roomData} setRoomData={setRoomData} />
         <RoomSpeedSelector roomData={roomData} setRoomData={setRoomData} />
         <RoomThemeList roomData={roomData} setRoomData={setRoomData} />

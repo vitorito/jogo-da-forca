@@ -37,7 +37,7 @@ function JoinRoom() {
         <span>Junte-se a uma Sala</span>
       </h1>
       <div className="sm:shadow-lg sm:shadow-yellow-600 rounded-md sm:py-6 sm:px-5 m-auto sm:m-0">
-        <div className="form-container text-lg">
+        <div className="sm-container text-lg">
           <div className="text-2xl text-center font-semibold mb-6">
             {nick.value}
           </div>

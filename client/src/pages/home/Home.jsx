@@ -6,7 +6,7 @@ function Home() {
   return (
     <div className="main-container justify-around font-poppins tracking-wide gap-10">
       <HomeLogo />
-      <div className="form-container gap-6">
+      <div className="sm-container gap-6">
         <HomeForm />
         <HomeButtons />
       </div>

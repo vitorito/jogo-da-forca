@@ -584,7 +584,7 @@ video {
   }
 }
 
-.form-container {
+.sm-container {
   display: flex;
   width: 100%;
   max-width: 20rem;
@@ -592,7 +592,7 @@ video {
 }
 
 @media (min-width: 640px) {
-  .form-container {
+  .sm-container {
     max-width: 24rem;
   }
 }
@@ -859,10 +859,6 @@ video {
   display: flex;
 }
 
-.grid {
-  display: grid;
-}
-
 .h-screen {
   height: 100vh;
 }
@@ -934,10 +930,6 @@ video {
 
 .flex-wrap {
   flex-wrap: wrap;
-}
-
-.content-around {
-  align-content: space-around;
 }
 
 .items-center {

@@ -10,7 +10,7 @@ function CreatedRooms() {
         <CreatedRoomsGrid />
         <RoomDetails />
       </div>
-      <Link to="/" className="btn form-container">
+      <Link to="/" className="btn sm-container">
         Voltar
       </Link>
     </div>
