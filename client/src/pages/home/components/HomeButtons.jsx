@@ -9,7 +9,7 @@ function HomeButtons() {
       <Link to="/room/create" className="btn">
         Criar Sala
       </Link>
-      <Link to="room" className="btn">
+      <Link to="rooms" className="btn">
         Salas Criadas
       </Link>
     </div>
