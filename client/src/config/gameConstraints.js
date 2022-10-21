@@ -4,4 +4,5 @@ export default {
   ROOM_PASSWORD_LENGTH: 4,
   MIN_ROOM_THEMES: 1,
   MAX_ROOM_THEMES: 20,
+  MAX_ROOM_PLAYERS: 10,
 };

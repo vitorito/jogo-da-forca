@@ -4,9 +4,9 @@
 
 @layer components {
   .main-container {
-    @apply bg-yellow-500 relative
+    @apply bg-yellow-500 relative overflow-hidden
       flex flex-col items-center xl:border-4 xl:border-yellow-700 xl:rounded-[50px]
-      py-[10vh] px-8 m-auto w-screen max-w-[1280px] h-screen xl:h-[90vh] max-h-[900px] shadow-md shadow-black/70;
+      py-[10vh] px-8 m-auto w-screen max-w-[1280px] h-screen xl:h-[90vh] xl:max-h-[900px] shadow-md shadow-black/70;
   }
 
   .sm-container {
@@ -48,5 +48,9 @@
 
   .page-title {
     @apply text-white text-4xl sm:text-5xl text-center font-bangers text-shadow;
+  }
+
+  .rounded-gray-bg {
+    @apply bg-gray-400 rounded-xl;
   }
 }
