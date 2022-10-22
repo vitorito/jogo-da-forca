@@ -1,16 +1,19 @@
 import PropTypes from 'prop-types';
 import RoomThumb from './RoomThumb';
 
-function CreatedRoomsList({ rooms, idSelectedRoom, handleSelectRoom }) {
+function CreatedRoomsList({ rooms, idSelectedRoom, onSelectRoom }) {
   return (
-    <div className="bg-yellow-600 w-full h-full p-2 overflow-auto">
+    <div
+      className="bg-yellow-600 h-full p-4 pt-1 mt-4 rounded-xl overflow-y-scroll
+        shadow shadow-black border-2 border-gray-900"
+    >
       <ul>
         {rooms.map((room) => (
           <li key={room.id}>
             <RoomThumb
               room={room}
               isOpen={room.id === idSelectedRoom}
-              onClick={() => handleSelectRoom(room.id)}
+              onSelectRoom={onSelectRoom}
             />
           </li>
         ))}
@@ -28,7 +31,7 @@ CreatedRoomsList.propTypes = {
     })
   ).isRequired,
   idSelectedRoom: PropTypes.string.isRequired,
-  handleSelectRoom: PropTypes.func.isRequired,
+  onSelectRoom: PropTypes.func.isRequired,
 };
 
 export default CreatedRoomsList;

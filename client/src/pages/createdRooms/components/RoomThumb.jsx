@@ -1,57 +1,29 @@
 import PropTypes from 'prop-types';
 import { BsFillDoorClosedFill } from 'react-icons/bs';
 import { FaLock, FaUser } from 'react-icons/fa';
-import { SlReload } from 'react-icons/sl';
 import gc from '../../../config/gameConstraints';
 
-function RoomThumb({ room, isOpen, onClick }) {
+function RoomThumb({ room, onSelectRoom }) {
   return (
-    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-    <div
-      role="button"
-      tabIndex={0}
-      onClick={onClick}
-      className={`focus:bg-yellow-500 flex items-center justify-between mt-1
-      text-gray-900 text-lg font-semibold cursor-pointer outline-none
-      transition-all duration-200 border-gray-900 border-b
-      ${
-        isOpen
-          ? 'bg-yellow-500 flex-col h-28 p-3 border-x-2 border-t-2 rounded shadow shadow-black'
-          : 'hover:bg-yellow-500 h-12 px-2 pt-3 rounded-t'
-      }`}
+    <button
+      type="button"
+      onClick={() => onSelectRoom(room.id)}
+      className="hover:bg-yellow-500 focus:bg-yellow-500 flex items-center
+        justify-between w-full h-12 px-2 pt-3 mt-2 text-gray-900 text-lg font-semibold
+        transition-all duration-300 border-b border-gray-900 rounded-t outline-none"
     >
-      <div
-        className={`flex items-center gap-1 ${
-          isOpen ? 'flex-row-reverse rounded-gray-bg w-fit px-5' : 'w-full'
-        }`}
-      >
-        <BsFillDoorClosedFill
-          title="Sala"
-          className={isOpen ? 'hidden' : 'text-gray-900'}
-        />
-        <div title="Sala" className={isOpen ? 'w-fit' : 'w-14'}>
-          <span className={isOpen ? 'w-fit mx-1' : 'sr-only'}>Sala</span>
-          {room.id}
-        </div>
-        {room.isPrivate && (
-          <FaLock title="Privado" className={isOpen ? '' : 'm-auto'} />
-        )}
+      <div title="Sala" className="flex items-center gap-1">
+        <BsFillDoorClosedFill />
+        {room.id}
       </div>
-      <div className={isOpen ? 'flex items-center justify-around w-full' : ''}>
-        <div className={isOpen ? 'flex items-center gap-0.5' : 'hidden'}>
-          <SlReload />
-          <span className="w-12 text-right">
-            {room.currentRound}/{room.maxRounds}
-          </span>
-        </div>
-        <div title="Jogadores" className="flex items-center gap-0.5">
-          <FaUser />
-          <span className="w-12 text-right">
-            {room.players}/{gc.MAX_ROOM_PLAYERS}
-          </span>
-        </div>
+      {room.isPrivate && <FaLock title="Privado" />}
+      <div title="Jogadores" className="flex items-center gap-0.5">
+        <FaUser />
+        <span className="w-12 text-right">
+          {room.players}/{gc.MAX_ROOM_PLAYERS}
+        </span>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -63,8 +35,7 @@ RoomThumb.propTypes = {
     currentRound: PropTypes.number.isRequired,
     maxRounds: PropTypes.number.isRequired,
   }).isRequired,
-  isOpen: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onSelectRoom: PropTypes.func.isRequired,
 };
 
 export default RoomThumb;

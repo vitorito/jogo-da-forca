@@ -10,7 +10,7 @@ function useRooms() {
       maxRounds: 20,
     },
     {
-      id: '30011',
+      id: '3001',
       players: 0,
       isPrivate: true,
       currentRound: 0,
