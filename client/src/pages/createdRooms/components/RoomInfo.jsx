@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import { FaLock } from 'react-icons/fa';
 import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
@@ -7,7 +8,7 @@ import RoomDetails from './RoomDetails';
 import RoomPassword from './RoomPassword';
 import RoomThemes from './RoomThemes';
 
-function RoomInfo() {
+function RoomInfo({ roomPassword, setRoomPassword }) {
   const { selectedRoom: room } = useContext(SelectRoomContext);
 
   return (
@@ -23,9 +24,16 @@ function RoomInfo() {
         </span>
         <RoomThemes themes={room.themes} />
       </div>
-      {room.isPrivate && <RoomPassword />}
+      {room.isPrivate && (
+        <RoomPassword value={roomPassword} setValue={setRoomPassword} />
+      )}
     </Container>
   );
 }
+
+RoomInfo.propTypes = {
+  roomPassword: PropTypes.string.isRequired,
+  setRoomPassword: PropTypes.func.isRequired,
+};
 
 export default RoomInfo;

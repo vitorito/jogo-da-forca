@@ -1,11 +1,34 @@
-import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import gc from '../../config/gameConstraints';
+import useEnterRoom from '../../hooks/useEnterRoom';
 import { SelectRoomContext } from '../../providers/SelectRoomProvider';
 import CreatedRoomsList from './components/CreatedRoomsList';
 import RoomInfo from './components/RoomInfo';
 
 function CreatedRooms() {
   const { selectedRoom, handleSelectRoom } = useContext(SelectRoomContext);
+  // eslint-disable-next-line no-unused-vars
+  const [roomPassword, setRoomPassword] = useState('');
+  const navigate = useNavigate();
+
+  async function handleEnterRoom() {
+    const data = await useEnterRoom({
+      id: selectedRoom.id,
+      password: roomPassword,
+    });
+
+    if (data.errors) return;
+
+    navigate(`/${selectedRoom.id}`, { state: { room: selectedRoom } });
+  }
+
+  function hasCorrectPasswordLength() {
+    return (
+      roomPassword.length === 0 ||
+      roomPassword.length === gc.ROOM_PASSWORD_LENGTH
+    );
+  }
 
   return (
     <div className="main-container">
@@ -20,8 +43,16 @@ function CreatedRooms() {
           </>
         ) : (
           <>
-            <RoomInfo />
-            <button type="button" className="btn mt-3">
+            <RoomInfo
+              roomPassword={roomPassword}
+              setRoomPassword={setRoomPassword}
+            />
+            <button
+              type="button"
+              onClick={handleEnterRoom}
+              disabled={!hasCorrectPasswordLength()}
+              className="btn mt-3"
+            >
               Entrar na Sala
             </button>
             <button
