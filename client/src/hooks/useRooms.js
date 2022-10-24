@@ -8,6 +8,8 @@ function useRooms() {
       isPrivate: false,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3001',
@@ -15,6 +17,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3002',
@@ -22,6 +26,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '6003',
@@ -29,6 +35,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3004',
@@ -36,6 +44,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3005',
@@ -43,6 +53,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3006',
@@ -50,6 +62,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '6007',
@@ -57,6 +71,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3008',
@@ -64,6 +80,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3009',
@@ -71,6 +89,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3010',
@@ -78,6 +98,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '6011',
@@ -85,6 +107,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3012',
@@ -92,6 +116,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3013',
@@ -99,6 +125,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '3014',
@@ -106,6 +134,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
     {
       id: '6015',
@@ -113,6 +143,8 @@ function useRooms() {
       isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
+      speed: 'fast',
+      themes: ['fruta', 'nome', 'carro', 'casa']
     },
   ]);
 
@@ -128,7 +160,7 @@ function useRooms() {
   //   fetchRooms();
   // }, []);
 
-  return [rooms, setRooms];
+  return { rooms, setRooms };
 }
 
 export default useRooms;

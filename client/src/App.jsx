@@ -5,6 +5,7 @@ import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
 import JoinRoom from './pages/joinRoom/JoinRoom';
 import NicknameProvider from './providers/NicknameProvider';
+import SelectRoomProvider from './providers/SelectRoomProvider';
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/room/enter" element={<JoinRoom />} />
             <Route path="/room/create" element={<CreateRoom />} />
-            <Route path="/rooms" element={<CreatedRooms />} />
+            <Route
+              path="/rooms"
+              element={
+                <SelectRoomProvider>
+                  <CreatedRooms />
+                </SelectRoomProvider>
+              }
+            />
             <Route path="*" element={<Home />} />
           </Routes>
         </Router>

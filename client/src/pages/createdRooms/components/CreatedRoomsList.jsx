@@ -1,37 +1,22 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
+import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
+import Container from './Container';
 import RoomThumb from './RoomThumb';
 
-function CreatedRoomsList({ rooms, idSelectedRoom, onSelectRoom }) {
+function CreatedRoomsList() {
+  const { rooms } = useContext(SelectRoomContext);
+
   return (
-    <div
-      className="bg-yellow-600 h-full p-4 pt-1 mt-4 rounded-xl overflow-y-scroll
-        shadow shadow-black border-2 border-gray-900"
-    >
-      <ul>
+    <Container className="overflow-y-scroll pt-1">
+      <ul className="overflow-y-scroll">
         {rooms.map((room) => (
           <li key={room.id}>
-            <RoomThumb
-              room={room}
-              isOpen={room.id === idSelectedRoom}
-              onSelectRoom={onSelectRoom}
-            />
+            <RoomThumb room={room} />
           </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 }
-
-CreatedRoomsList.propTypes = {
-  rooms: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      players: PropTypes.number.isRequired,
-      isPrivate: PropTypes.bool.isRequired,
-    })
-  ).isRequired,
-  idSelectedRoom: PropTypes.string.isRequired,
-  onSelectRoom: PropTypes.func.isRequired,
-};
 
 export default CreatedRoomsList;

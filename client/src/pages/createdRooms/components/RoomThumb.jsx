@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { BsFillDoorClosedFill } from 'react-icons/bs';
 import { FaLock, FaUser } from 'react-icons/fa';
 import gc from '../../../config/gameConstraints';
+import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
 
-function RoomThumb({ room, onSelectRoom }) {
+function RoomThumb({ room }) {
+  const { handleSelectRoom } = useContext(SelectRoomContext);
+
   return (
     <button
       type="button"
-      onClick={() => onSelectRoom(room.id)}
+      onClick={() => handleSelectRoom(room.id)}
       className="hover:bg-yellow-500 focus:bg-yellow-500 flex items-center
-        justify-between w-full h-12 px-2 pt-3 mt-2 text-gray-900 text-lg font-semibold
-        transition-all duration-300 border-b border-gray-900 rounded-t outline-none"
+        justify-between w-full h-12 px-2 pt-3 mt-2 transition-all duration-300
+        border-b border-gray-900 rounded-t outline-none"
     >
       <div title="Sala" className="flex items-center gap-1">
         <BsFillDoorClosedFill />
@@ -32,10 +36,7 @@ RoomThumb.propTypes = {
     id: PropTypes.string.isRequired,
     players: PropTypes.number.isRequired,
     isPrivate: PropTypes.bool.isRequired,
-    currentRound: PropTypes.number.isRequired,
-    maxRounds: PropTypes.number.isRequired,
   }).isRequired,
-  onSelectRoom: PropTypes.func.isRequired,
 };
 
 export default RoomThumb;
