@@ -8,7 +8,7 @@ function CreatedRoomsList() {
 
   return (
     <Container className="overflow-y-scroll pt-1">
-      <ul className="overflow-y-scroll">
+      <ul>
         {rooms.map((room) => (
           <li key={room.id}>
             <RoomThumb room={room} />

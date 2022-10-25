@@ -33,7 +33,7 @@ function CreatedRooms() {
   return (
     <div className="main-container">
       <h1 className="page-title">Salas Criadas</h1>
-      <div className="sm-container h-full overflow-y-scroll py-2">
+      <div className="sm-container h-full overflow-y-auto py-2">
         {!selectedRoom ? (
           <>
             <CreatedRoomsList />

@@ -817,10 +817,6 @@ video {
   margin: auto;
 }
 
-.m-4 {
-  margin: 1rem;
-}
-
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
@@ -843,6 +839,10 @@ video {
   margin-top: 1.5rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .mb-28 {
   margin-bottom: 7rem;
 }
@@ -857,14 +857,6 @@ video {
 
 .mt-4 {
   margin-top: 1rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
-.mt-2 {
-  margin-top: 0.5rem;
 }
 
 .ml-1 {
@@ -909,30 +901,32 @@ video {
   height: 3rem;
 }
 
-.h-4\/5 {
-  height: 80%;
+.h-28 {
+  height: 7rem;
 }
 
-.h-min {
-  height: -webkit-min-content;
-  height: -moz-min-content;
-  height: min-content;
-}
-
-.max-h-36 {
-  max-height: 9rem;
-}
-
-.max-h-32 {
-  max-height: 8rem;
+.max-h-full {
+  max-height: 100%;
 }
 
 .max-h-28 {
   max-height: 7rem;
 }
 
-.max-h-full {
-  max-height: 100%;
+.max-h-32 {
+  max-height: 8rem;
+}
+
+.max-h-\[\] {
+  max-height: ;
+}
+
+.max-h-\[20vh\] {
+  max-height: 20vh;
+}
+
+.max-h-\[15vh\] {
+  max-height: 15vh;
 }
 
 .min-h-\[300\%\] {
@@ -990,20 +984,8 @@ video {
   align-content: flex-start;
 }
 
-.items-start {
-  align-items: flex-start;
-}
-
 .items-center {
   align-items: center;
-}
-
-.items-baseline {
-  align-items: baseline;
-}
-
-.justify-start {
-  justify-content: flex-start;
 }
 
 .justify-center {
@@ -1042,8 +1024,8 @@ video {
   gap: 0.25rem;
 }
 
-.gap-8 {
-  gap: 2rem;
+.gap-4 {
+  gap: 1rem;
 }
 
 .gap-0\.5 {
@@ -1052,10 +1034,6 @@ video {
 
 .gap-0 {
   gap: 0px;
-}
-
-.gap-4 {
-  gap: 1rem;
 }
 
 .self-center {
@@ -1070,12 +1048,12 @@ video {
   overflow: hidden;
 }
 
-.overflow-visible {
-  overflow: visible;
+.overflow-y-auto {
+  overflow-y: auto;
 }
 
-.overflow-scroll {
-  overflow: scroll;
+.overflow-y-hidden {
+  overflow-y: hidden;
 }
 
 .overflow-y-scroll {
@@ -1176,11 +1154,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-slate-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(100 116 139 / var(--tw-bg-opacity));
-}
-
 .bg-yellow-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(161 98 7 / var(--tw-bg-opacity));
@@ -1206,12 +1179,12 @@ video {
   padding: 1.5rem;
 }
 
-.p-1 {
-  padding: 0.25rem;
-}
-
 .p-2 {
   padding: 0.5rem;
+}
+
+.p-1 {
+  padding: 0.25rem;
 }
 
 .py-2 {
@@ -1222,11 +1195,6 @@ video {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
-}
-
-.py-4 {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
 }
 
 .px-5 {
@@ -1419,6 +1387,18 @@ video {
 
   .sm\:justify-center {
     justify-content: center;
+  }
+
+  .sm\:overflow-y-auto {
+    overflow-y: auto;
+  }
+
+  .sm\:overflow-y-hidden {
+    overflow-y: hidden;
+  }
+
+  .sm\:overflow-y-scroll {
+    overflow-y: scroll;
   }
 
   .sm\:p-2 {

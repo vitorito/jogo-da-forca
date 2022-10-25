@@ -7,7 +7,7 @@ function RoomThemes() {
   return (
     <div
       className="bg-yellow-700 flex flex-wrap content-start justify-center grow
-      gap-2 p-2 text-base sm:text-lg  overflow-y-scroll rounded-lg"
+      gap-2 p-2 text-base sm:text-lg  overflow-auto rounded-lg"
     >
       {room.themes.map((theme) => (
         <span

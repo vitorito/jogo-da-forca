@@ -12,7 +12,7 @@ function RoomInfo({ roomPassword, setRoomPassword }) {
   const { selectedRoom: room } = useContext(SelectRoomContext);
 
   return (
-    <Container className="flex flex-col p-6 justify-between gap-4 pb-10">
+    <Container className="flex flex-col p-6 justify-between gap-4 pb-10 overflow-auto">
       <div className="rounded-gray-bg flex items-center justify-center gap-2 w-fit px-5 m-auto">
         {room.isPrivate && <FaLock />}
         <span>Sala {room.id}</span>
