@@ -28,7 +28,7 @@ function CreateRoom() {
   return (
     <div>
       <h1 className="page-title mb-10">Crie sua Sala</h1>
-      <div className="sm-container max-w-[80vw] gap-3">
+      <div className="flex flex-col max-w-[80vw] sm:max-w-sm w-full gap-3">
         <CreateRoomForm roomData={roomData} setRoomData={setRoomData} />
         <RoomSpeedSelector roomData={roomData} setRoomData={setRoomData} />
         <RoomThemeList roomData={roomData} setRoomData={setRoomData} />

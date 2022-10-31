@@ -857,6 +857,22 @@ video {
   max-width: 80vw;
 }
 
+.max-w-\[0vw\] {
+  max-width: 0vw;
+}
+
+.max-w-none {
+  max-width: none;
+}
+
+.max-w-xs {
+  max-width: 20rem;
+}
+
+.max-w-\[90vw\] {
+  max-width: 90vw;
+}
+
 .grow {
   flex-grow: 1;
 }
@@ -1425,6 +1441,14 @@ video {
 @media (min-width: 640px) {
   .sm\:h-12 {
     height: 3rem;
+  }
+
+  .sm\:max-w-none {
+    max-width: none;
+  }
+
+  .sm\:max-w-sm {
+    max-width: 24rem;
   }
 
   .sm\:p-2 {
