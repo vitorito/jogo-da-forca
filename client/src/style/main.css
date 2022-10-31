@@ -3,12 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-  .main-container {
-    @apply bg-yellow-500 relative overflow-hidden
-      flex flex-col items-center xl:border-4 xl:border-yellow-700 xl:rounded-[50px]
-      py-[10vh] px-8 m-auto w-screen max-w-[1280px] h-screen xl:h-[90vh] xl:max-h-[900px] shadow-md shadow-black/70;
-  }
-
   .sm-container {
     @apply flex flex-col max-w-xs sm:max-w-sm w-full;
   }

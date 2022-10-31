@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import RopeBackground from './components/RopeBackground';
+import MainContainer from './components/MainContainer';
 import CreatedRooms from './pages/createdRooms/CreatedRooms';
 import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
@@ -11,8 +11,7 @@ import SelectRoomProvider from './providers/SelectRoomProvider';
 
 function App() {
   return (
-    <>
-      <RopeBackground />
+    <MainContainer>
       <NicknameProvider>
         <Router>
           <Routes>
@@ -39,7 +38,7 @@ function App() {
           </Routes>
         </Router>
       </NicknameProvider>
-    </>
+    </MainContainer>
   );
 }
 

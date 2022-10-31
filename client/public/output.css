@@ -551,40 +551,6 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.main-container {
-  position: relative;
-  margin: auto;
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  max-width: 1280px;
-  flex-direction: column;
-  align-items: center;
-  overflow: hidden;
-  --tw-bg-opacity: 1;
-  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
-  padding-top: 10vh;
-  padding-bottom: 10vh;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  --tw-shadow-color: rgb(0 0 0 / 0.7);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-
-@media (min-width: 1280px) {
-  .main-container {
-    height: 90vh;
-    max-height: 900px;
-    border-radius: 50px;
-    border-width: 4px;
-    --tw-border-opacity: 1;
-    border-color: rgb(161 98 7 / var(--tw-border-opacity));
-  }
-}
-
 .sm-container {
   display: flex;
   width: 100%;
@@ -801,6 +767,10 @@ video {
   position: absolute;
 }
 
+.relative {
+  position: relative;
+}
+
 .top-0 {
   top: 0px;
 }
@@ -913,12 +883,12 @@ video {
   width: 100vw;
 }
 
-.w-1\/2 {
-  width: 50%;
-}
-
 .w-full {
   width: 100%;
+}
+
+.w-1\/2 {
+  width: 50%;
 }
 
 .w-12 {
@@ -937,6 +907,14 @@ video {
 
 .min-w-\[200\%\] {
   min-width: 200%;
+}
+
+.max-w-\[1280px\] {
+  max-width: 1280px;
+}
+
+.max-w-\[80vw\] {
+  max-width: 80vw;
 }
 
 .grow {
@@ -1120,6 +1098,11 @@ video {
   background-color: rgb(202 138 4 / var(--tw-bg-opacity));
 }
 
+.bg-yellow-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(234 179 8 / var(--tw-bg-opacity));
+}
+
 .bg-blue-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity));
@@ -1133,11 +1116,6 @@ video {
 .bg-yellow-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(161 98 7 / var(--tw-bg-opacity));
-}
-
-.bg-emerald-600 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'img\/rope\.png\'\)\] {
@@ -1166,6 +1144,16 @@ video {
 
 .p-1 {
   padding: 0.25rem;
+}
+
+.py-\[10vh\] {
+  padding-top: 10vh;
+  padding-bottom: 10vh;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .py-2 {
@@ -1284,6 +1272,12 @@ video {
   color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
+.shadow-md {
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
   --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
@@ -1294,6 +1288,11 @@ video {
   --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.shadow-black\/70 {
+  --tw-shadow-color: rgb(0 0 0 / 0.7);
+  --tw-shadow: var(--tw-shadow-colored);
 }
 
 .shadow-black {
@@ -1346,6 +1345,52 @@ video {
 .placeholder\:text-black::placeholder {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
+.before\:absolute::before {
+  content: var(--tw-content);
+  position: absolute;
+}
+
+.before\:left-\[-50\%\]::before {
+  content: var(--tw-content);
+  left: -50%;
+}
+
+.before\:top-\[50\%\]::before {
+  content: var(--tw-content);
+  top: 50%;
+}
+
+.before\:h-\[300vh\]::before {
+  content: var(--tw-content);
+  height: 300vh;
+}
+
+.before\:w-\[200vw\]::before {
+  content: var(--tw-content);
+  width: 200vw;
+}
+
+.before\:origin-left::before {
+  content: var(--tw-content);
+  transform-origin: left;
+}
+
+.before\:rotate-\[-45deg\]::before {
+  content: var(--tw-content);
+  --tw-rotate: -45deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.before\:bg-\[url\(\'img\/rope\.png\'\)\]::before {
+  content: var(--tw-content);
+  background-image: url('img/rope.png');
+}
+
+.before\:bg-repeat::before {
+  content: var(--tw-content);
+  background-repeat: repeat;
 }
 
 .checked\:accent-blue-700:checked {
@@ -1424,5 +1469,28 @@ video {
   .lg\:hover\:bg-yellow-700:hover {
     --tw-bg-opacity: 1;
     background-color: rgb(161 98 7 / var(--tw-bg-opacity));
+  }
+}
+
+@media (min-width: 1280px) {
+  .xl\:h-\[90vh\] {
+    height: 90vh;
+  }
+
+  .xl\:max-h-\[900px\] {
+    max-height: 900px;
+  }
+
+  .xl\:rounded-\[50px\] {
+    border-radius: 50px;
+  }
+
+  .xl\:border-4 {
+    border-width: 4px;
+  }
+
+  .xl\:border-yellow-700 {
+    --tw-border-opacity: 1;
+    border-color: rgb(161 98 7 / var(--tw-border-opacity));
   }
 }
