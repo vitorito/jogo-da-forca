@@ -8,7 +8,6 @@ import RoomInfo from './components/RoomInfo';
 
 function CreatedRooms() {
   const { selectedRoom, handleSelectRoom } = useContext(SelectRoomContext);
-  // eslint-disable-next-line no-unused-vars
   const [roomPassword, setRoomPassword] = useState('');
   const navigate = useNavigate();
 
@@ -20,7 +19,7 @@ function CreatedRooms() {
 
     if (data.errors) return;
 
-    navigate(`/${selectedRoom.id}`, { state: { room: selectedRoom } });
+    navigate(`/${selectedRoom.id}`, { state: { rooms: data.room } });
   }
 
   function hasCorrectPasswordLength() {

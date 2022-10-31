@@ -901,32 +901,8 @@ video {
   height: 3rem;
 }
 
-.h-28 {
-  height: 7rem;
-}
-
-.max-h-full {
-  max-height: 100%;
-}
-
-.max-h-28 {
-  max-height: 7rem;
-}
-
-.max-h-32 {
-  max-height: 8rem;
-}
-
-.max-h-\[\] {
-  max-height: ;
-}
-
-.max-h-\[20vh\] {
-  max-height: 20vh;
-}
-
-.max-h-\[15vh\] {
-  max-height: 15vh;
+.h-14 {
+  height: 3.5rem;
 }
 
 .min-h-\[300\%\] {
@@ -953,6 +929,10 @@ video {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.w-14 {
+  width: 3.5rem;
 }
 
 .min-w-\[200\%\] {
@@ -1050,10 +1030,6 @@ video {
 
 .overflow-y-auto {
   overflow-y: auto;
-}
-
-.overflow-y-hidden {
-  overflow-y: hidden;
 }
 
 .overflow-y-scroll {
@@ -1157,6 +1133,11 @@ video {
 .bg-yellow-700 {
   --tw-bg-opacity: 1;
   background-color: rgb(161 98 7 / var(--tw-bg-opacity));
+}
+
+.bg-emerald-600 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 150 105 / var(--tw-bg-opacity));
 }
 
 .bg-\[url\(\'img\/rope\.png\'\)\] {
@@ -1309,6 +1290,12 @@ video {
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 
+.shadow-sm {
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .shadow-black {
   --tw-shadow-color: #000;
   --tw-shadow: var(--tw-shadow-colored);
@@ -1325,6 +1312,14 @@ video {
 
 .transition-all {
   transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.transition-colors {
+  transition-property: color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
 }
@@ -1389,18 +1384,6 @@ video {
     justify-content: center;
   }
 
-  .sm\:overflow-y-auto {
-    overflow-y: auto;
-  }
-
-  .sm\:overflow-y-hidden {
-    overflow-y: hidden;
-  }
-
-  .sm\:overflow-y-scroll {
-    overflow-y: scroll;
-  }
-
   .sm\:p-2 {
     padding: 0.5rem;
   }
@@ -1434,5 +1417,12 @@ video {
   .sm\:shadow-yellow-600 {
     --tw-shadow-color: #ca8a04;
     --tw-shadow: var(--tw-shadow-colored);
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:hover\:bg-yellow-700:hover {
+    --tw-bg-opacity: 1;
+    background-color: rgb(161 98 7 / var(--tw-bg-opacity));
   }
 }
