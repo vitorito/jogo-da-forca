@@ -3,7 +3,6 @@ import MainContainer from './components/MainContainer';
 import CreatedRooms from './pages/createdRooms/CreatedRooms';
 import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
-import JoinRoom from './pages/joinRoom/JoinRoom';
 import Room from './pages/room/Room';
 import MatchProvider from './providers/MatchProvider';
 import NicknameProvider from './providers/NicknameProvider';
@@ -16,7 +15,6 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/room/enter" element={<JoinRoom />} />
             <Route path="/room/create" element={<CreateRoom />} />
             <Route
               path="/rooms"
