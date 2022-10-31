@@ -1,16 +1,21 @@
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function HomeButtons() {
+function HomeButtons({ disabled }) {
   return (
     <div className="flex flex-col items-center justify-center gap-2">
-      <Link to="/rooms" className="btn">
-        Jogar
-      </Link>
-      <Link to="/room/create" className="btn">
-        Criar Sala
-      </Link>
+      <button type="button" disabled={disabled} className="btn">
+        <Link to="/rooms">Jogar</Link>
+      </button>
+      <button type="button" disabled={disabled} className="btn">
+        <Link to="/room/create">Criar Sala</Link>
+      </button>
     </div>
   );
 }
+
+HomeButtons.propTypes = {
+  disabled: PropTypes.bool.isRequired,
+};
 
 export default HomeButtons;
