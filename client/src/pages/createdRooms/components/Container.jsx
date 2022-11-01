@@ -4,7 +4,7 @@ import React from 'react';
 function Container({ children, className }) {
   return (
     <div
-      className={`bg-yellow-600 h-full p-4 mt-4 rounded-xl
+      className={`bg-yellow-600 h-full p-4 rounded-xl
       text-black text-lg font-medium shadow shadow-black
       border-2 border-black ${className}`}
     >

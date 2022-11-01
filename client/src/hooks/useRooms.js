@@ -5,11 +5,14 @@ function useRooms() {
     {
       id: '3000',
       players: 10,
-      isPrivate: false,
+      isPrivate: true,
       currentRound: 0,
       maxRounds: 20,
       speed: 'fast',
-      themes: ['fruta', 'nome', 'carro', 'casa']
+      themes: ['fruta', 'nome', 'carro', 'casa', 'kkskskkskkskkskskkkeelf alflalflawlwallwallwalw', 'foeflflsfas', 'kka', 'lfapwoawslaslsa',
+        'fasçfasfçwlw', 'skffçslfsçfsf', 'lefpeepfwfsf', 'çflfsçflsçfsf çlfalsamas salasaslçlas',
+        'alaçslfasflçasfl lfasfçsafmaslçf aslfasfsalçflasf laçfaslfsfç', 'fslfsfksfkskf', 'salçsalçasl', 'fsçfsflsfçsf', 'ksasalsalaslas', 'skasaksakask',
+        'saçlsalas', 'kakaskkask', 'saçsalçasçlas', 'aslçaslçaslasças', 'asçalcxçclçwwaw', 'ckclkccksk', 'saaslkasakas', 'jasjsjasjjsajs'],
     },
     {
       id: '3001',

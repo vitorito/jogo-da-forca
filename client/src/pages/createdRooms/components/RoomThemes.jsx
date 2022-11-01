@@ -1,23 +1,20 @@
 import { useContext } from 'react';
+import ScrollableContainer from '../../../components/ScrollableContainer';
 import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
 
 function RoomThemes() {
   const { selectedRoom: room } = useContext(SelectRoomContext);
 
   return (
-    <div
-      className="bg-yellow-700 flex flex-wrap content-start justify-center grow
-      gap-2 p-2 text-base sm:text-lg  overflow-auto rounded-lg"
-    >
-      {room.themes.map((theme) => (
-        <span
-          key={theme}
-          className="rounded-gray-bg flex items-center text-center px-2 py-0.5"
-        >
-          {theme}
-        </span>
-      ))}
-    </div>
+    <ScrollableContainer className="bg-yellow-700 mb-1">
+      <ul className="flex flex-wrap content-start gap-2 h-full py-2 text-base">
+        {room.themes.map((theme) => (
+          <li key={theme} className="rounded-gray-bg w-fit px-2 py-0.5">
+            {theme}
+          </li>
+        ))}
+      </ul>
+    </ScrollableContainer>
   );
 }
 

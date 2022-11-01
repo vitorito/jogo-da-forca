@@ -1,12 +1,13 @@
 import PropTypes from 'prop-types';
 import { useRef, useState } from 'react';
+import ScrollableContainer from '../../../components/ScrollableContainer';
 import gc from '../../../config/gameConstraints';
 import RoomTheme from './RoomTheme';
 
 function RoomThemeList({ roomData, setRoomData }) {
   const [canAddTheme, setCanAddTheme] = useState(true);
   const themeInputRef = useRef();
-  const themesDivRef = useRef();
+  const themeListRef = useRef();
 
   function handleDeleteTheme(index) {
     setRoomData((prev) => {
@@ -27,7 +28,7 @@ function RoomThemeList({ roomData, setRoomData }) {
   }
 
   function scrollThemesDiv() {
-    const themesDiv = themesDivRef.current;
+    const themesDiv = themeListRef.current;
     setTimeout(() => {
       themesDiv.scrollBy(0, themesDiv.scrollHeight);
     }, 10);
@@ -53,21 +54,19 @@ function RoomThemeList({ roomData, setRoomData }) {
   }
 
   return (
-    <label htmlFor="theme-list" className="flex flex-col">
+    <label htmlFor="theme-list" className="flex flex-col overflow-auto">
       <span>Lista de Temas</span>
-      <div
-        ref={themesDivRef}
-        className="bg-white flex flex-wrap gap-2
-          w-full h-[20vh] p-5 rounded-t overflow-auto scroll-smooth"
-      >
-        {roomData.themeList.map((theme, index) => (
-          <RoomTheme
-            value={theme}
-            key={theme}
-            onClick={() => handleDeleteTheme(index)}
-          />
-        ))}
-      </div>
+      <ScrollableContainer className="bg-white shadow-none h-[18vh] rounded-t">
+        <ul ref={themeListRef} className="flex flex-wrap gap-2 py-1">
+          {roomData.themeList.map((theme, index) => (
+            <RoomTheme
+              value={theme}
+              key={theme}
+              onClick={() => handleDeleteTheme(index)}
+            />
+          ))}
+        </ul>
+      </ScrollableContainer>
       <div className="flex">
         <input
           id="theme-list"

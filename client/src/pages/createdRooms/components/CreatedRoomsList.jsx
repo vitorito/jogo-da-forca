@@ -1,21 +1,21 @@
 import { useContext } from 'react';
+import ScrollableContainer from '../../../components/ScrollableContainer';
 import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
-import Container from './Container';
 import RoomThumb from './RoomThumb';
 
 function CreatedRoomsList() {
   const { rooms } = useContext(SelectRoomContext);
 
   return (
-    <Container className="overflow-y-scroll pt-1">
+    // <Container className="overflow-y-scroll pt-1">
+    <ScrollableContainer className="bg-yellow-600 px-4 border-2 border-black rounded-lg">
       <ul>
         {rooms.map((room) => (
-          <li key={room.id}>
-            <RoomThumb room={room} />
-          </li>
+          <RoomThumb key={room.id} room={room} />
         ))}
       </ul>
-    </Container>
+    </ScrollableContainer>
+    // </Container>
   );
 }
 

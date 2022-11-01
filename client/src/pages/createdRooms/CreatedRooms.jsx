@@ -31,7 +31,7 @@ function CreatedRooms() {
 
   return (
     <div className='flex flex-col items-center justify-center h-full w-full'>
-      <h1 className="page-title">Salas Criadas</h1>
+      <h1 className="page-title mb-4">Salas Criadas</h1>
       <div className="sm-container h-full overflow-y-auto py-2">
         {!selectedRoom ? (
           <>
