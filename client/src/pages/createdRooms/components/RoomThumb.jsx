@@ -18,7 +18,7 @@ function RoomThumb({ room }) {
     >
       <div title="Sala" className="flex items-center gap-1">
         <BsFillDoorClosedFill />
-        {room.id}
+        <span className='pt-0.5'>{room.id}</span>
       </div>
       {room.isPrivate && <FaLock title="Privado" />}
       <div title="Jogadores" className="flex items-center gap-0.5">

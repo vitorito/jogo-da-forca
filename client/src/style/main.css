@@ -16,7 +16,7 @@
   }
 
   .btn {
-    @apply bg-blue-600 hover:bg-blue-800 disabled:bg-slate-700
+    @apply bg-blue-600 hover:bg-blue-800 disabled:bg-slate-700 block
     text-white text-lg sm:text-xl text-center font-medium font-bangers tracking-[1.5px]
     p-2 sm:p-3 w-full rounded-lg shadow-sm shadow-black text-shadow;
   }
