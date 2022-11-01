@@ -2,13 +2,8 @@ import { useContext } from 'react';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { FaUser } from 'react-icons/fa';
 import { SlReload } from 'react-icons/sl';
+import gc from '../../../config/gameConstraints';
 import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
-
-const speedNames = {
-  lazy: 'Lento',
-  medium: 'Médio',
-  fast: 'Rápido',
-};
 
 function RoomDetails() {
   const { selectedRoom: room } = useContext(SelectRoomContext);
@@ -36,7 +31,7 @@ function RoomDetails() {
         <span className="">Tempo</span>
         <span title="Tempo" className="flex items-center gap-1">
           <AiOutlineClockCircle className="text-lg sm:text-xl" />
-          {speedNames[room.speed]}
+          {gc.SPEED_NAMES[room.speed]}
         </span>
       </div>
     </div>

@@ -18,19 +18,21 @@ function Header({ activeScreen, setActiveScreen }) {
           isActive={activeScreen === HEADER_BUTTONS.ranking}
           onClick={() => setActiveScreen(HEADER_BUTTONS.ranking)}
         >
-          <BsTrophy className="w-full h-full" />
+          <BsTrophy title="Ranking" className="w-full h-full" />
         </HeanderItem>
-        <HeanderItem
-          isActive={activeScreen === HEADER_BUTTONS.match}
-          onClick={() => setActiveScreen(HEADER_BUTTONS.match)}
-        >
-          <RopeIcon />
-        </HeanderItem>
+        <div title="Partida" className='h-full'>
+          <HeanderItem
+            isActive={activeScreen === HEADER_BUTTONS.match}
+            onClick={() => setActiveScreen(HEADER_BUTTONS.match)}
+          >
+            <RopeIcon />
+          </HeanderItem>
+        </div>
         <HeanderItem
           isActive={activeScreen === HEADER_BUTTONS.info}
           onClick={() => setActiveScreen(HEADER_BUTTONS.info)}
         >
-          <BsExclamationCircle className="w-full h-full" />
+          <BsExclamationCircle title="Info" className="w-full h-full" />
         </HeanderItem>
       </ul>
     </div>

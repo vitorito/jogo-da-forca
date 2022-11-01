@@ -3,6 +3,14 @@ async function useRoom(roomId) {
   // return { room: res.data };
   return {
     id: roomId,
+    isPrivate: true,
+    currentRound: 1,
+    maxRounds: 20,
+    speed: 'fast',
+    themes: ['fruta', 'nome', 'carro', 'casa', 'kkskskkskkskkskskkkeelf alflalflawlwallwallwalw', 'foeflflsfas', 'kka', 'lfapwoawslaslsa',
+      'fasçfasfçwlw', 'skffçslfsçfsf', 'lefpeepfwfsf', 'çflfsçflsçfsf çlfalsamas salasaslçlas',
+      'alaçslfasflçasfl lfasfçsafmaslçf aslfasfsalçflasf laçfaslfsfç', 'fslfsfksfkskf', 'salçsalçasl', 'fsçfsflsfçsf', 'ksasalsalaslas', 'skasaksakask',
+    'saçlsalas', 'kakaskkask', 'saçsalçasçlas', 'aslçaslçaslasças', 'asçalcxçclçwwaw', 'ckclkccksk', 'saaslkasakas', 'jasjsjasjjsajs'],
     players: [
       {
         id: 1,
