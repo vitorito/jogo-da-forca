@@ -1,13 +1,15 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+const medalStyles = {
+  1: 'bg-yellow-400 border-transparent',
+  2: 'bg-gray-300 border-transparent',
+  3: 'bg-yellow-700 border-transparent',
+};
+
 function RankingItem({ player, position }) {
   function getMedalStyle() {
-    if (position === 1) return 'bg-yellow-400 border-transparent';
-    if (position === 2) return 'bg-gray-300 border-transparent';
-    if (position === 3) return 'bg-yellow-700 border-transparent';
-
-    return 'border-black';
+    return medalStyles[position] || 'border-black';
   }
 
   return (
@@ -17,7 +19,7 @@ function RankingItem({ player, position }) {
       >
         {position}
       </span>
-      <span className="px-1 grow text-center whitespace-nowrap overflow-scroll">
+      <span className="px-1 grow text-center whitespace-nowrap overflow-auto">
         {player.nick}
       </span>
       <span className="w-6 min-w-[1.5rem] text-right">{player.points}</span>

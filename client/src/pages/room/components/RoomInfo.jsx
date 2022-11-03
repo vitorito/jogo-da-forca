@@ -11,7 +11,7 @@ function RoomInfo() {
   const room = useContext(MatchContext);
 
   return (
-    <div className="sm-container h-full gap-5 items-center">
+    <div className="flex flex-col gap-5 items-center overflow-hidden">
       <div
         className="rounded-gray-bg flex items-center gap-2 my-2
         text-xl sm:text-2xl w-fit px-3 py-0.5 border-2 border-black"
@@ -19,7 +19,8 @@ function RoomInfo() {
         {room?.isPrivate && <FaLock />}
         <span>Sala {room?.id}</span>
       </div>
-      <div className="flex justify-center flex-wrap sm:flex-nowrap gap-5 sm:gap-6">
+      <div className="flex justify-center flex-wrap sm:flex-nowrap gap-5 
+      max-w-xs sm:max-w-none">
         <InfoItem
           title="Jogadores"
           info={`${room?.players.length}`}
@@ -42,11 +43,9 @@ function RoomInfo() {
         />
       </div>
       <RoomThemes />
-      <div className="w-full">
-        <button type="button" className="btn">
-          Blabla
-        </button>
-      </div>
+      <button type="button" className="btn mb-1">
+        Blabla
+      </button>
     </div>
   );
 }
