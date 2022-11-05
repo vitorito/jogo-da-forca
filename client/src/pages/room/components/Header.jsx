@@ -12,7 +12,7 @@ export const HEADER_BUTTONS = {
 
 function Header({ activeScreen, setActiveScreen }) {
   return (
-    <div className="w-full max-w-xs sm:max-w-sm py-2 border-2 border-black rounded">
+    <div className="w-full max-w-xs sm:max-w-sm py-2 mb-2 border-2 border-black rounded">
       <ul className="flex items-center justify-evenly w-full h-14">
         <HeanderItem
           isActive={activeScreen === HEADER_BUTTONS.ranking}

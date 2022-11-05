@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { FaClock, FaLock, FaUser } from 'react-icons/fa';
 import { SlReload } from 'react-icons/sl';
 import { VscBook } from 'react-icons/vsc';
+import { Link } from 'react-router-dom';
 import gc from '../../../config/gameConstraints';
 import { MatchContext } from '../../../providers/MatchProvider';
 import InfoItem from './InfoItem';
@@ -19,8 +20,10 @@ function RoomInfo() {
         {room?.isPrivate && <FaLock />}
         <span>Sala {room?.id}</span>
       </div>
-      <div className="flex justify-center flex-wrap sm:flex-nowrap gap-5 
-      max-w-xs sm:max-w-none">
+      <div
+        className="flex justify-center flex-wrap sm:flex-nowrap gap-5
+      max-w-xs sm:max-w-none"
+      >
         <InfoItem
           title="Jogadores"
           info={`${room?.players.length}`}
@@ -43,9 +46,9 @@ function RoomInfo() {
         />
       </div>
       <RoomThemes />
-      <button type="button" className="btn mb-1">
-        Blabla
-      </button>
+      <Link to="/rooms" className="btn block w-full mb-1">
+        Voltar
+      </Link>
     </div>
   );
 }
