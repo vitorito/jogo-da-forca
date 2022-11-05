@@ -7,7 +7,6 @@ function CreatedRoomsList() {
   const { rooms } = useContext(SelectRoomContext);
 
   return (
-    // <Container className="overflow-y-scroll pt-1">
     <ScrollableContainer className="bg-yellow-600 px-4 border-2 border-black rounded-lg">
       <ul>
         {rooms.map((room) => (
@@ -15,7 +14,6 @@ function CreatedRoomsList() {
         ))}
       </ul>
     </ScrollableContainer>
-    // </Container>
   );
 }
 

@@ -17,7 +17,7 @@ function RoomThumb({ room }) {
         justify-between w-full h-12 px-2 pt-3 mt-2 transition-all duration-300
         border-b border-gray-900 rounded-t outline-none font-medium sm:text-lg"
       >
-        <div title="Sala" className="flex items-center gap-1">
+        <div title="Sala" className="flex items-center gap-1 w-16">
           <BsFillDoorClosedFill />
           <span className="pt-0.5">{room.id}</span>
         </div>
