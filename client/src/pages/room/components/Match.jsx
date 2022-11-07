@@ -17,7 +17,7 @@ function Match() {
       <div className="flex flex-col items-center justify-evenly gap-2 grow w-full">
         <p className='page-title'>{room.round.theme}</p>
         <Gallow />
-        <ScrollableContainer className="shadow-none">
+        <ScrollableContainer className="shadow-none px-0">
           <Keyboard />
         </ScrollableContainer>
       </div>

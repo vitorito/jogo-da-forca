@@ -13,7 +13,7 @@ function HeanderItem({ children, isActive, onClick }) {
       <button
         type="button"
         onClick={onClick}
-        className="flex items-center justify-center h-full w-14 px-2"
+        className="flex items-center justify-center h-full w-11 xsm:w-12 px-2"
       >
         {children}
       </button>
