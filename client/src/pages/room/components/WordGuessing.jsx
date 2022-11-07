@@ -8,10 +8,10 @@ function WordGuessing({ className }) {
   return (
     <div
       className={`flex flex-wrap justify-center gap-1 mt-2
-      text-3xl leading-none ${className}`}
+      text-2xl leading-none ${className}`}
     >
       {word.split('').map((letter, index) => (
-        <span key={index} className="w-8 border-b-2 border-black text-center">
+        <span key={index} className="w-7 h-7 mt-2 border-b-2 border-black text-center">
           {letter === gc.HIDDEN_LETTER ? '' : letter}
         </span>
       ))}

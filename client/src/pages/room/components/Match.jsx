@@ -1,6 +1,7 @@
 import React, { useContext, useMemo } from 'react';
 import { MatchContext } from '../../../providers/MatchProvider';
 import Gallow from './Gallow';
+import Keyboard from './Keyboard';
 
 function Match() {
   const room = useContext(MatchContext);
@@ -8,12 +9,13 @@ function Match() {
     () => room?.players.find((player) => player.id === 1),
     [room]
   );
-  const wordPickerId = 1;
+  const wordPickerId = 2;
 
-  if (myPlayer?.id === wordPickerId) {
+  if (myPlayer?.id !== wordPickerId) {
     return (
-      <div className='flex items-center grow'>
+      <div className="flex flex-col items-center justify-evenly grow w-full">
         <Gallow />
+        <Keyboard />
       </div>
     );
   }

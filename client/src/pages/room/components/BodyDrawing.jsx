@@ -9,7 +9,7 @@ const HEAD = (
   />
 );
 const CHEST = (
-  <div key="chest" className="bg-black w-2 h-14 absolute top-12 right-[24%]" />
+  <div key="chest" className="bg-black w-2 h-14 absolute top-12 right-1/4" />
 );
 const LEFT_ARM = (
   <div
@@ -22,20 +22,20 @@ const RIGHT_ARM = (
   <div
     key="right-arm"
     className="bg-black w-10 h-2
-    absolute top-14 right-[8%] rotate-45 origin-bottom-left rounded"
+    absolute top-14 right-[7%] rotate-45 origin-bottom-left rounded"
   />
 );
 const LEFT_LEG = (
   <div
     key="left-leg"
-    className="bg-black w-12 h-2 absolute top-24 right-[24%]
+    className="bg-black w-12 h-2 absolute top-24 right-[25%]
     rotate-[-60deg] origin-bottom-right rounded-l"
   />
 );
 const RIGHT_LEG = (
   <div
     key="right-leg"
-    className="bg-black w-12 h-2 absolute top-24 right-[5%]
+    className="bg-black w-12 h-2 absolute top-24 right-[2%]
     rotate-[60deg] origin-bottom-left rounded-r"
   />
 );
