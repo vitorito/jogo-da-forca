@@ -1,11 +1,12 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import RopeIcon from '../../../components/RopeIcon';
 import BodyDrawing from './BodyDrawing';
 import WordGuessing from './WordGuessing';
 
-function Gallow() {
+function Gallow({ className }) {
   return (
-    <div className="flex flex-col gap-6">
+    <div className={`flex flex-col justify-evenly grow gap-1 ${className}`}>
       <div className="relative w-fit mx-auto z-10">
         <div className="bg-yellow-700 w-40 h-5 ml-2 rounded shadow shadow-black/70" />
         <div className="bg-yellow-900 w-20 h-3 absolute left-1/4 top-6 rotate-[-35deg] z-[-1]" />
@@ -18,5 +19,13 @@ function Gallow() {
     </div>
   );
 }
+
+Gallow.defaultProps = {
+  className: '',
+};
+
+Gallow.propTypes = {
+  className: PropTypes.string,
+};
 
 export default Gallow;

@@ -61,6 +61,7 @@ async function useRoom(roomId) {
       },
     ],
     round: {
+      theme: 'fruta',
       playerInTurn: {
         id: 2,
         nick: 'marcus',
@@ -68,7 +69,7 @@ async function useRoom(roomId) {
       state: {
         word: 'b*n*n*-c*r*meliz*d*',
         correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'z', 'd', 'e', 'i'],
-        wrongLetters: ['k', 'j', 'p', 'q', 'w', 'x'],
+        wrongLetters: [],
       }
     }
   };

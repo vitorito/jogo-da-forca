@@ -1,4 +1,5 @@
 /* eslint-disable react/no-array-index-key */
+import PropTypes from 'prop-types';
 import React, { useContext } from 'react';
 import useGuessLetter from '../../../hooks/useGuessLetter';
 import { MatchContext } from '../../../providers/MatchProvider';
@@ -9,10 +10,11 @@ const KEYS = [
   ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
 ];
 
-function Keyboard() {
-  const { correctLetters, wrongLetters } = useContext(MatchContext).room.round.state;
+function Keyboard({ className }) {
+  const { room } = useContext(MatchContext);
+  const { correctLetters, wrongLetters } = room.round.state;
   const guess = useGuessLetter();
-  
+
   function getBgColor(key) {
     if (correctLetters.includes(key)) return 'bg-emerald-400';
 
@@ -22,11 +24,11 @@ function Keyboard() {
   }
 
   return (
-    <div className="flex flex-col gap-1 w-full">
+    <div className={`flex flex-col gap-1 w-full${className}`}>
       {KEYS.map((line, index) => (
         <div
           key={index}
-          className="flex justify-center flex-wrap gap-1 text-xl"
+          className="flex justify-center gap-1 text-xl"
         >
           {line.map((key) => (
             <button
@@ -48,14 +50,12 @@ function Keyboard() {
   );
 }
 
-// Keyboard.defaultProps = {
-//   correctLetters: [],
-//   wrongLetters: [],
-// };
+Keyboard.defaultProps = {
+  className: '',
+};
 
-// Keyboard.propTypes = {
-//   correctLetters: PropTypes.arrayOf(PropTypes.string),
-//   wrongLetters: PropTypes.arrayOf(PropTypes.string),
-// };
+Keyboard.propTypes = {
+  className: PropTypes.string,
+};
 
 export default Keyboard;

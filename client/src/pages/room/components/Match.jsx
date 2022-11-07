@@ -1,4 +1,5 @@
 import React, { useContext, useMemo } from 'react';
+import ScrollableContainer from '../../../components/ScrollableContainer';
 import { MatchContext } from '../../../providers/MatchProvider';
 import Gallow from './Gallow';
 import Keyboard from './Keyboard';
@@ -13,9 +14,12 @@ function Match() {
 
   if (myPlayer?.id !== wordPickerId) {
     return (
-      <div className="flex flex-col items-center justify-evenly grow w-full">
+      <div className="flex flex-col items-center justify-evenly gap-2 grow w-full">
+        <p className='page-title'>{room.round.theme}</p>
         <Gallow />
-        <Keyboard />
+        <ScrollableContainer className="shadow-none">
+          <Keyboard />
+        </ScrollableContainer>
       </div>
     );
   }
