@@ -12,7 +12,7 @@ function RoomInfo() {
   const { room } = useContext(MatchContext);
 
   return (
-    <div className="flex flex-col gap-5 items-center overflow-hidden">
+    <div className="flex flex-col gap-5 items-center grow overflow-hidden">
       <div
         className="rounded-gray-bg flex items-center gap-2 my-2
         text-xl sm:text-2xl w-fit px-3 py-0.5 border-2 border-black"

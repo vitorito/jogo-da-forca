@@ -8,7 +8,7 @@ function Room() {
   const [activeScreen, setActiveScreen] = useState(HEADER_BUTTONS.match);
 
   return (
-    <div className="flex flex-col items-center  gap-4 w-full h-full">
+    <div className="flex flex-col items-center gap-4 w-full h-full">
       <Header activeScreen={activeScreen} setActiveScreen={setActiveScreen} />
       {activeScreen === HEADER_BUTTONS.ranking ? <Ranking /> : null}
       {activeScreen === HEADER_BUTTONS.info ? <RoomInfo /> : null}

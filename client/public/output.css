@@ -916,6 +916,10 @@ video {
   height: 8rem;
 }
 
+.h-20 {
+  height: 5rem;
+}
+
 .max-h-\[96\%\] {
   max-height: 96%;
 }
@@ -1127,8 +1131,16 @@ video {
   gap: 1.25rem;
 }
 
+.place-self-stretch {
+  place-self: stretch;
+}
+
 .self-center {
   align-self: center;
+}
+
+.self-stretch {
+  align-self: stretch;
 }
 
 .overflow-auto {
