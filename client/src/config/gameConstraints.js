@@ -11,4 +11,5 @@ export default {
     medium: 'Médio',
     fast: 'Rápido',
   },
+  HIDDEN_LETTER: '*',
 };

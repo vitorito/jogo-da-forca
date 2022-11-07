@@ -11,19 +11,6 @@ const HEAD = (
 const CHEST = (
   <div key="chest" className="bg-black w-2 h-14 absolute top-12 right-[24%]" />
 );
-// const LEFT_ARM = (
-//   <GiArm key="left-arm" size={40} className="absolute top-14 right-[24%]" />
-// );
-// const RIGHT_ARM = (
-//   <GiArm
-//     style={{
-//       transform: 'rotateX(180deg) rotate(180deg)',
-//     }}
-//     key="right-arm"
-//     size={40}
-//     className="absolute top-14 right-[9.5%]"
-//   />
-// );
 const LEFT_ARM = (
   <div
     key="left-arm"
