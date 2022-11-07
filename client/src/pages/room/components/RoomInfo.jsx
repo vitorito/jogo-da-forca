@@ -9,7 +9,7 @@ import InfoItem from './InfoItem';
 import RoomThemes from './RoomThemes';
 
 function RoomInfo() {
-  const room = useContext(MatchContext);
+  const { room } = useContext(MatchContext);
 
   return (
     <div className="flex flex-col gap-5 items-center overflow-hidden">

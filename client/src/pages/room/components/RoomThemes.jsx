@@ -3,7 +3,7 @@ import ScrollableContainer from '../../../components/ScrollableContainer';
 import { MatchContext } from '../../../providers/MatchProvider';
 
 function RoomThemes() {
-  const room = useContext(MatchContext);
+  const { room } = useContext(MatchContext);
   return (
     <ScrollableContainer className="bg-yellow-600 w-full max-w-xs sm:max-w-sm">
       <ul className='flex flex-wrap items-start gap-2 text-center overflow-auto'>

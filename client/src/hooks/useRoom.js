@@ -7,10 +7,7 @@ async function useRoom(roomId) {
     currentRound: 1,
     totalRounds: 20,
     speed: 'fast',
-    themes: ['fruta', 'nome', 'carro', 'casa', 'kkskskkskkskkskskkkeelf alflalflawlwallwallwalw', 'foeflflsfas', 'kka', 'lfapwoawslaslsa',
-      'fasçfasfçwlw', 'skffçslfsçfsf', 'lefpeepfwfsf', 'çflfsçflsçfsf çlfalsamas salasaslçlas',
-      'alaçslfasflçasfl lfasfçsafmaslçf aslfasfsalçflasf laçfaslfsfç', 'fslfsfksfkskf', 'salçsalçasl', 'fsçfsflsfçsf', 'ksasalsalaslas', 'skasaksakask',
-      'saçlsalas', 'kakaskkask', 'saçsalçasçlas', 'aslçaslçaslasças', 'asçalcxçclçwwaw', 'ckclkccksk', 'saaslkasakas', 'jasjsjasjjsajs'],
+    themes: ['fruta', 'nome', 'carro', 'casa'],
     players: [
       {
         id: 1,
@@ -21,31 +18,6 @@ async function useRoom(roomId) {
         id: 2,
         nick: 'marcus',
         points: 30,
-      },
-      {
-        id: 3,
-        nick: 'antonio',
-        points: 35,
-      },
-      {
-        id: 10,
-        nick: 'melao',
-        points: 86,
-      },
-      {
-        id: 20,
-        nick: 'carlos',
-        points: 13,
-      },
-      {
-        id: 30,
-        nick: 'juan',
-        points: 13,
-      },
-      {
-        id: 11,
-        nick: 'maria',
-        points: 6,
       },
       {
         id: 21,
@@ -87,7 +59,18 @@ async function useRoom(roomId) {
         nick: 'ZHAZaan',
         points: 96,
       },
-    ]
+    ],
+    round: {
+      playerInTurn: {
+        id: 2,
+        nick: 'marcus',
+      },
+      state: {
+        word: 'b*n*n*-c*r*meliz*d*',
+        correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'z', 'd', 'e', 'i'],
+        wrongLetters: ['k', 'j', 'p', 'q', 'w', 'x'],
+      }
+    }
   };
 }
 

@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
+import { MatchContext } from '../../../providers/MatchProvider';
 
 const HEAD = (
   <div
@@ -9,20 +10,23 @@ const HEAD = (
   />
 );
 const CHEST = (
-  <div key="chest" className="bg-black w-2 h-14 absolute top-12 right-1/4" />
+  <div
+    key="chest"
+    className="bg-black w-2 h-[3.7rem] absolute top-12 right-1/4 rounded"
+  />
 );
 const LEFT_ARM = (
   <div
     key="left-arm"
-    className="bg-black w-10 h-2
-    absolute top-14 right-[24.5%] rotate-[-45deg] origin-bottom-right rounded"
+    className="bg-black w-9 h-2
+    absolute top-14 right-[26%] rotate-[-45deg] origin-bottom-right rounded"
   />
 );
 const RIGHT_ARM = (
   <div
     key="right-arm"
-    className="bg-black w-10 h-2
-    absolute top-14 right-[7%] rotate-45 origin-bottom-left rounded"
+    className="bg-black w-9 h-2
+    absolute top-14 right-[8%] rotate-45 origin-bottom-left rounded"
   />
 );
 const LEFT_LEG = (
@@ -42,11 +46,11 @@ const RIGHT_LEG = (
 const BODY_PARTS = [HEAD, CHEST, LEFT_ARM, RIGHT_ARM, LEFT_LEG, RIGHT_LEG];
 
 function BodyDrawing({ className }) {
-  const numberOfParts = 6;
-
+  const { round } = useContext(MatchContext).room;
+  const members = round.state.wrongLetters.length;
   return (
     <div className={`relative ${className}`}>
-      {BODY_PARTS.slice(0, numberOfParts)}
+      {BODY_PARTS.slice(0, members)}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useMemo, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import useRoom from '../hooks/useRoom';
 
@@ -15,10 +15,41 @@ function MatchProvider({ children }) {
     if (!roomData) {
       useRoom(roomId).then((data) => setRoom(data));
     }
-    return roomData;
+    return roomData || getEmptyRoomData();
   }
 
-  return <MatchContext.Provider value={room}>{children}</MatchContext.Provider>;
+  const value = useMemo(
+    () => ({
+      room,
+      setRoom,
+    }),
+    [room, setRoom]
+  );
+
+  return <MatchContext.Provider value={value}>{children}</MatchContext.Provider>;
+}
+
+function getEmptyRoomData(roomId) {
+  return {
+    id: roomId,
+    isPrivate: false,
+    currentRound: 0,
+    totalRounds: 0,
+    speed: '',
+    themes: [],
+    players: [],
+    round: {
+      playerInTurn: {
+        id: 0,
+        nick: '',
+      },
+      state: {
+        word: '',
+        correctLetters: [],
+        wrongLetters: [],
+      },
+    },
+  };
 }
 
 export default MatchProvider;

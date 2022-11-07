@@ -4,12 +4,12 @@ import Gallow from './Gallow';
 import Keyboard from './Keyboard';
 
 function Match() {
-  const room = useContext(MatchContext);
+  const { room } = useContext(MatchContext);
   const myPlayer = useMemo(
-    () => room?.players.find((player) => player.id === 1),
+    () => room.players.find((player) => player.id === 1),
     [room]
   );
-  const wordPickerId = 2;
+  const wordPickerId = room.round.playerInTurn.id;
 
   if (myPlayer?.id !== wordPickerId) {
     return (
@@ -22,7 +22,7 @@ function Match() {
 
   return (
     <div className="grow">
-      {room?.players.map((player) => (
+      {room.players.map((player) => (
         <Gallow key={player.id} player={player} />
       ))}
     </div>

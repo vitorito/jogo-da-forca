@@ -4,7 +4,7 @@ import { MatchContext } from '../../../providers/MatchProvider';
 import RankingItem from './RankingItem';
 
 function Ranking() {
-  const room = useContext(MatchContext);
+  const { room } = useContext(MatchContext);
   return (
     <ScrollableContainer className="sm-container bg-yellow-700">
       <ul className="flex flex-col gap-2 w-full h-full overflow-auto">
