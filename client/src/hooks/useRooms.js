@@ -7,7 +7,7 @@ function useRooms() {
       players: 10,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa', 'kkskskkskkskkskskkkeelf alflalflawlwallwallwalw', 'foeflflsfas', 'kka', 'lfapwoawslaslsa',
         'fasçfasfçwlw', 'skffçslfsçfsf', 'lefpeepfwfsf', 'çflfsçflsçfsf çlfalsamas salasaslçlas',
@@ -19,7 +19,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -28,7 +28,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -37,7 +37,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -46,7 +46,7 @@ function useRooms() {
       players: 10,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -55,7 +55,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -64,7 +64,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -73,7 +73,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -82,7 +82,7 @@ function useRooms() {
       players: 10,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -91,7 +91,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -100,7 +100,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -109,7 +109,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -118,7 +118,7 @@ function useRooms() {
       players: 10,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -127,7 +127,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -136,7 +136,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },
@@ -145,7 +145,7 @@ function useRooms() {
       players: 0,
       isPrivate: true,
       currentRound: 0,
-      maxRounds: 20,
+      totalRounds: 20,
       speed: 'fast',
       themes: ['fruta', 'nome', 'carro', 'casa']
     },

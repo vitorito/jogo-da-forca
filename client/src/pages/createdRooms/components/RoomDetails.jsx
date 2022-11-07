@@ -17,14 +17,14 @@ function RoomDetails() {
         <span className="">Jogadores</span>
         <span title="Jogadores" className="flex items-center gap-1">
           <FaUser />
-          {room.currentRound}/{room.maxRounds}
+          {room.currentRound}/{room.totalRounds}
         </span>
       </div>
       <div className="flex flex-col items-center justify-center">
         <span className="">Rodadas</span>
         <span title="Rodadas" className="flex items-center gap-1">
           <SlReload />
-          {room.currentRound}/{room.maxRounds}
+          {room.currentRound}/{room.totalRounds}
         </span>
       </div>
       <div className="flex flex-col items-center justify-center">

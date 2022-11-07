@@ -31,7 +31,7 @@ function RoomInfo() {
         />
         <InfoItem
           title="Rodadas"
-          info={`${room?.currentRound}/${room?.maxRounds}`}
+          info={`${room?.currentRound}/${room?.totalRounds}`}
           icon={<SlReload size={18} />}
         />
         <InfoItem
