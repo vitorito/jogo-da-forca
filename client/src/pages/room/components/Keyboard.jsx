@@ -28,7 +28,7 @@ function Keyboard({ className }) {
       {KEYS.map((line, index) => (
         <div
           key={index}
-          className="flex justify-center gap-1 text-xl"
+          className="flex justify-center gap-1 sm:gap-1.5"
         >
           {line.map((key) => (
             <button
@@ -38,7 +38,9 @@ function Keyboard({ className }) {
               disabled={
                 correctLetters.includes(key) || wrongLetters.includes(key)
               }
-              className={`flex items-center justify-center w-[8.5%] max-w-[2.2rem] h-8 rounded outline-none
+              className={`flex items-center justify-center
+              w-[8.5%] max-w-[2.2rem] sm:max-w-[3rem] h-8 sm:h-10
+              text-xl sm:text-2xl rounded outline-none shadow-sm shadow-black/50
               ${getBgColor(key)}`}
             >
               {key}
