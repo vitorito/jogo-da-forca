@@ -1,11 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
+import React from 'react';
 import gc from '../../../config/gameConstraints';
-import { MatchContext } from '../../../providers/MatchProvider';
 
-function WordGuessing({ className }) {
-  const { word } = useContext(MatchContext).room.round.state;
+function WordGuessing({ word, className }) {
   return (
     <div
       className={`flex flex-wrap justify-center gap-1 max-w-2xl
@@ -25,10 +23,12 @@ function WordGuessing({ className }) {
 }
 
 WordGuessing.defaultProps = {
+  word: '',
   className: '',
 };
 
 WordGuessing.propTypes = {
+  word: PropTypes.string,
   className: PropTypes.string,
 };
 

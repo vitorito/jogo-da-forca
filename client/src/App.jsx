@@ -4,7 +4,6 @@ import CreatedRooms from './pages/createdRooms/CreatedRooms';
 import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
 import Room from './pages/room/Room';
-import MatchProvider from './providers/MatchProvider';
 import NicknameProvider from './providers/NicknameProvider';
 import SelectRoomProvider from './providers/SelectRoomProvider';
 
@@ -24,14 +23,7 @@ function App() {
                 </SelectRoomProvider>
               }
             />
-            <Route
-              path="/:id"
-              element={
-                <MatchProvider>
-                  <Room />
-                </MatchProvider>
-              }
-            />
+            <Route path="/:id" element={<Room />} />
             <Route path="*" element={<Home />} />
           </Routes>
         </Router>

@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { useContext } from 'react';
-import { MatchContext } from '../../../providers/MatchProvider';
+import React from 'react';
 
 const HEAD = (
   <div
@@ -45,9 +44,7 @@ const RIGHT_LEG = (
 );
 const BODY_PARTS = [HEAD, CHEST, LEFT_ARM, RIGHT_ARM, LEFT_LEG, RIGHT_LEG];
 
-function BodyDrawing({ className }) {
-  const { round } = useContext(MatchContext).room;
-  const members = round.state.wrongLetters.length;
+function BodyDrawing({ members, className }) {
   return (
     <div className={`relative ${className}`}>
       {BODY_PARTS.slice(0, members)}
@@ -56,10 +53,12 @@ function BodyDrawing({ className }) {
 }
 
 BodyDrawing.defaultProps = {
+  members: 0,
   className: '',
 };
 
 BodyDrawing.propTypes = {
+  members: PropTypes.number,
   className: PropTypes.string,
 };
 
