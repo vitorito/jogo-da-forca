@@ -8,7 +8,7 @@ function WordGuessing({ className }) {
   const { word } = useContext(MatchContext).room.round.state;
   return (
     <div
-      className={`flex flex-wrap justify-center gap-1
+      className={`flex flex-wrap justify-center gap-1 max-w-2xl
       ${className}`}
     >
       {word.split('').map((letter, index) => (

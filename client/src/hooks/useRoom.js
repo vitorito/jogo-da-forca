@@ -67,8 +67,8 @@ async function useRoom(roomId) {
         nick: 'marcus',
       },
       state: {
-        word: 'b*n*n*',
-        correctLetters: ['b', 'n'],
+        word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+        correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
         wrongLetters: [],
       }
     }
