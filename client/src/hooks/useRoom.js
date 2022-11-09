@@ -36,7 +36,7 @@ function useRoom(roomId) {
       round: {
         theme: 'fruta',
         playerInTurn: {
-          id: "1",
+          id: "2",
           nick: 'marcus',
         },
       },
@@ -46,7 +46,7 @@ function useRoom(roomId) {
           nick: 'jao',
           points: 20,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -56,7 +56,7 @@ function useRoom(roomId) {
           nick: 'marcus',
           points: 30,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -66,7 +66,7 @@ function useRoom(roomId) {
           nick: 'morfeu',
           points: 5,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -76,7 +76,7 @@ function useRoom(roomId) {
           nick: 'cleber',
           points: 96,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -86,7 +86,7 @@ function useRoom(roomId) {
           nick: 'marcia',
           points: 86,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -96,7 +96,7 @@ function useRoom(roomId) {
           nick: 'Stackz',
           points: 13,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -106,7 +106,7 @@ function useRoom(roomId) {
           nick: 'LEPRECHAUSAKDSAKDKLSDSADKSKLD',
           points: 13,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: ['z', 'p', 'w', 'k', 'j', 't'],
           }
@@ -116,7 +116,7 @@ function useRoom(roomId) {
           nick: 'GodZin',
           points: 6,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -126,7 +126,7 @@ function useRoom(roomId) {
           nick: 'JaMbAu',
           points: 5,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }
@@ -136,7 +136,7 @@ function useRoom(roomId) {
           nick: 'ZHAZaan',
           points: 96,
           round: {
-            word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
+            word: 'b*n*n*-c*r*m*e*l*d*-d*ce',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
             wrongLetters: [],
           }

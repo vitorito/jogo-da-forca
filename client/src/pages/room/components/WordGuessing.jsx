@@ -6,14 +6,14 @@ import gc from '../../../config/gameConstraints';
 function WordGuessing({ word, className }) {
   return (
     <div
-      className={`flex flex-wrap justify-center gap-1 max-w-2xl
+      className={`flex flex-wrap justify-center gap-1 max-w-2xl py-2
       ${className}`}
     >
       {word.split('').map((letter, index) => (
         <span
           key={index}
-          className="w-7 sm:w-10 aspect-square mt-1 border-b-2 border-black
-          text-2xl sm:text-4xl leading-none text-center"
+          className="w-7 sm:w-8 aspect-square mt-1 border-b-2 border-black
+          text-2xl sm:text-3xl leading-none text-center"
         >
           {letter === gc.HIDDEN_LETTER ? '' : letter}
         </span>

@@ -7,12 +7,12 @@ import Keyboard from './Keyboard';
 function WordGuessingPlayerView({ player }) {
   const { correctLetters, wrongLetters } = player.round;
   return (
-    <div>
+    <>
       <Gallow player={player} />
       <ScrollableContainer className="shadow-none px-0">
         <Keyboard correctLetters={correctLetters} wrongLetters={wrongLetters} />
       </ScrollableContainer>
-    </div>
+    </>
   );
 }
 
