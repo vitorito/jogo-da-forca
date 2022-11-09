@@ -6,7 +6,7 @@ import WordGuessing from './WordGuessing';
 
 function Gallow({ player, className }) {
   return (
-    <div className={`flex flex-col justify-evenly grow gap-1 ${className}`}>
+    <div className={`flex flex-col items-center justify-evenly grow gap-1 ${className}`}>
       <div className="relative w-fit mx-auto z-10">
         <div className="bg-yellow-700 w-40 h-5 ml-2 rounded shadow shadow-black/70" />
         <div className="bg-yellow-900 w-20 h-3 absolute left-1/4 top-6 rotate-[-35deg] z-[-1]" />

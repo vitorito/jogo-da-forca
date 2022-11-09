@@ -103,12 +103,12 @@ function useRoom(roomId) {
         },
         {
           id: "300",
-          nick: 'LEPRECHAU',
+          nick: 'LEPRECHAUSAKDSAKDKLSDSADKSKLD',
           points: 13,
           round: {
             word: 'b*n*n*-c*r*m*e*l*d*-*ç*c*r*d*a',
             correctLetters: ['b', 'n', 'c', 'r', 'm', 'l', 'd'],
-            wrongLetters: [],
+            wrongLetters: ['z', 'p', 'w', 'k', 'j', 't'],
           }
         },
         {
