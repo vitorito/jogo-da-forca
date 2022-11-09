@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
 import { useContext } from 'react';
 import gc from '../../../config/gameConstraints';
-import { NicknameContext } from '../../../providers/NicknameProvider';
+import { PlayerContext } from '../../../providers/PlayerProvider';
 
 function HomeForm({ setIsValidNick }) {
-  const { nick, setNick } = useContext(NicknameContext);
+  const { nick, setNick } = useContext(PlayerContext);
 
   function handleNickChange({ target }) {
     const value = target.value.trim();

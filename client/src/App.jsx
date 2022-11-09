@@ -4,13 +4,13 @@ import CreatedRooms from './pages/createdRooms/CreatedRooms';
 import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
 import Room from './pages/room/Room';
-import NicknameProvider from './providers/NicknameProvider';
+import PlayerProvider from './providers/PlayerProvider';
 import SelectRoomProvider from './providers/SelectRoomProvider';
 
 function App() {
   return (
     <MainContainer>
-      <NicknameProvider>
+      <PlayerProvider>
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -27,7 +27,7 @@ function App() {
             <Route path="*" element={<Home />} />
           </Routes>
         </Router>
-      </NicknameProvider>
+      </PlayerProvider>
     </MainContainer>
   );
 }
