@@ -1,4 +1,5 @@
 import roomService from './roomService.js';
+import { validatePlayer, validateRoomData } from './validator.js';
 
 async function show(req, res) {
   const { id } = req.params;
@@ -13,6 +14,13 @@ async function show(req, res) {
 
 async function create(req, res) {
   const { player, roomData } = req.body;
+
+  let errors = validatePlayer(player);
+  errors = errors.concat(validateRoomData(roomData));
+
+  if (errors.length !== 0) {
+    return res.status(400).json({ errors });
+  }
 
   const room = roomService.create(player, roomData);
 
