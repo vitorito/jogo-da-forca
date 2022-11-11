@@ -30,7 +30,7 @@ const create = (owner, roomData) => {
   const player = new Player(owner.socketId, playerId, owner.nick);
   room.add(player);
 
-  return room.dto();
+  return room.id;
 };
 
 export default {

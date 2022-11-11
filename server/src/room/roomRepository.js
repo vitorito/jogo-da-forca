@@ -4,7 +4,7 @@ import Room from '../models/Room.js';
 const rooms = new Map();
 
 const generateRoomId = () => {
-  return String(gc.ROOM_MIN_ID + rooms.size);
+  return String(gc.MIN_ROOM_ID + rooms.size);
 };
 
 const findAll = () => Array.from(rooms.values());

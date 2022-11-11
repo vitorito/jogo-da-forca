@@ -13,7 +13,7 @@ async function show(req, res) {
 
 async function create(req, res) {
   const { player, roomData } = req.body;
-  console.log({ player, roomData });
+
   const room = roomService.create(player, roomData);
 
   if (!room) return res.sendStatus(400);
