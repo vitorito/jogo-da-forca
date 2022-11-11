@@ -11,12 +11,12 @@ function RoomThemeList({ roomData, setRoomData }) {
 
   function handleDeleteTheme(index) {
     setRoomData((prev) => {
-      const themeList = [...prev.themeList];
-      themeList.splice(index, 1);
-      setCanAddTheme(themeList.length < gc.MAX_ROOM_THEMES);
+      const themes = [...prev.themes];
+      themes.splice(index, 1);
+      setCanAddTheme(themes.length < gc.MAX_ROOM_THEMES);
       return {
         ...prev,
-        themeList,
+        themes,
       };
     });
   }
@@ -40,12 +40,12 @@ function RoomThemeList({ roomData, setRoomData }) {
     if (!theme) return;
 
     setRoomData((prev) => {
-      const themeList = prev.themeList.filter((t) => t !== theme);
-      themeList.push(theme);
-      setCanAddTheme(themeList.length < gc.MAX_ROOM_THEMES);
+      const themes = prev.themes.filter((t) => t !== theme);
+      themes.push(theme);
+      setCanAddTheme(themes.length < gc.MAX_ROOM_THEMES);
       return {
         ...prev,
-        themeList,
+        themes,
       };
     });
 
@@ -58,7 +58,7 @@ function RoomThemeList({ roomData, setRoomData }) {
       <span>Lista de Temas</span>
       <ScrollableContainer className="bg-white shadow-none h-[18vh] rounded-t">
         <ul ref={themeListRef} className="flex flex-wrap gap-2 py-1">
-          {roomData.themeList.map((theme, index) => (
+          {roomData.themes.map((theme, index) => (
             <RoomTheme
               value={theme}
               key={theme}
@@ -96,7 +96,7 @@ RoomThemeList.propTypes = {
   roomData: PropTypes.shape({
     rounds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     speed: PropTypes.oneOf(['lazy', 'medium', 'fast']),
-    themeList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    themes: PropTypes.arrayOf(PropTypes.string).isRequired,
     password: PropTypes.string,
   }).isRequired,
   setRoomData: PropTypes.func.isRequired,

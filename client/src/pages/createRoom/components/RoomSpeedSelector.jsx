@@ -9,7 +9,7 @@ function RoomSpeedSelector({ roomData, setRoomData }) {
   }
 
   return (
-    <div className='my-2'>
+    <div className="my-2">
       <p>Tempo</p>
       <div className="flex">
         <button
@@ -46,10 +46,7 @@ function RoomSpeedSelector({ roomData, setRoomData }) {
 
 RoomSpeedSelector.propTypes = {
   roomData: PropTypes.shape({
-    rounds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     speed: PropTypes.oneOf(['lazy', 'medium', 'fast']),
-    themeList: PropTypes.arrayOf(PropTypes.string).isRequired,
-    password: PropTypes.string,
   }).isRequired,
   setRoomData: PropTypes.func.isRequired,
 };

@@ -3,11 +3,11 @@ import gc from '../../../config/gameConstraints';
 
 function CreateRoomForm({ roomData, setRoomData }) {
   function handleRoundsChange(e) {
-    const rounds = validateRoundsNumber(e.target.value);
+    const totalRounds = validateRoundsNumber(e.target.value);
 
     setRoomData((prev) => ({
       ...prev,
-      rounds,
+      totalRounds,
     }));
   }
 
@@ -31,7 +31,7 @@ function CreateRoomForm({ roomData, setRoomData }) {
             max={gc.MAX_MATCH_ROUNDS}
             required
             placeholder={`Max: ${gc.MAX_MATCH_ROUNDS}`}
-            value={roomData.rounds}
+            value={roomData.totalRounds}
             onChange={handleRoundsChange}
             className="input placeholder:text-base"
           />
@@ -67,9 +67,9 @@ function validateRoundsNumber(rounds) {
 
 CreateRoomForm.propTypes = {
   roomData: PropTypes.shape({
-    rounds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    totalRounds: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     speed: PropTypes.oneOf(['lazy', 'medium', 'fast']),
-    themeList: PropTypes.arrayOf(PropTypes.string).isRequired,
+    themes: PropTypes.arrayOf(PropTypes.string).isRequired,
     password: PropTypes.string,
   }).isRequired,
   setRoomData: PropTypes.func.isRequired,

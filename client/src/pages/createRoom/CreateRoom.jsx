@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../../api';
 import gc from '../../config/gameConstraints';
+import { PlayerContext } from '../../providers/PlayerProvider';
+import socket from '../../socket';
 import CreateRoomForm from './components/CreateRoomForm';
 import RoomSpeedSelector from './components/RoomSpeedSelector';
 import RoomThemeList from './components/RoomThemeList';
 
+const EMPTY_ROOM_DATA = {
+  password: '',
+  totalRounds: '',
+  speed: 'lazy',
+  themes: [],
+};
+
 function CreateRoom() {
-  const [roomData, setRoomData] = useState({
-    password: '',
-    rounds: '',
-    speed: 'lazy',
-    themeList: [],
-  });
+  const { nick } = useContext(PlayerContext);
+  const [roomData, setRoomData] = useState(EMPTY_ROOM_DATA);
   const [isValidRoomData, setIsValidRoomData] = useState(false);
 
   useEffect(() => {
@@ -21,7 +26,17 @@ function CreateRoom() {
   }, [roomData]);
 
   async function handleCreateRoomSubmit() {
-    const room = await api.createRoom(roomData);
+    const data = {
+      player: {
+        socketId: socket.id,
+        nick: nick.value,
+      },
+      roomData: {
+        ...roomData,
+        totalRounds: parseInt(roomData.totalRounds, 10),
+      },
+    };
+    const room = await api.createRoom(data);
     console.log(room);
   }
 
@@ -49,16 +64,15 @@ function CreateRoom() {
 }
 
 function validateRoomData(roomData) {
-  const { password, rounds, themeList } = roomData;
+  const { password, totalRounds, themes } = roomData;
   const hasCorrectPasswordLen =
     !password || password.length === gc.ROOM_PASSWORD_LENGTH;
 
   const hasCorrectRoundsNum =
-    rounds >= gc.MIN_MATCH_ROUNDS && rounds <= gc.MAX_MATCH_ROUNDS;
+    totalRounds >= gc.MIN_MATCH_ROUNDS && totalRounds <= gc.MAX_MATCH_ROUNDS;
 
   const hasCorrectThemeList =
-    themeList.length >= gc.MIN_ROOM_THEMES &&
-    themeList.length <= gc.MAX_ROOM_THEMES;
+    themes.length >= gc.MIN_ROOM_THEMES && themes.length <= gc.MAX_ROOM_THEMES;
 
   return hasCorrectPasswordLen && hasCorrectRoundsNum && hasCorrectThemeList;
 }
