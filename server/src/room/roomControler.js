@@ -3,12 +3,19 @@ import { validatePlayer, validateRoomData } from './validator.js';
 
 async function show(req, res) {
   const { id } = req.params;
-  const room = roomService.findRoomById(id);
+  const socketId = req.headers.socketid;
 
+  if (!socketId) {
+    return res.sendStatus(401);
+  }
+
+  const room = roomService.findRoomById(id);
   if (!room) {
-    return res.status(404).send({
-      errors: ["Room not found"]
-    });
+    return res.sendStatus(404);
+  }
+
+  if (!room.contains(socketId)) {
+    return res.sendStatus(403);
   }
 
   return res.json(room.dto());
