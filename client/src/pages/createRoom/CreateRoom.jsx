@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import api from '../../api';
+import { Link, useNavigate } from 'react-router-dom';
 import gc from '../../config/gameConstraints';
+import useCreateRoom from '../../hooks/useCreateRoom';
 import { PlayerContext } from '../../providers/PlayerProvider';
 import socket from '../../socket';
 import CreateRoomForm from './components/CreateRoomForm';
@@ -20,6 +20,8 @@ function CreateRoom() {
   const [roomData, setRoomData] = useState(EMPTY_ROOM_DATA);
   const [isValidRoomData, setIsValidRoomData] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const validRoomData = validateRoomData(roomData);
     setIsValidRoomData(validRoomData);
@@ -36,8 +38,8 @@ function CreateRoom() {
         totalRounds: parseInt(roomData.totalRounds, 10),
       },
     };
-    const room = await api.createRoom(data);
-    console.log(room);
+    const roomId = await useCreateRoom(data);
+    navigate(`/${roomId}`);
   }
 
   return (
