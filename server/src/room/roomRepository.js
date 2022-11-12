@@ -9,7 +9,7 @@ const generateRoomId = () => {
 
 const findAll = () => Array.from(rooms.values());
 
-const findById = (id) => ({ id });
+const findById = (id) => rooms.get(id);
 
 const create = (roomData) => {
   const roomId = generateRoomId();
@@ -24,9 +24,12 @@ const create = (roomData) => {
 
 const deleteRoom = (roomId) => rooms.delete(roomId);
 
+const deleteAll = () => rooms.clear();
+
 export default {
   findAll,
   findById,
   create,
   delete: deleteRoom,
+  deleteAll,
 };

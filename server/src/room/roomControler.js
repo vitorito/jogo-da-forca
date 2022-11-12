@@ -3,13 +3,15 @@ import { validatePlayer, validateRoomData } from './validator.js';
 
 async function show(req, res) {
   const { id } = req.params;
-  const room = await roomService.findRoomById(id);
+  const room = roomService.findRoomById(id);
 
   if (!room) {
-    return res.status(404).send("Room not found");
+    return res.status(404).send({
+      errors: ["Room not found"]
+    });
   }
 
-  return res.json({ id });
+  return res.json(room.dto());
 }
 
 async function create(req, res) {
@@ -22,11 +24,11 @@ async function create(req, res) {
     return res.status(400).json({ errors });
   }
 
-  const room = roomService.create(player, roomData);
+  const roomId = roomService.create(player, roomData);
 
-  if (!room) return res.sendStatus(400);
+  if (!roomId) return res.sendStatus(400);
 
-  return res.status(201).json(room);
+  return res.status(201).json({ id: roomId });
 }
 
 export default {

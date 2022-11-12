@@ -31,6 +31,10 @@ class Room {
     return Array.from(this.players.values()).map(p => p.dto());
   }
 
+  size() {
+    return this.players.size;
+  }
+
   dto() {
     return {
       id: this.id,

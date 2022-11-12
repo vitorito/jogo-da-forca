@@ -1,4 +1,4 @@
-import gc from '../config/gameConstraints';
+import gc from '../config/gameConstraints.js';
 
 export function validatePlayer(player) {
   const errors = [];

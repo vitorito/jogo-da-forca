@@ -2,7 +2,7 @@ import Player from '../models/Player.js';
 import roomRepo from './roomRepository.js';
 
 const generatePlayerId = (room) => {
-  return room.id + (room.size + 1).toString().padStart(2, '0');
+  return room.id + (room.size() + 1).toString().padStart(2, '0');
 };
 
 const deleteRoom = (roomId) => roomRepo.delete(roomId);
@@ -20,7 +20,7 @@ const disconnectPlayer = (socketId) => {
   room.remove(socketId);
 };
 
-const findRoomById = async (id) => roomRepo.findById(id);
+const findRoomById = (id) => roomRepo.findById(id);
 
 const create = (owner, roomData) => {
   disconnectPlayer(owner.socketId);
