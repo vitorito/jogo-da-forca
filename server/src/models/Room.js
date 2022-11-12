@@ -39,7 +39,7 @@ class Room {
     return {
       id: this.id,
       speed: this.speed,
-      themes: this.themes,
+      themes: Array.from(this.themes),
       isPrivate: this.isPrivate,
       players: this.getPlayers().map(p => p.dto()),
       round: { ...this.round }
