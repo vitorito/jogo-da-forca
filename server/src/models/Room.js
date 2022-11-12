@@ -28,7 +28,7 @@ class Room {
   }
 
   getPlayers() {
-    return Array.from(this.players.values()).map(p => p.dto());
+    return Array.from(this.players.values());
   }
 
   size() {
@@ -41,7 +41,7 @@ class Room {
       speed: this.speed,
       themes: this.themes,
       isPrivate: this.isPrivate,
-      players: this.getPlayers(),
+      players: this.getPlayers().map(p => p.dto()),
       round: { ...this.round }
     };
   }
