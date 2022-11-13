@@ -14,8 +14,8 @@ function RankingItem({ player, position }) {
 
   return (
     <li
-      className="bg-yellow-600 flex items-center grow
-      w-full px-4 rounded text-lg"
+      className="bg-yellow-600 flex items-center
+      w-full h-1/6 max-h-16 px-4 rounded text-lg"
     >
       <span
         className={`w-8 min-w-[2rem] text-center rounded-[50%] border ${getMedalStyle()}`}

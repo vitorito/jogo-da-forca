@@ -920,6 +920,14 @@ video {
   height: 2rem;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
+.h-1\/6 {
+  height: 16.666667%;
+}
+
 .max-h-\[96\%\] {
   max-height: 96%;
 }
@@ -934,6 +942,10 @@ video {
 
 .max-h-72 {
   max-height: 18rem;
+}
+
+.max-h-16 {
+  max-height: 4rem;
 }
 
 .w-screen {
