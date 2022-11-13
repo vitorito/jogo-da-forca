@@ -11,5 +11,8 @@ export default {
     medium: 'Médio',
     fast: 'Rápido',
   },
+  ROOM_MATCH_STATES: {
+    waiting: 'waiting',
+  },
   HIDDEN_LETTER: '*',
 };

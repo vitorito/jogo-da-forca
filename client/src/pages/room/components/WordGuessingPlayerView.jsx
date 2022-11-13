@@ -20,6 +20,7 @@ WordGuessingPlayerView.propTypes = {
   player: PropTypes.shape({
     round: PropTypes.shape({
       word: PropTypes.string,
+      errors: PropTypes.number,
       correctLetters: PropTypes.arrayOf(PropTypes.string),
       wrongLetters: PropTypes.arrayOf(PropTypes.string),
     }),

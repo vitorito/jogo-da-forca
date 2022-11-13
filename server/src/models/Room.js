@@ -8,10 +8,12 @@ class Room {
     this.speed = speed;
     this.players = new Map();
     this.isPrivate = !!password;
+    this.totalRounds = totalRounds;
+    this.currentRound = 1;
     this.round = {
       state: gc.ROOM_MATCH_STATES.waiting,
-      current: 1,
-      totalRounds: totalRounds,
+      theme: '',
+      playerInTurn: '',
     };
   }
 
@@ -40,6 +42,8 @@ class Room {
       id: this.id,
       speed: this.speed,
       themes: Array.from(this.themes),
+      currentRound: this.currentRound,
+      totalRounds: this.totalRounds,
       isPrivate: this.isPrivate,
       players: this.getPlayers().map(p => p.dto()),
       round: { ...this.round }

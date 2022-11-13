@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
+import gc from '../../../config/gameConstraints';
 import WordGuessingPlayerView from './WordGuessingPlayerView';
 import WordPickerPlayerView from './WordPickerPlayerView';
 
@@ -8,7 +9,10 @@ function Match({ room }) {
     () => room.players.find((player) => player.id === '2'),
     [room]
   );
-  const wordPickerId = room.round.playerInTurn.id;
+
+  if (room.round.state === 'waiting' || !myPlayer) {
+    return null;
+  }
 
   return (
     <div
@@ -16,10 +20,10 @@ function Match({ room }) {
       w-full p-0.5 overflow-hidden"
     >
       <p className="page-title">{room.round.theme}</p>
-      {myPlayer && myPlayer.id !== wordPickerId ? (
-        <WordGuessingPlayerView player={myPlayer} />
-      ) : (
+      {myPlayer && myPlayer.isWatching ? (
         <WordPickerPlayerView players={room.players} />
+      ) : (
+        <WordGuessingPlayerView player={myPlayer} />
       )}
     </div>
   );
@@ -29,15 +33,21 @@ Match.propTypes = {
   room: PropTypes.shape({
     round: PropTypes.shape({
       theme: PropTypes.string,
-      playerInTurn: PropTypes.shape({
-        id: PropTypes.string,
-      }),
+      playerInTurn: PropTypes.string,
+      state: PropTypes.oneOf([gc.ROOM_MATCH_STATES.waiting]),
     }),
     players: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
         nick: PropTypes.string,
         points: PropTypes.number,
+        isWatching: PropTypes.bool,
+        round: PropTypes.shape({
+          word: PropTypes.string,
+          errors: PropTypes.number,
+          correctLetters: PropTypes.arrayOf(PropTypes.string),
+          wrongLetters: PropTypes.arrayOf(PropTypes.string),
+        }),
       })
     ),
   }).isRequired,
