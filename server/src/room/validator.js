@@ -3,10 +3,10 @@ import gc from '../config/gameConstraints.js';
 export function validatePlayer(player) {
   const errors = [];
   try {
-    const trimedTolkenId = player.socketId.trim();
+    const trimedSocketId = player.socketId.trim();
     const trimedNick = player.nick.trim();
 
-    if (!trimedTolkenId || trimedTolkenId.length !== player.socketId.length) {
+    if (!trimedSocketId || trimedSocketId.length !== player.socketId.length) {
       errors.push('Invalid player tolken id');
     }
 
