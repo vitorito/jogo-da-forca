@@ -12,7 +12,7 @@ function WordGuessing({ word, className }) {
       {word.split('').map((letter, index) => (
         <span
           key={index}
-          className="w-7 sm:w-8 aspect-square mt-1 border-b-2 border-black
+          className="w-7 sm:w-8 sm:h-10 aspect-square mt-1 border-b-2 border-black
           text-2xl sm:text-3xl leading-none text-center"
         >
           {letter === gc.HIDDEN_LETTER ? '' : letter}

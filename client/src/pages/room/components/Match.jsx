@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import gc from '../../../config/gameConstraints';
+import WaitingRoomView from './WaitingRoomView';
 import WordGuessingPlayerView from './WordGuessingPlayerView';
 import WordPickerPlayerView from './WordPickerPlayerView';
 
@@ -10,8 +11,8 @@ function Match({ room }) {
     [room]
   );
 
-  if (room.round.state === 'waiting' || !myPlayer) {
-    return null;
+  if (room.round.state === gc.ROOM_MATCH_STATES.waiting || !myPlayer) {
+    return <WaitingRoomView />;
   }
 
   return (

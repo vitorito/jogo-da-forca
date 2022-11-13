@@ -23,12 +23,6 @@ function Gallow({ player, className }) {
 }
 
 Gallow.defaultProps = {
-  player: {
-    round: {
-      word: '',
-      wrongLetters: [],
-    },
-  },
   className: '',
 };
 
@@ -39,7 +33,7 @@ Gallow.propTypes = {
       word: PropTypes.string,
       errors: PropTypes.number,
     }),
-  }),
+  }).isRequired,
 };
 
 export default Gallow;
