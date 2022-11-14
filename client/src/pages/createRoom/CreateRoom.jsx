@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LoadingSpin from '../../components/LoadingSpin';
 import gc from '../../config/gameConstraints';
 import useCreateRoom from '../../hooks/useCreateRoom';
 import { PlayerContext } from '../../providers/PlayerProvider';
@@ -54,9 +55,12 @@ function CreateRoom() {
           type="submit"
           disabled={!isValidRoomData || createRoom.isLoading}
           onClick={handleCreateRoomSubmit}
-          className="btn mt-3"
+          className="flex items-center justify-center gap-2 btn mt-3"
         >
           Criar Sala
+          {createRoom.isLoading && (
+            <LoadingSpin className="w-6 h-6 m-0 border-x-white" />
+          )}
         </button>
         <Link to="/" className="btn">
           Voltar
