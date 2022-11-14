@@ -113,7 +113,7 @@ function WaitingRoomView({ isPlayerInTurn }) {
 }
 
 WaitingRoomView.defaultProps = {
-  isPlayerInTurn: false,
+  isPlayerInTurn: true,
 };
 
 WaitingRoomView.propTypes = {

@@ -20,6 +20,7 @@ function CreateRoom() {
   const [roomData, setRoomData] = useState(EMPTY_ROOM_DATA);
   const [isValidRoomData, setIsValidRoomData] = useState(false);
 
+  const createRoom = useCreateRoom();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +39,7 @@ function CreateRoom() {
         totalRounds: parseInt(roomData.totalRounds, 10),
       },
     };
-    const roomId = await useCreateRoom(data);
+    const roomId = await createRoom.mutateAsync(data);
     navigate(`/${roomId}`);
   }
 
@@ -51,7 +52,7 @@ function CreateRoom() {
         <RoomThemeList roomData={roomData} setRoomData={setRoomData} />
         <button
           type="submit"
-          disabled={!isValidRoomData}
+          disabled={!isValidRoomData || createRoom.isLoading}
           onClick={handleCreateRoomSubmit}
           className="btn mt-3"
         >

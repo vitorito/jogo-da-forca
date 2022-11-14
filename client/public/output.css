@@ -842,36 +842,12 @@ video {
   margin-top: -1.75rem;
 }
 
-.mr-\[\] {
-  margin-right: ;
-}
-
-.mr-\[2\.5\%\] {
-  margin-right: 2.5%;
-}
-
-.mr-\[2\%\] {
-  margin-right: 2%;
-}
-
-.mr-\[1\%\] {
-  margin-right: 1%;
-}
-
-.mr-\[0\%\] {
-  margin-right: 0%;
-}
-
 .block {
   display: block;
 }
 
 .inline-block {
   display: inline-block;
-}
-
-.inline {
-  display: inline;
 }
 
 .flex {
@@ -950,10 +926,6 @@ video {
 
 .h-1\/6 {
   height: 16.666667%;
-}
-
-.h-96 {
-  height: 24rem;
 }
 
 .max-h-\[96\%\] {
@@ -1050,18 +1022,6 @@ video {
   width: 1.5rem;
 }
 
-.w-\[110\] {
-  width: 110;
-}
-
-.w-\[110\%\] {
-  width: 110%;
-}
-
-.w-\[1105\%\] {
-  width: 1105%;
-}
-
 .w-\[105\%\] {
   width: 105%;
 }
@@ -1139,23 +1099,6 @@ video {
   --tw-scale-x: .75;
   --tw-scale-y: .75;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-@-webkit-keyframes pulse {
-  50% {
-    opacity: .5;
-  }
-}
-
-@keyframes pulse {
-  50% {
-    opacity: .5;
-  }
-}
-
-.animate-pulse {
-  -webkit-animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-          animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 @-webkit-keyframes bounce {
@@ -1711,14 +1654,6 @@ video {
   transition-duration: 150ms;
 }
 
-.delay-75 {
-  transition-delay: 75ms;
-}
-
-.delay-1000 {
-  transition-delay: 1000ms;
-}
-
 .duration-300 {
   transition-duration: 300ms;
 }
@@ -1901,10 +1836,6 @@ video {
 
   .sm\:h-10 {
     height: 2.5rem;
-  }
-
-  .sm\:h-9 {
-    height: 2.25rem;
   }
 
   .sm\:w-14 {
