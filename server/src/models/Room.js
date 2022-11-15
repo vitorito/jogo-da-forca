@@ -1,12 +1,12 @@
 import gc from '../config/gameConstraints.js';
 
 class Room {
-  constructor({ id, password, themes, speed, totalRounds }) {
+  constructor({ id, owner, password, themes, speed, totalRounds }) {
     this.id = id;
+    this.owner = owner;
     this.password = password;
     this.themes = themes;
     this.speed = speed;
-    this.players = new Map();
     this.isPrivate = !!password;
     this.totalRounds = totalRounds;
     this.currentRound = 1;
@@ -15,6 +15,8 @@ class Room {
       theme: '',
       playerInTurn: '',
     };
+    this.players = new Map();
+    this.add(owner);
   }
 
   add(player) {
@@ -40,6 +42,7 @@ class Room {
   dto() {
     return {
       id: this.id,
+      owner: this.owner.id,
       speed: this.speed,
       themes: Array.from(this.themes),
       currentRound: this.currentRound,

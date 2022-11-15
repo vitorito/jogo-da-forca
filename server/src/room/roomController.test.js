@@ -69,13 +69,15 @@ describe('Get room', () => {
     expect(room.speed).toBe(REQUEST_BODY.roomData.speed);
     expect(room.themes).toStrictEqual(REQUEST_BODY.roomData.themes);
     expect(room.isPrivate).toBe(true);
+    expect(room.totalRounds).toBe(REQUEST_BODY.roomData.totalRounds);
+    expect(room.currentRound).toBe(1);
     expect(room.players.length).toBe(1);
     expect(room.players[0].id).toBe(roomId + '01');
     expect(room.players[0].nick).toBe(REQUEST_BODY.player.nick);
     expect(room.round).toStrictEqual({
       state: gc.ROOM_MATCH_STATES.waiting,
-      current: 1,
-      totalRounds: REQUEST_BODY.roomData.totalRounds
+      theme: '',
+      playerInTurn: '',
     });
   });
 

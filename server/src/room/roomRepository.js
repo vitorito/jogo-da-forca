@@ -1,35 +1,22 @@
-import gc from '../config/gameConstraints.js';
-import Room from '../models/Room.js';
-
 const rooms = new Map();
-
-const generateRoomId = () => {
-  return String(gc.MIN_ROOM_ID + rooms.size);
-};
 
 const findAll = () => Array.from(rooms.values());
 
 const findById = (id) => rooms.get(id);
 
-const create = (roomData) => {
-  const roomId = generateRoomId();
-  const room = new Room({
-    ...roomData,
-    id: roomId,
-  });
-  rooms.set(roomId, room);
-
-  return room;
-};
+const save = (room) => rooms.set(room.id, room);
 
 const deleteRoom = (roomId) => rooms.delete(roomId);
 
 const deleteAll = () => rooms.clear();
 
+const size = () => rooms.size;
+
 export default {
   findAll,
   findById,
-  create,
+  save,
   delete: deleteRoom,
   deleteAll,
+  size,
 };

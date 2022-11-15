@@ -1,8 +1,14 @@
+import gc from '../config/gameConstraints.js';
 import Player from '../models/Player.js';
+import Room from '../models/Room.js';
 import roomRepo from './roomRepository.js';
 
-const generatePlayerId = (room) => {
-  return room.id + (room.size() + 1).toString().padStart(2, '0');
+const generateRoomId = () => {
+  return String(gc.MIN_ROOM_ID + roomRepo.size());
+};
+
+const generatePlayerId = (roomId, roomSize) => {
+  return roomId + (roomSize + 1).toString().padStart(2, '0');
 };
 
 const deleteRoom = (roomId) => roomRepo.delete(roomId);
@@ -25,11 +31,16 @@ const findRoomById = (id) => roomRepo.findById(id);
 const create = (owner, roomData) => {
   disconnectPlayer(owner.socketId);
 
-  const room = roomRepo.create(roomData);
-  const playerId = generatePlayerId(room);
+  const roomId = generateRoomId();
+  const playerId = generatePlayerId(roomId, 0);
   const player = new Player(owner.socketId, playerId, owner.nick);
-  room.add(player);
+  const room = new Room({
+    ...roomData,
+    id: roomId,
+    owner: player,
+  });;
 
+  roomRepo.save(room);
   return room.id;
 };
 

@@ -1,7 +1,7 @@
 import roomService from './roomService.js';
 import { validatePlayer, validateRoomData } from './validator.js';
 
-async function show(req, res) {
+function show(req, res) {
   const { id } = req.params;
   const socketId = req.headers.socketid;
 
@@ -21,7 +21,7 @@ async function show(req, res) {
   return res.json(room.dto());
 }
 
-async function create(req, res) {
+function create(req, res) {
   const { player, roomData } = req.body;
 
   let errors = validatePlayer(player);
