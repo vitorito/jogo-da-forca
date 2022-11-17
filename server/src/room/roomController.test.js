@@ -77,7 +77,6 @@ describe('Get room', () => {
     expect(room.round).toStrictEqual({
       state: gc.ROOM_MATCH_STATES.waiting,
       theme: '',
-      playerInTurn: '',
     });
   });
 
