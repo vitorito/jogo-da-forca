@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import api from '../api';
 import socket from '../socket/socket';
@@ -9,11 +9,12 @@ const queryConfig = {
 };
 
 function useRoom(roomId) {
+  const queryClient = useQueryClient();
   const query = useQuery(["room", roomId], fetchRoom, queryConfig);
 
   useEffect(() => {
-    socket.on('room_update', () => {
-      query.refetch();
+    socket.on('room_update', (roomData) => {
+      queryClient.setQueryData(["room", roomId], roomData);
     });
   }, []);
 
