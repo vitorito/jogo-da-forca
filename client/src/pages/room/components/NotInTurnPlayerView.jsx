@@ -4,7 +4,7 @@ import ScrollableContainer from '../../../components/ScrollableContainer';
 import Gallow from './Gallow';
 import Keyboard from './Keyboard';
 
-function WordGuessingPlayerView({ player }) {
+function NotInTurnPlayerView({ player }) {
   const { correctLetters, wrongLetters } = player.round;
   return (
     <>
@@ -16,7 +16,7 @@ function WordGuessingPlayerView({ player }) {
   );
 }
 
-WordGuessingPlayerView.propTypes = {
+NotInTurnPlayerView.propTypes = {
   player: PropTypes.shape({
     round: PropTypes.shape({
       word: PropTypes.string,
@@ -27,4 +27,4 @@ WordGuessingPlayerView.propTypes = {
   }).isRequired,
 };
 
-export default WordGuessingPlayerView;
+export default NotInTurnPlayerView;

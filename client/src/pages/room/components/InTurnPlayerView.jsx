@@ -3,7 +3,7 @@ import React from 'react';
 import ScrollableContainer from '../../../components/ScrollableContainer';
 import Gallow from './Gallow';
 
-function WordPickerPlayerView({ players }) {
+function InTurnPlayerView({ players }) {
   return (
     <ScrollableContainer className="lg:max-w-[90%] rounded-xl">
       <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-xl">
@@ -25,7 +25,7 @@ function WordPickerPlayerView({ players }) {
   );
 }
 
-WordPickerPlayerView.propTypes = {
+InTurnPlayerView.propTypes = {
   players: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
@@ -35,4 +35,4 @@ WordPickerPlayerView.propTypes = {
   ).isRequired,
 };
 
-export default WordPickerPlayerView;
+export default InTurnPlayerView;

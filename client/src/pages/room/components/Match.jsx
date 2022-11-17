@@ -3,8 +3,8 @@ import React, { useMemo } from 'react';
 import gc from '../../../config/gameConstraints';
 import startGame from '../../../socket/startGame';
 import WaitingRoomView from './WaitingRoomView';
-import WordGuessingPlayerView from './WordGuessingPlayerView';
-import WordPickerPlayerView from './WordPickerPlayerView';
+import NotInTurnPlayerView from './NotInTurnPlayerView';
+import InTurnPlayerView from './InTurnPlayerView';
 
 function Match({ room }) {
   const myPlayer = useMemo(
@@ -28,9 +28,9 @@ function Match({ room }) {
     >
       <p className="page-title">{room.round.theme}</p>
       {myPlayer && myPlayer.isWatching ? (
-        <WordPickerPlayerView players={room.players} />
+        <InTurnPlayerView players={room.players} />
       ) : (
-        <WordGuessingPlayerView player={myPlayer} />
+        <NotInTurnPlayerView player={myPlayer} />
       )}
     </div>
   );
