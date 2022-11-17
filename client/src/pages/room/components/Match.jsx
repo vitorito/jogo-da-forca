@@ -1,18 +1,24 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
 import gc from '../../../config/gameConstraints';
+import startGame from '../../../socket/startGame';
 import WaitingRoomView from './WaitingRoomView';
 import WordGuessingPlayerView from './WordGuessingPlayerView';
 import WordPickerPlayerView from './WordPickerPlayerView';
 
 function Match({ room }) {
   const myPlayer = useMemo(
-    () => room.players.find((player) => player.id === '2'),
+    () => room.players.find((player) => player.id === '300001'),
     [room]
   );
 
-  if (room.round.state === gc.ROOM_MATCH_STATES.waiting || !myPlayer) {
-    return <WaitingRoomView />;
+  if (room.round.state === gc.ROOM_MATCH_STATES.waiting) {
+    return (
+      <WaitingRoomView
+        isOwner={room.owner === myPlayer?.id}
+        start={() => startGame(room.id)}
+      />
+    );
   }
 
   return (
@@ -32,10 +38,12 @@ function Match({ room }) {
 
 Match.propTypes = {
   room: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    owner: PropTypes.string.isRequired,
     round: PropTypes.shape({
       theme: PropTypes.string,
       playerInTurn: PropTypes.string,
-      state: PropTypes.oneOf([gc.ROOM_MATCH_STATES.waiting]),
+      state: PropTypes.oneOf(Object.values(gc.ROOM_MATCH_STATES)),
     }),
     players: PropTypes.arrayOf(
       PropTypes.shape({

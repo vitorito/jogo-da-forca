@@ -90,7 +90,7 @@ const playersStates = [
   },
 ];
 
-function WaitingRoomView({ isPlayerInTurn }) {
+function WaitingRoomView({ isOwner, start }) {
   const [playerState, setPlayerState] = useState(0);
 
   function updateGallow() {
@@ -101,23 +101,25 @@ function WaitingRoomView({ isPlayerInTurn }) {
     const intervalId = setInterval(updateGallow, 400);
     return () => clearInterval(intervalId);
   }, []);
+
   return (
     <div className="sm-container justify-evenly items-center grow mt-6">
       <AnimatedText text="Aguardando Jogadores..." />
       <Gallow player={playersStates[playerState]} className="w-[105%]" />
-      <button type="button" className={isPlayerInTurn ? 'btn' : 'hidden'}>
+      <button
+        type="button"
+        onClick={start}
+        className={isOwner ? 'btn' : 'hidden'}
+      >
         Iniciar Partida
       </button>
     </div>
   );
 }
 
-WaitingRoomView.defaultProps = {
-  isPlayerInTurn: true,
-};
-
 WaitingRoomView.propTypes = {
-  isPlayerInTurn: PropTypes.bool,
+  isOwner: PropTypes.bool.isRequired,
+  start: PropTypes.func.isRequired,
 };
 
 export default WaitingRoomView;

@@ -13,6 +13,7 @@ export default {
   },
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
+    running: 'running',
   },
   HIDDEN_LETTER: '*',
 };

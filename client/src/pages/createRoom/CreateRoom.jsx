@@ -4,7 +4,7 @@ import LoadingSpin from '../../components/LoadingSpin';
 import gc from '../../config/gameConstraints';
 import useCreateRoom from '../../hooks/useCreateRoom';
 import { PlayerContext } from '../../providers/PlayerProvider';
-import socket from '../../socket';
+import socket from '../../socket/socket';
 import CreateRoomForm from './components/CreateRoomForm';
 import RoomSpeedSelector from './components/RoomSpeedSelector';
 import RoomThemeList from './components/RoomThemeList';

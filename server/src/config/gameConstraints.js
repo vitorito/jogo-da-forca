@@ -17,5 +17,6 @@ export default {
   HIDDEN_LETTER: '*',
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
+    running: 'running',
   }
 };
