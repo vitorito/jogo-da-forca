@@ -28,6 +28,7 @@ module.exports = {
         "no-console": "off",
         "import/prefer-default-export": "off",
         "no-use-before-define": "off",
+        "react/no-array-index-key": "off"
 
     }
 };

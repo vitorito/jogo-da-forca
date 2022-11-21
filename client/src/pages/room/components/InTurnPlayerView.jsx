@@ -2,8 +2,13 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollableContainer from '../../../components/ScrollableContainer';
 import Gallow from './Gallow';
+import WordChoosing from './WordChoosing';
 
-function InTurnPlayerView({ players }) {
+function InTurnPlayerView({ players, isWatching, theme }) {
+  if (isWatching) {
+    return <WordChoosing theme={theme} />;
+  }
+
   return (
     <ScrollableContainer className="lg:max-w-[90%] rounded-xl">
       <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-xl">
@@ -26,6 +31,8 @@ function InTurnPlayerView({ players }) {
 }
 
 InTurnPlayerView.propTypes = {
+  isWatching: PropTypes.bool.isRequired,
+  theme: PropTypes.string.isRequired,
   players: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,
