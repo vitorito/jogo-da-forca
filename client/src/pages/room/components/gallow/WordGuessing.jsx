@@ -1,7 +1,7 @@
 /* eslint-disable react/no-array-index-key */
 import PropTypes from 'prop-types';
 import React from 'react';
-import gc from '../../../config/gameConstraints';
+import gc from '../../../../config/gameConstraints';
 
 function WordGuessing({ word, className }) {
   return (

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import RopeIcon from '../../../components/RopeIcon';
+import RopeIcon from '../../../../components/RopeIcon';
 import BodyDrawing from './BodyDrawing';
 import WordGuessing from './WordGuessing';
 

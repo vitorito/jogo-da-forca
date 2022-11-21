@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import ScrollableContainer from '../../../../components/ScrollableContainer';
-import Gallow from '../Gallow';
-import Keyboard from '../Keyboard';
+import Gallow from '../gallow/Gallow';
+import Keyboard from '../gallow/Keyboard';
 
 function NotInTurnPlayerView({ player }) {
   const { correctLetters, wrongLetters } = player.round;

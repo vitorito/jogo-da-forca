@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
-import AnimatedText from '../AnimatedText';
-import Gallow from '../Gallow';
+import AnimatedText from '../gallow/AnimatedText';
+import Gallow from '../gallow/Gallow';
 
 const playersStates = [
   {
