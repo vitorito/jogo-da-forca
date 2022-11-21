@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { useMemo } from 'react';
-import gc from '../../../config/gameConstraints';
-import startGame from '../../../socket/startGame';
+import gc from '../../../../config/gameConstraints';
+import startGame from '../../../../socket/startGame';
 import InTurnPlayerView from './InTurnPlayerView';
 import NotInTurnPlayerView from './NotInTurnPlayerView';
 import WaitingRoomView from './WaitingRoomView';

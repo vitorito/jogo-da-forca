@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import ScrollableContainer from '../../../components/ScrollableContainer';
-import Gallow from './Gallow';
+import ScrollableContainer from '../../../../components/ScrollableContainer';
+import Gallow from '../Gallow';
 import WordChoosing from './WordChoosing';
 
 function InTurnPlayerView({ players, isWatching, theme }) {

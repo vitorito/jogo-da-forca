@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-autofocus */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import gc from '../../../config/gameConstraints';
-import chooseWord from '../../../socket/chooseWord';
+import gc from '../../../../config/gameConstraints';
+import chooseWord from '../../../../socket/chooseWord';
 
 function WordChoosing({ theme }) {
   const [word, setWord] = useState('');

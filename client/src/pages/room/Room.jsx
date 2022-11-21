@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import LoadingSpin from '../../components/LoadingSpin';
 import useRoom from '../../hooks/useRoom';
 import Header, { HEADER_BUTTONS } from './components/Header';
-import Match from './components/Match';
+import Match from './components/match/Match';
 import Ranking from './components/Ranking';
 import RoomInfo from './components/RoomInfo';
 
