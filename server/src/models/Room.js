@@ -13,11 +13,13 @@ class Room {
     this.currentRound = 1;
     this.playerInTurn = {
       id: '',
-      nick: ''
+      nick: '',
+      isWatching: false,
     };
     this.round = {
       state: gc.ROOM_MATCH_STATES.waiting,
       theme: '',
+      word: ''
     };
     this.alreadyPlayed = {
       players: [],
@@ -64,6 +66,18 @@ class Room {
     this.round.theme = chosenTheme;
   }
 
+  chooseRoundWord(word) {
+    this.round.word = word;
+    const hiddenWord = this.hideWord(word.length);
+    this.getPlayers().forEach(p => {
+      p.round.word = hiddenWord;
+      if (p.socketId !== this.playerInTurn.socketId) {
+        p.isWatching = false;
+      }
+    });
+    this.playerInTurn.isWatching = true;
+  }
+
   add(player) {
     this.players.set(player.socketId, player);
   }
@@ -84,6 +98,10 @@ class Room {
     return this.players.size;
   }
 
+  hideWord(length) {
+    return gc.HIDDEN_LETTER.repeat(length);
+  }
+
   dto() {
     return {
       id: this.id,
@@ -99,7 +117,8 @@ class Room {
       },
       players: this.getPlayers().map(p => p.dto()),
       round: {
-        ...this.round,
+        state: this.round.state,
+        theme: this.round.theme,
       }
     };
   }

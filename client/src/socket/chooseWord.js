@@ -1,8 +1,7 @@
 import socket from './socket';
 
-function chooseWord(word) {
-  console.log(word);
-  socket.emit('choose_word', word);
+function chooseWord(roomId, word) {
+  socket.emit('choose_word', roomId, word);
 }
 
 export default chooseWord;

@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import gc from '../../../../config/gameConstraints';
 import chooseWord from '../../../../socket/chooseWord';
 
-function InTurnPlayerView({ theme }) {
+function InTurnPlayerView({ roomId, theme }) {
   const [word, setWord] = useState('');
 
   function handleWordSubmit(e) {
     e.preventDefault();
-    chooseWord(word);
+    chooseWord(roomId, word);
   }
 
   return (
@@ -45,6 +45,7 @@ function InTurnPlayerView({ theme }) {
 }
 
 InTurnPlayerView.propTypes = {
+  roomId: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
 };
 

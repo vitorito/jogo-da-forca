@@ -30,6 +30,7 @@ describe('room creation', () => {
     expect(room.playerInTurn).toEqual({
       id: '',
       nick: '',
+      isWatching: false,
     });
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.waiting);
     expect(room.round.theme).toBe('');
@@ -50,5 +51,26 @@ describe('room start', () => {
     expect(room.playerInTurn).toStrictEqual(player);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
     expect(roomData.themes).toContain(room.round.theme);
+  });
+});
+
+describe('room next round', () => {
+  test('should choose room round word', () => {
+    const room = new Room(roomData);
+    const word = 'banana';
+    room.start();
+    room.chooseRoundWord(word);
+
+    expect(room.round.word).toBe(word);
+    const players = room.getPlayers();
+    
+    const allPlayersHaveTheWord = players.every(p => p.round.word === '******');
+    expect(allPlayersHaveTheWord).toBe(true);
+
+    expect(room.playerInTurn.isWatching).toBe(true);
+    const allPlayersNotWatching = players.every(p => (
+      p.socketId === room.playerInTurn.socketId || !p.isWatching
+    ));
+    expect(allPlayersNotWatching).toBe(true);
   });
 });

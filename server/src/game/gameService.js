@@ -9,6 +9,16 @@ const start = (socketId, roomId) => {
   return room;
 };
 
+const chooseWord = (socketId, roomId, word) => {
+  const room = roomService.findRoomById(roomId);
+
+  if (!room || room.playerInTurn.socketId !== socketId) return null;
+
+  room.chooseRoundWord(word);
+  return room;
+};
+
 export default {
-  start
+  start,
+  chooseWord,
 };
