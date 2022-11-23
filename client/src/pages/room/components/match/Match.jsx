@@ -5,6 +5,7 @@ import startGame from '../../../../socket/startGame';
 import InTurnPlayerView from './InTurnPlayerView';
 import NotInTurnPlayerView from './NotInTurnPlayerView';
 import WaitingRoomView from './WaitingRoomView';
+import WatchingPlayerView from './WatchingPlayerView';
 
 function Match({ room }) {
   const myPlayer = useMemo(
@@ -21,19 +22,27 @@ function Match({ room }) {
     );
   }
 
+  if (myPlayer.isWatching) {
+    return <WatchingPlayerView players={room.players} />;
+  }
+
   return (
     <div
       className="flex flex-col items-center justify-evenly gap-2 grow
       w-full p-0.5 overflow-hidden"
     >
-      {myPlayer && myPlayer.id === room.playerInTurn ? (
+      {myPlayer?.id === room.playerInTurn.id ? (
         <InTurnPlayerView
           players={room.players}
           theme={room.round.theme}
           isWatching={myPlayer.isWatching}
         />
       ) : (
-        <NotInTurnPlayerView player={myPlayer} />
+        <NotInTurnPlayerView
+          player={myPlayer}
+          playerInTurnNick={room.playerInTurn.nick}
+          theme={room.round.theme}
+        />
       )}
     </div>
   );
@@ -43,10 +52,12 @@ Match.propTypes = {
   room: PropTypes.shape({
     id: PropTypes.string.isRequired,
     owner: PropTypes.string.isRequired,
-    playerInTurn: PropTypes.string.isRequired,
+    playerInTurn: PropTypes.shape({
+      id: PropTypes.string,
+      nick: PropTypes.string,
+    }).isRequired,
     round: PropTypes.shape({
       theme: PropTypes.string,
-      playerInTurn: PropTypes.string,
       state: PropTypes.oneOf(Object.values(gc.ROOM_MATCH_STATES)),
     }),
     players: PropTypes.arrayOf(

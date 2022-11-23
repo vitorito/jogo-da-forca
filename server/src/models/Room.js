@@ -11,7 +11,10 @@ class Room {
     this.isPrivate = !!password;
     this.totalRounds = totalRounds;
     this.currentRound = 1;
-    this.playerInTurn = '';
+    this.playerInTurn = {
+      id: '',
+      nick: ''
+    };
     this.round = {
       state: gc.ROOM_MATCH_STATES.waiting,
       theme: '',
@@ -42,8 +45,8 @@ class Room {
       this.alreadyPlayed.players = [];
       chosenPlayer = lodash.sample(players);
     }
-    this.playerInTurn = chosenPlayer.id;
-    this.alreadyPlayed.players.push(chosenPlayer.id);
+    this.playerInTurn = chosenPlayer;
+    this.alreadyPlayed.players.push(chosenPlayer);
   }
 
   chooseRoundTheme() {
@@ -89,7 +92,10 @@ class Room {
       currentRound: this.currentRound,
       totalRounds: this.totalRounds,
       isPrivate: this.isPrivate,
-      playerInTurn: this.playerInTurn,
+      playerInTurn: {
+        id: this.playerInTurn.id,
+        nick: this.playerInTurn.nick,
+      },
       players: this.getPlayers().map(p => p.dto()),
       round: {
         ...this.round,

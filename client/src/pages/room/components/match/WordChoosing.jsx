@@ -14,19 +14,18 @@ function WordChoosing({ theme }) {
 
   return (
     <div className="sm-container items-center justify-around grow">
-      <p className="sm:text-xl">
-        Escolha uma palavra com o tema
-        <span className="page-title text-5xl sm:text-6xl block mt-2 sm:mt-6">
-          {theme}
-        </span>
-      </p>
+      <p className="sm:text-xl">Escolha uma palavra com o tema</p>
+      <span className="page-title block max-w-full break-words mt-2 sm:mt-6 text-5xl sm:text-6xl">
+        {theme}
+      </span>
       <form onSubmit={handleWordSubmit}>
-        <label htmlFor="word" className="block text-center sm:text-left">
+        <label htmlFor="word" className="block text-center">
           Min: {gc.MIN_WORD_LENGTH}, Máx: {gc.MAX_WORD_LENGTH} caracteres
           <input
             id="word"
             type="text"
             className="input text-center"
+            autoComplete="off"
             value={word}
             minLength={gc.MIN_WORD_LENGTH}
             maxLength={gc.MAX_WORD_LENGTH}
