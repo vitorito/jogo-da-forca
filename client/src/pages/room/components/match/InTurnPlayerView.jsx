@@ -1,45 +1,51 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import ScrollableContainer from '../../../../components/ScrollableContainer';
-import Gallow from '../gallow/Gallow';
-import WordChoosing from './WordChoosing';
+import React, { useState } from 'react';
+import gc from '../../../../config/gameConstraints';
+import chooseWord from '../../../../socket/chooseWord';
 
-function InTurnPlayerView({ players, isWatching, theme }) {
-  if (isWatching) {
-    return <WordChoosing theme={theme} />;
+function InTurnPlayerView({ theme }) {
+  const [word, setWord] = useState('');
+
+  function handleWordSubmit(e) {
+    e.preventDefault();
+    chooseWord(word);
   }
 
   return (
-    <ScrollableContainer className="lg:max-w-[90%] rounded-xl">
-      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-xl">
-        {players.map((player) => (
-          <li
-            key={player.id}
-            className="bg-yellow-600/40 flex flex-col rounded shadow-sm shadow-black"
-          >
-            <div className="rounded-gray-bg w-fit h-fit max-w-[80%] px-6 py-0.5 mx-auto mt-4">
-              <p className="text-xl text-center overflow-auto overflow-ellipsis">
-                {player.nick}
-              </p>
-            </div>
-            <Gallow player={player} className="gap-5 scale-75 -mt-7" />
-          </li>
-        ))}
-      </ul>
-    </ScrollableContainer>
+    <div className="sm-container items-center justify-around grow">
+      <p className="sm:text-xl">Escolha uma palavra com o tema</p>
+      <span className="page-title block max-w-full break-words mt-2 sm:mt-6 text-5xl sm:text-6xl">
+        {theme}
+      </span>
+      <form onSubmit={handleWordSubmit}>
+        <label htmlFor="word" className="block text-center">
+          Min: {gc.MIN_WORD_LENGTH}, Máx: {gc.MAX_WORD_LENGTH} caracteres
+          <input
+            id="word"
+            type="text"
+            className="input text-center"
+            autoComplete="off"
+            value={word}
+            minLength={gc.MIN_WORD_LENGTH}
+            maxLength={gc.MAX_WORD_LENGTH}
+            placeholder={`Entre ${gc.MIN_WORD_LENGTH} e ${gc.MAX_WORD_LENGTH} caracteres`}
+            onChange={(e) => setWord(e.target.value.trim())}
+          />
+        </label>
+        <button
+          type="submit"
+          disabled={word.length < gc.MIN_WORD_LENGTH}
+          className="btn mt-3 sm:mt-4"
+        >
+          Escolher Palavra
+        </button>
+      </form>
+    </div>
   );
 }
 
 InTurnPlayerView.propTypes = {
-  isWatching: PropTypes.bool.isRequired,
   theme: PropTypes.string.isRequired,
-  players: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      nick: PropTypes.string,
-      points: PropTypes.number,
-    })
-  ).isRequired,
 };
 
 export default InTurnPlayerView;

@@ -47,6 +47,7 @@ class Room {
     }
     this.playerInTurn = chosenPlayer;
     this.alreadyPlayed.players.push(chosenPlayer);
+    chosenPlayer.isWatching = false;
   }
 
   chooseRoundTheme() {
