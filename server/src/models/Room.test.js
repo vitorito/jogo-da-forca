@@ -27,7 +27,10 @@ describe('room creation', () => {
     expect(room.currentRound).toBe(1);
     expect(room.players.size).toBe(1);
     expect(room.players.has(player.socketId)).toBe(true);
-    expect(room.playerInTurn).toBe('');
+    expect(room.playerInTurn).toEqual({
+      id: '',
+      nick: '',
+    });
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.waiting);
     expect(room.round.theme).toBe('');
     expect(room.alreadyPlayed).toStrictEqual({
@@ -44,7 +47,7 @@ describe('room start', () => {
     room.start();
 
     expect(room.currentRound).toBe(1);
-    expect(room.playerInTurn).toBe(player.id);
+    expect(room.playerInTurn).toStrictEqual(player);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
     expect(roomData.themes).toContain(room.round.theme);
   });
