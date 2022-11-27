@@ -98,3 +98,20 @@ describe('Get room', () => {
     expect(res.statusCode).toBe(403);
   });
 });
+
+describe('get rooms', () => {
+  test('should return an empty array when fetching rooms with no rooms created', async () => {
+    const res = await request.get('/room');
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toStrictEqual([]);
+  });
+
+  test('should return the created rooms', async () => {
+    const roomId = await createDefaultRoom();
+    const res = await request.get('/room');
+    expect(res.statusCode).toBe(200);
+    const rooms = res.body;
+    expect(rooms.length).toBe(1);
+    expect(rooms[0].id).toBe(roomId);
+  });
+});

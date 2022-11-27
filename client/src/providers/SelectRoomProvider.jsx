@@ -5,7 +5,7 @@ export const SelectRoomContext = createContext(null);
 
 // eslint-disable-next-line react/prop-types
 function SelectRoomProvider({ children }) {
-  const { rooms } = useRooms();
+  const { data: rooms, isLoading } = useRooms();
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   const findRoom = (roomId) => rooms.find((room) => room.id === roomId);
@@ -20,6 +20,7 @@ function SelectRoomProvider({ children }) {
 
   const value = useMemo(
     () => ({
+      isLoading,
       rooms,
       selectedRoom,
       handleSelectRoom,

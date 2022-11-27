@@ -1,6 +1,11 @@
 import roomService from './roomService.js';
 import { validatePlayer, validateRoomData } from './validator.js';
 
+function index(req, res) {
+  const rooms = roomService.findAll();
+  return res.json(rooms);
+}
+
 function show(req, res) {
   const { id } = req.params;
   const socketId = req.headers.socketid;
@@ -39,6 +44,7 @@ function create(req, res) {
 }
 
 export default {
+  index,
   show,
   create
 };

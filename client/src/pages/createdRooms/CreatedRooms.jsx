@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LoadingSpin from '../../components/LoadingSpin';
 import gc from '../../config/gameConstraints';
 import useEnterRoom from '../../hooks/useEnterRoom';
 import { SelectRoomContext } from '../../providers/SelectRoomProvider';
@@ -7,7 +8,8 @@ import CreatedRoomsList from './components/CreatedRoomsList';
 import RoomInfo from './components/RoomInfo';
 
 function CreatedRooms() {
-  const { selectedRoom, handleSelectRoom } = useContext(SelectRoomContext);
+  const { selectedRoom, handleSelectRoom, isLoading } =
+    useContext(SelectRoomContext);
   const [roomPassword, setRoomPassword] = useState('');
   const navigate = useNavigate();
 
@@ -29,8 +31,12 @@ function CreatedRooms() {
     );
   }
 
+  if (isLoading) {
+    return <LoadingSpin />;
+  }
+
   return (
-    <div className='flex flex-col items-center justify-center h-full w-full'>
+    <div className="flex flex-col items-center justify-center h-full w-full">
       <h1 className="page-title mb-4">Salas Criadas</h1>
       <div className="sm-container h-full overflow-y-auto py-2">
         {!selectedRoom ? (

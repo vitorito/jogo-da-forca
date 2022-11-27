@@ -28,6 +28,8 @@ const disconnectPlayer = (socketId) => {
 
 const findRoomById = (id) => roomRepo.findById(id);
 
+const findAll = () => roomRepo.findAll();
+
 const create = (owner, roomData) => {
   disconnectPlayer(owner.socketId);
 
@@ -46,5 +48,6 @@ const create = (owner, roomData) => {
 
 export default {
   findRoomById,
+  findAll,
   create,
 };

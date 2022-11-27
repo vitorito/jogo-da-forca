@@ -31,7 +31,7 @@ function Match({ room }) {
       className="flex flex-col items-center justify-evenly gap-2 grow
       w-full p-0.5 overflow-hidden"
     >
-      {myPlayer?.id !== room.playerInTurn.id ? (
+      {myPlayer?.id === room.playerInTurn.id ? (
         <InTurnPlayerView roomId={room.id} theme={room.round.theme} />
       ) : (
         <NotInTurnPlayerView
