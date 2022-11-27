@@ -3,7 +3,8 @@ import { validatePlayer, validateRoomData } from './validator.js';
 
 function index(req, res) {
   const rooms = roomService.findAll();
-  return res.json(rooms);
+  const roomsDtos = rooms.map(r => r.dto());
+  return res.json(roomsDtos);
 }
 
 function show(req, res) {
