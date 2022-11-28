@@ -6,7 +6,6 @@ import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
 import Room from './pages/room/Room';
 import PlayerProvider from './providers/PlayerProvider';
-import SelectRoomProvider from './providers/SelectRoomProvider';
 
 const queryClient = new QueryClient();
 
@@ -19,14 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/room/create" element={<CreateRoom />} />
-              <Route
-                path="/rooms"
-                element={
-                  <SelectRoomProvider>
-                    <CreatedRooms />
-                  </SelectRoomProvider>
-                }
-              />
+              <Route path="/rooms" element={<CreatedRooms />} />
               <Route path="/:id" element={<Room />} />
               <Route path="*" element={<Home />} />
             </Routes>

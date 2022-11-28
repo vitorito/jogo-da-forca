@@ -1,13 +1,10 @@
-import { useContext } from 'react';
+import PropTypes from 'prop-types';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { FaUser } from 'react-icons/fa';
 import { SlReload } from 'react-icons/sl';
 import gc from '../../../config/gameConstraints';
-import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
 
-function RoomDetails() {
-  const { selectedRoom: room } = useContext(SelectRoomContext);
-
+function RoomDetails({ room }) {
   return (
     <div
       className="flex items-center justify-evenly py-2 flex-wrap gap-2
@@ -17,12 +14,12 @@ function RoomDetails() {
         <span className="">Jogadores</span>
         <span title="Jogadores" className="flex items-center gap-1">
           <FaUser />
-          {room.currentRound}/{room.totalRounds}
+          {room.players.length}/{gc.MAX_ROOM_PLAYERS}
         </span>
       </div>
       <div className="flex flex-col items-center justify-center">
-        <span className="">Rodadas</span>
-        <span title="Rodadas" className="flex items-center gap-1">
+        <span className="">Rodada</span>
+        <span title="Rodada" className="flex items-center gap-1">
           <SlReload />
           {room.currentRound}/{room.totalRounds}
         </span>
@@ -37,5 +34,18 @@ function RoomDetails() {
     </div>
   );
 }
+
+RoomDetails.propTypes = {
+  room: PropTypes.shape({
+    currentRound: PropTypes.number.isRequired,
+    totalRounds: PropTypes.number.isRequired,
+    speed: PropTypes.oneOf(Object.keys(gc.SPEED_NAMES)),
+    players: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+      })
+    ),
+  }).isRequired,
+};
 
 export default RoomDetails;

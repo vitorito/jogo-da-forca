@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
-import { useContext } from 'react';
 import { BsFillDoorClosedFill } from 'react-icons/bs';
 import { FaLock, FaUser } from 'react-icons/fa';
 import gc from '../../../config/gameConstraints';
-import { SelectRoomContext } from '../../../providers/SelectRoomProvider';
 
-function RoomThumb({ room }) {
-  const { handleSelectRoom } = useContext(SelectRoomContext);
-
+function RoomThumb({ room, handleSelectRoom }) {
   return (
     <li>
       <button
@@ -43,6 +39,7 @@ RoomThumb.propTypes = {
     ).isRequired,
     isPrivate: PropTypes.bool.isRequired,
   }).isRequired,
+  handleSelectRoom: PropTypes.func.isRequired,
 };
 
 export default RoomThumb;

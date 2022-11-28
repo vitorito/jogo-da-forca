@@ -1,35 +1,18 @@
-import { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import LoadingSpin from '../../components/LoadingSpin';
-import gc from '../../config/gameConstraints';
-import useEnterRoom from '../../hooks/useEnterRoom';
-import { SelectRoomContext } from '../../providers/SelectRoomProvider';
+import useRooms from '../../hooks/useRooms';
 import CreatedRoomsList from './components/CreatedRoomsList';
 import RoomInfo from './components/RoomInfo';
 
 function CreatedRooms() {
-  const { selectedRoom, handleSelectRoom, isLoading } =
-    useContext(SelectRoomContext);
-  const [roomPassword, setRoomPassword] = useState('');
-  const navigate = useNavigate();
+  const { data: rooms, isLoading } = useRooms();
+  const [selectedRoom, setSelectedRoom] = useState(null);
 
-  async function handleEnterRoom() {
-    const data = await useEnterRoom({
-      id: selectedRoom.id,
-      password: roomPassword,
-    });
-
-    if (data.errors) return;
-
-    navigate(`/${selectedRoom.id}`, { state: { rooms: data.room } });
-  }
-
-  function hasCorrectPasswordLength() {
-    return (
-      roomPassword.length === 0 ||
-      roomPassword.length === gc.ROOM_PASSWORD_LENGTH
-    );
-  }
+  const handleSelectRoom = (roomId) => {
+    const room = rooms.find((r) => r.id === roomId);
+    setSelectedRoom(room);
+  };
 
   if (isLoading) {
     return <LoadingSpin />;
@@ -41,33 +24,16 @@ function CreatedRooms() {
       <div className="sm-container h-full overflow-y-auto py-2">
         {!selectedRoom ? (
           <>
-            <CreatedRoomsList />
+            <CreatedRoomsList
+              rooms={rooms}
+              handleSelectRoom={handleSelectRoom}
+            />
             <Link to="/" className="btn mt-6">
               Voltar
             </Link>
           </>
         ) : (
-          <>
-            <RoomInfo
-              roomPassword={roomPassword}
-              setRoomPassword={setRoomPassword}
-            />
-            <button
-              type="button"
-              onClick={handleEnterRoom}
-              disabled={!hasCorrectPasswordLength()}
-              className="btn mt-3"
-            >
-              Entrar na Sala
-            </button>
-            <button
-              type="button"
-              onClick={() => handleSelectRoom(null)}
-              className="btn mt-2"
-            >
-              Voltar
-            </button>
-          </>
+          <RoomInfo room={selectedRoom} handleSelectRoom={handleSelectRoom} />
         )}
       </div>
     </div>
