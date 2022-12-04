@@ -1,6 +1,6 @@
 import gc from '../config/gameConstraints.js';
 
-export function validatePlayer(player) {
+export function validatePlayerData(player) {
   const errors = [];
   try {
     const trimedSocketId = player.socketId.trim();

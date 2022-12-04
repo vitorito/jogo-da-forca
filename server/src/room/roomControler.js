@@ -1,6 +1,6 @@
 import gameController from '../game/gameController.js';
 import roomService from './roomService.js';
-import { validatePlayer, validateRoomData } from './validator.js';
+import { validatePlayerData, validateRoomData } from './validator.js';
 
 function index(req, res) {
   const rooms = roomService.findAll();
@@ -28,22 +28,20 @@ function show(req, res) {
   return res.json(room.dto());
 }
 
-async function create(req, res) {
-  const { player, roomData } = req.body;
-
-  let errors = validatePlayer(player);
+function createRoom(playerData, roomData) {
+  let errors = validatePlayerData(playerData);
   errors = errors.concat(validateRoomData(roomData));
 
   if (errors.length !== 0) {
-    return res.status(400).json({ errors });
+    return { errors };
   }
 
-  const room = roomService.create(player, roomData);
-
-  if (!room) return res.sendStatus(400);
-
-  await gameController.joinRoom(player.socketId, room);
-  return res.status(201).json({ id: room.id });
+  const room = roomService.create(playerData, roomData);
+  if (!room) {
+    errors.push('Sala não pôde ser criada');
+    return { errors };
+  }
+  return { room: room.dto() };
 }
 
 async function join(req, res) {
@@ -74,6 +72,6 @@ async function join(req, res) {
 export default {
   index,
   show,
-  create,
+  createRoom,
   join,
 };

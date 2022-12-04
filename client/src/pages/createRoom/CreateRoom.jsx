@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoadingSpin from '../../components/LoadingSpin';
 import gc from '../../config/gameConstraints';
-import useCreateRoom from '../../hooks/useCreateRoom';
 import { PlayerContext } from '../../providers/PlayerProvider';
+import { RoomContext } from '../../providers/RoomProvider';
+import createRoom from '../../socket/createRoom';
 import socket from '../../socket/socket';
 import CreateRoomForm from './components/CreateRoomForm';
 import RoomSpeedSelector from './components/RoomSpeedSelector';
@@ -20,8 +21,8 @@ function CreateRoom() {
   const { nick } = useContext(PlayerContext);
   const [roomData, setRoomData] = useState(EMPTY_ROOM_DATA);
   const [isValidRoomData, setIsValidRoomData] = useState(false);
+  const { setRoom } = useContext(RoomContext);
 
-  const createRoom = useCreateRoom();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,7 +32,7 @@ function CreateRoom() {
 
   async function handleCreateRoomSubmit() {
     const data = {
-      player: {
+      playerData: {
         socketId: socket.id,
         nick: nick.value,
       },
@@ -40,8 +41,13 @@ function CreateRoom() {
         totalRounds: parseInt(roomData.totalRounds, 10),
       },
     };
-    const roomId = await createRoom.mutateAsync(data);
-    navigate(`/${roomId}`);
+
+    createRoom(data, (res) => {
+      if (res.errors) return;
+
+      setRoom(res.room);
+      navigate(`/${res.room.id}`);
+    });
   }
 
   return (
