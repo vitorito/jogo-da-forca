@@ -28,7 +28,7 @@ function show(req, res) {
   return res.json(room.dto());
 }
 
-function createRoom(playerData, roomData) {
+function create(playerData, roomData) {
   let errors = validatePlayerData(playerData);
   errors = errors.concat(validateRoomData(roomData));
 
@@ -36,12 +36,15 @@ function createRoom(playerData, roomData) {
     return { errors };
   }
 
-  const room = roomService.create(playerData, roomData);
-  if (!room) {
+  const data = roomService.create(playerData, roomData);
+  if (!data) {
     errors.push('Sala não pôde ser criada');
     return { errors };
   }
-  return { room: room.dto() };
+  return {
+    room: data.room.dto(),
+    player: data.player.dto()
+  };
 }
 
 async function join(req, res) {
@@ -72,6 +75,6 @@ async function join(req, res) {
 export default {
   index,
   show,
-  createRoom,
+  create,
   join,
 };

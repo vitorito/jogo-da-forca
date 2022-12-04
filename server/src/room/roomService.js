@@ -43,7 +43,7 @@ const create = (owner, roomData) => {
   });;
 
   roomRepo.save(room);
-  return room;
+  return { room, player };
 };
 
 const joinRoom = (socketId, room, playerNick) => {

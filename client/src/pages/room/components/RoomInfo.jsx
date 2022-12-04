@@ -1,13 +1,16 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { FaClock, FaLock, FaUser } from 'react-icons/fa';
 import { SlReload } from 'react-icons/sl';
 import { VscBook } from 'react-icons/vsc';
 import { Link } from 'react-router-dom';
 import gc from '../../../config/gameConstraints';
+import { MatchContext } from '../../../providers/MatchProvider';
 import InfoItem from './InfoItem';
 import RoomThemes from './RoomThemes';
 
-function RoomInfo({ room }) {
+function RoomInfo() {
+  const { room } = useContext(MatchContext);
+
   return (
     <div
       className="flex flex-col gap-5 items-center justify-evenly grow
@@ -52,17 +55,5 @@ function RoomInfo({ room }) {
     </div>
   );
 }
-
-RoomInfo.propTypes = {
-  room: PropTypes.shape({
-    id: PropTypes.string,
-    isPrivate: PropTypes.bool,
-    currentRound: PropTypes.number,
-    totalRounds: PropTypes.number,
-    speed: PropTypes.string,
-    themes: PropTypes.arrayOf(PropTypes.string),
-    players: PropTypes.array, // eslint-disable-line
-  }).isRequired,
-};
 
 export default RoomInfo;

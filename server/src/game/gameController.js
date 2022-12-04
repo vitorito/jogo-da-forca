@@ -24,11 +24,7 @@ function setupGameEvents(socket) {
   }
 
   function createRoom(data, cb) {
-    console.log({
-      data,
-      cb
-    });
-    const res = roomControler.createRoom(data.playerData, data.roomData);
+    const res = roomControler.create(data.playerData, data.roomData);
     cb(res);
   }
 }

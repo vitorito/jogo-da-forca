@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoadingSpin from '../../components/LoadingSpin';
 import gc from '../../config/gameConstraints';
+import { MatchContext } from '../../providers/MatchProvider';
 import { PlayerContext } from '../../providers/PlayerProvider';
-import { RoomContext } from '../../providers/RoomProvider';
 import createRoom from '../../socket/createRoom';
 import socket from '../../socket/socket';
 import CreateRoomForm from './components/CreateRoomForm';
@@ -21,7 +21,7 @@ function CreateRoom() {
   const { nick } = useContext(PlayerContext);
   const [roomData, setRoomData] = useState(EMPTY_ROOM_DATA);
   const [isValidRoomData, setIsValidRoomData] = useState(false);
-  const { setRoom } = useContext(RoomContext);
+  const { setRoom, setPlayer } = useContext(MatchContext);
 
   const navigate = useNavigate();
 
@@ -46,6 +46,7 @@ function CreateRoom() {
       if (res.errors) return;
 
       setRoom(res.room);
+      setPlayer(res.player);
       navigate(`/${res.room.id}`);
     });
   }

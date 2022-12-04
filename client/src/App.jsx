@@ -5,8 +5,8 @@ import CreatedRooms from './pages/createdRooms/CreatedRooms';
 import CreateRoom from './pages/createRoom/CreateRoom';
 import Home from './pages/home/Home';
 import Room from './pages/room/Room';
+import MatchProvider from './providers/MatchProvider';
 import PlayerProvider from './providers/PlayerProvider';
-import RoomProvider from './providers/RoomProvider';
 
 const queryClient = new QueryClient();
 
@@ -21,18 +21,18 @@ function App() {
               <Route
                 path="/room/create"
                 element={
-                  <RoomProvider>
+                  <MatchProvider>
                     <CreateRoom />
-                  </RoomProvider>
+                  </MatchProvider>
                 }
               />
               <Route path="/rooms" element={<CreatedRooms />} />
               <Route
                 path="/:id"
                 element={
-                  <RoomProvider>
+                  <MatchProvider>
                     <Room />
-                  </RoomProvider>
+                  </MatchProvider>
                 }
               />
               <Route path="*" element={<Home />} />
