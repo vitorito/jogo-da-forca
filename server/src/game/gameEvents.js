@@ -3,4 +3,5 @@ export default {
   roomUpdate: 'room_update',
   chooseWord: 'choose_word',
   createRoom: 'create_room',
+  joinRoom: 'join_room',
 };

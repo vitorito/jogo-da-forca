@@ -3,28 +3,33 @@ import { useContext, useState } from 'react';
 import { FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import gc from '../../../config/gameConstraints';
-import useJoinRoom from '../../../hooks/useJoinRoom';
+import { MatchContext } from '../../../providers/MatchProvider';
 import { PlayerContext } from '../../../providers/PlayerProvider';
+import joinRoom from '../../../socket/joinRoom';
 import RoomDetails from './RoomDetails';
 import RoomThemes from './RoomThemes';
 
 function RoomInfo({ room, handleSelectRoom }) {
   const [roomPassword, setRoomPassword] = useState('');
   const { nick } = useContext(PlayerContext);
+  const { setRoom, setPlayer } = useContext(MatchContext);
 
   const navigate = useNavigate();
-  const joinRoom = useJoinRoom();
 
   async function handleEnterRoom() {
-    const hasJoined = await joinRoom({
-      id: room.id,
-      playerNick: nick.value,
+    const data = {
+      roomId: room.id,
       password: roomPassword,
+      nick: nick.value,
+    };
+
+    joinRoom(data, (res) => {
+      if (res.errors) return;
+
+      setPlayer(res.player);
+      setRoom(res.room);
+      navigate(`/${res.room.id}`);
     });
-
-    if (!hasJoined) return;
-
-    navigate(`/${room.id}`);
   }
 
   return (

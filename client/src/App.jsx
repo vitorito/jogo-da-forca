@@ -15,29 +15,17 @@ function App() {
     <MainContainer>
       <QueryClientProvider client={queryClient}>
         <PlayerProvider>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/room/create"
-                element={
-                  <MatchProvider>
-                    <CreateRoom />
-                  </MatchProvider>
-                }
-              />
-              <Route path="/rooms" element={<CreatedRooms />} />
-              <Route
-                path="/:id"
-                element={
-                  <MatchProvider>
-                    <Room />
-                  </MatchProvider>
-                }
-              />
-              <Route path="*" element={<Home />} />
-            </Routes>
-          </Router>
+          <MatchProvider>
+            <Router>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/room/create" element={<CreateRoom />} />
+                <Route path="/rooms" element={<CreatedRooms />} />
+                <Route path="/:id" element={<Room />} />
+                <Route path="*" element={<Home />} />
+              </Routes>
+            </Router>
+          </MatchProvider>
         </PlayerProvider>
       </QueryClientProvider>
     </MainContainer>

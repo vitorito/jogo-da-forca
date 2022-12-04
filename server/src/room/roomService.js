@@ -3,6 +3,10 @@ import Player from '../models/Player.js';
 import Room from '../models/Room.js';
 import roomRepo from './roomRepository.js';
 
+const isValidPassword = (roomPassword, passwordAttemp) => {
+  return roomPassword === "" || roomPassword === passwordAttemp;
+};
+
 const generateRoomId = () => {
   return String(gc.MIN_ROOM_ID + roomRepo.size());
 };
@@ -46,12 +50,18 @@ const create = (owner, roomData) => {
   return { room, player };
 };
 
-const joinRoom = (socketId, room, playerNick) => {
+const joinRoom = (socketId, { roomId, password, nick }) => {
+  const room = findRoomById(roomId);
+
+  if (!room || !isValidPassword(room.password, password)) return null;
+
   disconnectPlayer(socketId);
 
   const playerId = generatePlayerId(room.id, room.size());
-  const player = new Player(socketId, playerId, playerNick);
+  const player = new Player(socketId, playerId, nick);
   room.add(player);
+
+  return { player, room };
 };
 
 export default {

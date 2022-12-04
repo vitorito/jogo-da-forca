@@ -1,42 +1,40 @@
 import gc from '../config/gameConstraints.js';
 
 export function validatePlayerData(player) {
-  const errors = [];
   try {
     const trimedSocketId = player.socketId.trim();
     const trimedNick = player.nick.trim();
 
     if (!trimedSocketId || trimedSocketId.length !== player.socketId.length) {
-      errors.push('Invalid player tolken id');
+      return false;
     }
 
     if (!trimedNick ||
       trimedNick.length !== player.nick.length ||
       player.nick.length > gc.MAX_NICK_LENGTH) {
-      errors.push('Invalid player nick');
+      return false;
     }
+    return true;
   } catch (error) {
-    errors.push('Invalid player data');
+    return false;
   }
-  return errors;
 }
 
 export function validateRoomData(room) {
-  const errors = [];
   try {
     const { password, totalRounds, speed, themes } = room;
 
     if (password.length !== 0 && password.length !== gc.ROOM_PASSWORD_LENGTH) {
-      errors.push('Invalid room password');
+      return false;
     }
 
     if (totalRounds < gc.MIN_MATCH_ROUNDS || totalRounds > gc.MAX_MATCH_ROUNDS) {
-      errors.push('Invalid room total rounds');
+      return false;
     }
 
     const availableSpeeds = Object.keys(gc.ROOM_SPEED_IN_SECONDS);
     if (!availableSpeeds.includes(speed)) {
-      errors.push('Invalid room speed');
+      return false;
     }
 
     const hasInvalidThemes = themes.some(t => {
@@ -44,10 +42,10 @@ export function validateRoomData(room) {
       return theme.length === 0 || theme.length > gc.MAX_ROOM_THEME_LENGTH;
     });
     if (themes.length === 0 || hasInvalidThemes) {
-      errors.push('Invalid room themes');
+      return false;
     }
+    return true;
   } catch (error) {
-    errors.push('Invalid room data');
+    return false;
   }
-  return errors;
 }

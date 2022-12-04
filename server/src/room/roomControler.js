@@ -1,4 +1,3 @@
-import gameController from '../game/gameController.js';
 import roomService from './roomService.js';
 import { validatePlayerData, validateRoomData } from './validator.js';
 
@@ -29,17 +28,15 @@ function show(req, res) {
 }
 
 function create(playerData, roomData) {
-  let errors = validatePlayerData(playerData);
-  errors = errors.concat(validateRoomData(roomData));
+  const isValidData = validatePlayerData(playerData) && validateRoomData(roomData);
 
-  if (errors.length !== 0) {
-    return { errors };
+  if (!isValidData) {
+    return { error: true };
   }
 
   const data = roomService.create(playerData, roomData);
   if (!data) {
-    errors.push('Sala não pôde ser criada');
-    return { errors };
+    return { error: true };
   }
   return {
     room: data.room.dto(),
@@ -47,29 +44,15 @@ function create(playerData, roomData) {
   };
 }
 
-async function join(req, res) {
-  const socketId = req.headers.socketid;
-  const roomId = req.params.id;
-  const { password, nick } = req.body;
+function join(socketId, joiningData) {
+  const data = roomService.joinRoom(socketId, joiningData);
 
-  if (!socketId) {
-    return res.sendStatus(401);
-  }
+  if (!data) return { error: true };
 
-  const room = roomService.findRoomById(roomId);
-
-  if (!room) {
-    return res.sendStatus(404);
-  }
-
-  if (room.password !== "" && room.password !== password) {
-    return res.sendStatus(401);
-  }
-
-  roomService.joinRoom(socketId, room, nick);
-
-  await gameController.joinRoom(socketId, room);
-  res.sendStatus(201);
+  return {
+    room: data.room.dto(),
+    player: data.player.dto(),
+  };
 }
 
 export default {
