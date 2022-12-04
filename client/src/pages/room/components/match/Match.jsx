@@ -9,7 +9,7 @@ import WatchingPlayerView from './WatchingPlayerView';
 
 function Match({ room }) {
   const myPlayer = useMemo(
-    () => room.players.find((player) => !!player.id),
+    () => room.players[room.players.length - 1],
     [room]
   );
 

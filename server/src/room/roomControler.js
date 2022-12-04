@@ -1,3 +1,4 @@
+import gameController from '../game/gameController.js';
 import roomService from './roomService.js';
 import { validatePlayer, validateRoomData } from './validator.js';
 
@@ -27,7 +28,7 @@ function show(req, res) {
   return res.json(room.dto());
 }
 
-function create(req, res) {
+async function create(req, res) {
   const { player, roomData } = req.body;
 
   let errors = validatePlayer(player);
@@ -37,15 +38,42 @@ function create(req, res) {
     return res.status(400).json({ errors });
   }
 
-  const roomId = roomService.create(player, roomData);
+  const room = roomService.create(player, roomData);
 
-  if (!roomId) return res.sendStatus(400);
+  if (!room) return res.sendStatus(400);
 
-  return res.status(201).json({ id: roomId });
+  await gameController.joinRoom(player.socketId, room);
+  return res.status(201).json({ id: room.id });
+}
+
+async function join(req, res) {
+  const socketId = req.headers.socketid;
+  const roomId = req.params.id;
+  const { password, nick } = req.body;
+
+  if (!socketId) {
+    return res.sendStatus(401);
+  }
+
+  const room = roomService.findRoomById(roomId);
+
+  if (!room) {
+    return res.sendStatus(404);
+  }
+
+  if (room.password !== "" && room.password !== password) {
+    return res.sendStatus(401);
+  }
+
+  roomService.joinRoom(socketId, room, nick);
+
+  await gameController.joinRoom(socketId, room);
+  res.sendStatus(201);
 }
 
 export default {
   index,
   show,
-  create
+  create,
+  join,
 };

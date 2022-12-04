@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaLock } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import gc from '../../../config/gameConstraints';
-import useEnterRoom from '../../../hooks/useEnterRoom';
+import useJoinRoom from '../../../hooks/useJoinRoom';
+import { PlayerContext } from '../../../providers/PlayerProvider';
 import RoomDetails from './RoomDetails';
 import RoomThemes from './RoomThemes';
 
 function RoomInfo({ room, handleSelectRoom }) {
   const [roomPassword, setRoomPassword] = useState('');
+  const { nick } = useContext(PlayerContext);
 
   const navigate = useNavigate();
-  const enterRoom = useEnterRoom();
+  const joinRoom = useJoinRoom();
 
   async function handleEnterRoom() {
-    const data = await enterRoom({
+    const hasJoined = await joinRoom({
       id: room.id,
+      playerNick: nick.value,
       password: roomPassword,
     });
 
-    if (data.errors) return;
+    if (!hasJoined) return;
 
     navigate(`/${room.id}`);
   }
@@ -60,7 +63,7 @@ function RoomInfo({ room, handleSelectRoom }) {
       <button
         type="button"
         onClick={handleEnterRoom}
-        disabled={!hasCorrectPasswordLength(roomPassword)}
+        disabled={room.isPrivate && !hasCorrectPasswordLength(roomPassword)}
         className="btn mt-3"
       >
         Entrar na Sala

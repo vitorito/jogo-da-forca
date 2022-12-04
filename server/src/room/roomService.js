@@ -43,11 +43,20 @@ const create = (owner, roomData) => {
   });;
 
   roomRepo.save(room);
-  return room.id;
+  return room;
+};
+
+const joinRoom = (socketId, room, playerNick) => {
+  disconnectPlayer(socketId);
+
+  const playerId = generatePlayerId(room.id, room.size());
+  const player = new Player(socketId, playerId, playerNick);
+  room.add(player);
 };
 
 export default {
   findRoomById,
   findAll,
   create,
+  joinRoom,
 };

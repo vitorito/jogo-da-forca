@@ -14,6 +14,7 @@ function useRoom(roomId) {
 
   useEffect(() => {
     socket.on('room_update', (roomData) => {
+      console.log('updaitou');
       queryClient.setQueryData(["room", roomId], roomData);
     });
   }, []);
