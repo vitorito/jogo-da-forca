@@ -1,4 +1,5 @@
 import roomControler from '../room/roomControler.js';
+import { io } from '../server.js';
 import gameEvents from './gameEvents.js';
 import gameService from './gameService.js';
 
@@ -13,14 +14,14 @@ function setupGameEvents(socket) {
   function start(roomId) {
     const room = gameService.start(socket.id, roomId);
     if (room) {
-      socket.emit(gameEvents.roomUpdate, room.dto());
+      io.to(room.id).emit(gameEvents.roomUpdate, room.dto());
     }
   }
 
   function chooseWord(roomId, word) {
     const room = gameService.chooseWord(socket.id, roomId, word);
     if (room) {
-      socket.emit(gameEvents.roomUpdate, room.dto());
+      io.to(roomId).emit(gameEvents.roomUpdate, room.dto());
     }
   }
 
