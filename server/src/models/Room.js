@@ -30,7 +30,7 @@ class Room {
   }
 
   start() {
-    this.round.state = gc.ROOM_MATCH_STATES.running;
+    this.round.state = gc.ROOM_MATCH_STATES.choosingWord;
     this.choosePlayerInTurn();
     this.chooseRoundTheme();
   }
@@ -76,6 +76,7 @@ class Room {
       }
     });
     this.playerInTurn.isWatching = true;
+    this.round.state = gc.ROOM_MATCH_STATES.running;
   }
 
   add(player) {

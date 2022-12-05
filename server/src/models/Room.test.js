@@ -49,7 +49,7 @@ describe('room start', () => {
 
     expect(room.currentRound).toBe(1);
     expect(room.playerInTurn).toStrictEqual(player);
-    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
+    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
     expect(roomData.themes).toContain(room.round.theme);
   });
 });
@@ -61,9 +61,10 @@ describe('room next round', () => {
     room.start();
     room.chooseRoundWord(word);
 
+    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
     expect(room.round.word).toBe(word);
     const players = room.getPlayers();
-    
+
     const allPlayersHaveTheWord = players.every(p => p.round.word === '******');
     expect(allPlayersHaveTheWord).toBe(true);
 
