@@ -21,7 +21,7 @@ function CreateRoom() {
   const { nick } = useContext(PlayerContext);
   const [roomData, setRoomData] = useState(EMPTY_ROOM_DATA);
   const [isValidRoomData, setIsValidRoomData] = useState(false);
-  const { setRoom, setPlayer } = useContext(MatchContext);
+  const { setMatch } = useContext(MatchContext);
 
   const navigate = useNavigate();
 
@@ -45,8 +45,7 @@ function CreateRoom() {
     createRoom(data, (res) => {
       if (res.errors) return;
 
-      setRoom(res.room);
-      setPlayer(res.player);
+      setMatch(res);
       navigate(`/${res.room.id}`);
     });
   }

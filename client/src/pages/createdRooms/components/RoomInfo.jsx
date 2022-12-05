@@ -12,7 +12,7 @@ import RoomThemes from './RoomThemes';
 function RoomInfo({ room, handleSelectRoom }) {
   const [roomPassword, setRoomPassword] = useState('');
   const { nick } = useContext(PlayerContext);
-  const { setRoom, setPlayer } = useContext(MatchContext);
+  const { setMatch } = useContext(MatchContext);
 
   const navigate = useNavigate();
 
@@ -26,8 +26,7 @@ function RoomInfo({ room, handleSelectRoom }) {
     joinRoom(data, (res) => {
       if (res.errors) return;
 
-      setPlayer(res.player);
-      setRoom(res.room);
+      setMatch(res);
       navigate(`/${res.room.id}`);
     });
   }
