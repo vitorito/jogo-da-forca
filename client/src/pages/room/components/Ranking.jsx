@@ -1,13 +1,16 @@
-import PropTypes from 'prop-types';
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import ScrollableContainer from '../../../components/ScrollableContainer';
+import { MatchContext } from '../../../providers/MatchProvider';
 import RankingItem from './RankingItem';
 
-function Ranking({ players }) {
+function Ranking() {
+  const { room } = useContext(MatchContext);
+
   const sortedPlayers = useMemo(
-    () => [...players].sort((p1, p2) => p2.points - p1.points),
-    [players]
+    () => [...room.players].sort((p1, p2) => p2.points - p1.points),
+    [room]
   );
+  
   return (
     <ScrollableContainer className="sm-container bg-yellow-700 max-h-[700px]">
       <ul className="flex flex-col gap-2 w-full h-full overflow-auto">
@@ -18,15 +21,5 @@ function Ranking({ players }) {
     </ScrollableContainer>
   );
 }
-
-Ranking.propTypes = {
-  players: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      nick: PropTypes.string,
-      points: PropTypes.number,
-    })
-  ).isRequired,
-};
 
 export default Ranking;

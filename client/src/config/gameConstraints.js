@@ -16,6 +16,7 @@ export default {
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
     running: 'running',
+    choosingWord: 'choosing_word',
   },
   HIDDEN_LETTER: '*',
 };

@@ -25,11 +25,9 @@ function Room() {
         <LoadingSpin />
       ) : (
         <>
-          {activeScreen === HEADER_BUTTONS.ranking && (
-            <Ranking players={room.players} />
-          )}
+          {activeScreen === HEADER_BUTTONS.ranking && <Ranking />}
           {activeScreen === HEADER_BUTTONS.info && <RoomInfo />}
-          {activeScreen === HEADER_BUTTONS.match && <Match room={room} />}
+          {activeScreen === HEADER_BUTTONS.match && <Match />}
         </>
       )}
     </div>

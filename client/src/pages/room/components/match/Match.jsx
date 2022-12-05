@@ -1,26 +1,33 @@
 import React, { useContext } from 'react';
+import ScrollableContainer from '../../../../components/ScrollableContainer';
 import gc from '../../../../config/gameConstraints';
 import { MatchContext } from '../../../../providers/MatchProvider';
 import startGame from '../../../../socket/startGame';
-import InTurnPlayerView from './InTurnPlayerView';
-import NotInTurnPlayerView from './NotInTurnPlayerView';
+import Gallow from '../gallow/Gallow';
+import Keyboard from '../gallow/Keyboard';
+import InTurnChoosingWordView from './InTurnChoosingWordView';
+import NotInTurnChoosingWordView from './NotInTurnChoosingWordView';
 import WaitingRoomView from './WaitingRoomView';
 import WatchingPlayerView from './WatchingPlayerView';
 
 function Match() {
-  const { room, player: myPlayer } = useContext(MatchContext);
+  const { room, player } = useContext(MatchContext);
 
   if (room.round.state === gc.ROOM_MATCH_STATES.waiting) {
     return (
       <WaitingRoomView
-        isOwner={room.owner === myPlayer.id}
+        isOwner={room.owner === player.id}
         start={() => startGame(room.id)}
       />
     );
   }
 
-  if (myPlayer.isWatching) {
-    return <WatchingPlayerView players={room.players} />;
+  if (room.round.state === gc.ROOM_MATCH_STATES.choosingWord) {
+    return player.id === room.playerInTurn.id ? (
+      <InTurnChoosingWordView roomId={room.id} theme={room.round.theme} />
+    ) : (
+      <NotInTurnChoosingWordView />
+    );
   }
 
   return (
@@ -28,13 +35,18 @@ function Match() {
       className="flex flex-col items-center justify-evenly gap-2 grow
       w-full p-0.5 overflow-hidden"
     >
-      {myPlayer?.id === room.playerInTurn.id ? (
-        <InTurnPlayerView roomId={room.id} theme={room.round.theme} />
+      {player.isWatching ? (
+        <WatchingPlayerView players={room.players} />
       ) : (
-        <NotInTurnPlayerView
-          playerInTurnNick={room.playerInTurn.nick}
-          theme={room.round.theme}
-        />
+        <>
+          <Gallow player={player} />
+          <ScrollableContainer className="shadow-none px-0">
+            <Keyboard
+              correctLetters={player.round.correctLetters}
+              wrongLetters={player.round.wrongLetters}
+            />
+          </ScrollableContainer>
+        </>
       )}
     </div>
   );

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import gc from '../../../../config/gameConstraints';
 import chooseWord from '../../../../socket/chooseWord';
 
-function InTurnPlayerView({ roomId, theme }) {
+function InTurnChoosingWordView({ roomId, theme }) {
   const [word, setWord] = useState('');
 
   function handleWordSubmit(e) {
@@ -12,7 +12,7 @@ function InTurnPlayerView({ roomId, theme }) {
   }
 
   return (
-    <div className="sm-container items-center justify-around grow">
+    <div className="sm-container items-center justify-evenly grow">
       <p className="sm:text-xl">Escolha uma palavra com o tema</p>
       <span className="page-title block max-w-full break-words mt-2 sm:mt-6 text-5xl sm:text-6xl">
         {theme}
@@ -44,9 +44,9 @@ function InTurnPlayerView({ roomId, theme }) {
   );
 }
 
-InTurnPlayerView.propTypes = {
+InTurnChoosingWordView.propTypes = {
   roomId: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
 };
 
-export default InTurnPlayerView;
+export default InTurnChoosingWordView;
