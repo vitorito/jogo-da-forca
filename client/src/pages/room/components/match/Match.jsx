@@ -36,7 +36,7 @@ function Match() {
       w-full p-0.5 overflow-hidden"
     >
       {player.isWatching ? (
-        <WatchingPlayerView players={room.players} />
+        <WatchingPlayerView />
       ) : (
         <>
           <Gallow player={player} />

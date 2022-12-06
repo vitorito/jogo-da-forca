@@ -14,7 +14,7 @@ function RoomDetails({ room }) {
         <span className="">Jogadores</span>
         <span title="Jogadores" className="flex items-center gap-1">
           <FaUser />
-          {room.players.length}/{gc.MAX_ROOM_PLAYERS}
+          {room.players}/{gc.MAX_ROOM_PLAYERS}
         </span>
       </div>
       <div className="flex flex-col items-center justify-center">
@@ -40,11 +40,7 @@ RoomDetails.propTypes = {
     currentRound: PropTypes.number.isRequired,
     totalRounds: PropTypes.number.isRequired,
     speed: PropTypes.oneOf(Object.keys(gc.SPEED_NAMES)),
-    players: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-      })
-    ),
+    players: PropTypes.number.isRequired,
   }).isRequired,
 };
 

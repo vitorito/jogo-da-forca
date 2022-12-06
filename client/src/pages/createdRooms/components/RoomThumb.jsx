@@ -21,7 +21,7 @@ function RoomThumb({ room, handleSelectRoom }) {
         <div title="Jogadores" className="flex items-center gap-0.5">
           <FaUser />
           <span className="w-12 text-right">
-            {room.players.length}/{gc.MAX_ROOM_PLAYERS}
+            {room.players}/{gc.MAX_ROOM_PLAYERS}
           </span>
         </div>
       </button>
@@ -32,11 +32,7 @@ function RoomThumb({ room, handleSelectRoom }) {
 RoomThumb.propTypes = {
   room: PropTypes.shape({
     id: PropTypes.string.isRequired,
-    players: PropTypes.arrayOf(
-      PropTypes.shape({
-        id: PropTypes.string,
-      })
-    ).isRequired,
+    players: PropTypes.number.isRequired,
     isPrivate: PropTypes.bool.isRequired,
   }).isRequired,
   handleSelectRoom: PropTypes.func.isRequired,
