@@ -41,10 +41,7 @@ function Match() {
         <>
           <Gallow player={player} />
           <ScrollableContainer className="shadow-none px-0">
-            <Keyboard
-              correctLetters={player.round.correctLetters}
-              wrongLetters={player.round.wrongLetters}
-            />
+            <Keyboard />
           </ScrollableContainer>
         </>
       )}

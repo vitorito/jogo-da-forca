@@ -4,4 +4,5 @@ export default {
   chooseWord: 'choose_word',
   createRoom: 'create_room',
   joinRoom: 'join_room',
+  guessLetter: 'guess_letter',
 };

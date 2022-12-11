@@ -9,7 +9,7 @@ function setupGameEvents(socket) {
   socket.on(gameEvents.chooseWord, chooseWord);
   socket.on(gameEvents.createRoom, createRoom);
   socket.on(gameEvents.joinRoom, joinRoom);
-
+  socket.on(gameEvents.guessLetter, guessLetter);
 
   function start(roomId) {
     const room = gameService.start(socket.id, roomId);
@@ -44,6 +44,14 @@ function setupGameEvents(socket) {
     }
 
     cb(res);
+  }
+
+  function guessLetter(roomId, letter) {
+    const room = gameService.guessLetter(socket.id, roomId, letter);
+    if (room) {
+      const roomOwnerSocketId = room.owner.socketId;
+      io.to([socket.id, roomOwnerSocketId]).emit(gameEvents.roomUpdate, room.dto());
+    }
   }
 }
 

@@ -66,7 +66,9 @@ class Room {
     this.round.theme = chosenTheme;
   }
 
-  chooseRoundWord(word) {
+  chooseRoundWord(socketId, word) {
+    if (!socketId || socketId !== this.playerInTurn.socketId) return false;
+
     this.round.word = word;
     const hiddenWord = this.hideWord(word.length);
     this.getPlayers().forEach(p => {
@@ -77,6 +79,21 @@ class Room {
     });
     this.playerInTurn.isWatching = true;
     this.round.state = gc.ROOM_MATCH_STATES.running;
+
+    return true;
+  }
+
+  guessLetter(socketId, letter) {
+    if (!socketId || socketId === this.playerInTurn.socketId ||
+      this.round.state !== gc.ROOM_MATCH_STATES.running) {
+      return false;
+    }
+
+    const player = this.players.get(socketId);
+    if (!player) return false;
+
+    return player.guessLetter(this.round.word, letter);
+
   }
 
   add(player) {
