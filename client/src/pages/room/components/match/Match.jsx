@@ -39,6 +39,7 @@ function Match() {
         <WatchingPlayerView />
       ) : (
         <>
+          <p className="page-title">{room.round.theme}</p>
           <Gallow player={player} />
           <ScrollableContainer className="shadow-none px-0">
             <Keyboard />
