@@ -1331,6 +1331,11 @@ video {
   border-top-right-radius: 0.25rem;
 }
 
+.rounded-b-none {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
 .rounded-t-none {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
@@ -1405,6 +1410,11 @@ video {
   --tw-border-opacity: 1;
   border-left-color: rgb(255 255 255 / var(--tw-border-opacity));
   border-right-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.border-t-blue-600 {
+  --tw-border-opacity: 1;
+  border-top-color: rgb(37 99 235 / var(--tw-border-opacity));
 }
 
 .bg-yellow-600 {

@@ -1,19 +1,16 @@
 import PropTypes from 'prop-types';
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import ScrollableContainer from '../../../components/ScrollableContainer';
 import gc from '../../../config/gameConstraints';
 import RoomTheme from './RoomTheme';
 
 function RoomThemeList({ roomData, setRoomData }) {
-  const [canAddTheme, setCanAddTheme] = useState(true);
-  const themeInputRef = useRef();
-  const themeListRef = useRef();
+  const [theme, setTheme] = useState('');
 
   function handleDeleteTheme(index) {
     setRoomData((prev) => {
       const themes = [...prev.themes];
       themes.splice(index, 1);
-      setCanAddTheme(themes.length < gc.MAX_ROOM_THEMES);
       return {
         ...prev,
         themes,
@@ -21,74 +18,58 @@ function RoomThemeList({ roomData, setRoomData }) {
     });
   }
 
-  function cleanThemeInput() {
-    const themeInput = themeInputRef.current;
-    themeInput.value = '';
-    themeInput.focus();
-  }
-
-  function scrollThemesDiv() {
-    const themesDiv = themeListRef.current;
-    setTimeout(() => {
-      themesDiv.scrollBy(0, themesDiv.scrollHeight);
-    }, 10);
-  }
-
-  function handleAddTheme() {
-    const theme = themeInputRef.current.value.trim();
-
-    if (!theme) return;
+  function handleAddTheme(e) {
+    e.preventDefault();
 
     setRoomData((prev) => {
       const themes = prev.themes.filter((t) => t !== theme);
       themes.push(theme);
-      setCanAddTheme(themes.length < gc.MAX_ROOM_THEMES);
       return {
         ...prev,
         themes,
       };
     });
 
-    cleanThemeInput();
-    scrollThemesDiv();
+    setTheme('');
   }
 
   return (
-    <label htmlFor="theme-list" className="flex flex-col overflow-auto">
-      <span>Lista de Temas</span>
-      <ScrollableContainer className="bg-white shadow-none h-[18vh] rounded-t">
-        <ul ref={themeListRef} className="flex flex-wrap gap-2 py-1">
-          {roomData.themes.map((theme, index) => (
+    <div className="flex flex-col overflow-auto">
+      <span>Lista de Temas (Máx: 20)</span>
+      <ScrollableContainer className="bg-white shadow-none h-[18vh] rounded-t rounded-b-none">
+        <ul id="themes" className="flex flex-wrap gap-2 py-1">
+          {roomData.themes.map((t, index) => (
             <RoomTheme
-              value={theme}
-              key={theme}
+              value={t}
+              key={t}
               onClick={() => handleDeleteTheme(index)}
             />
           ))}
         </ul>
       </ScrollableContainer>
-      <div className="flex">
+      <form className="flex" onSubmit={handleAddTheme}>
         <input
-          id="theme-list"
           type="text"
-          ref={themeInputRef}
-          maxLength={50}
+          maxLength={gc.MAX_ROOM_THEME_LENGTH}
           placeholder="Adicionar tema"
           autoComplete="off"
+          value={theme}
+          onChange={(e) => setTheme(e.target.value.trim())}
           className="input text-xl font-normal rounded-t-none rounded-r-none
-            border-transparent border-t-2 focus:border-t-blue-600"
+          border-2 border-t-blue-600"
         />
         <button
           type="submit"
-          disabled={!canAddTheme}
-          onClick={handleAddTheme}
+          disabled={
+            roomData.themes.length >= gc.MAX_ROOM_THEMES || theme === ''
+          }
           className="btn flex items-center justify-center font-mono text-4xl
             w-12 h-10 sm:h-12 rounded-t-none rounded-l-none overflow-hidden"
         >
           +
         </button>
-      </div>
-    </label>
+      </form>
+    </div>
   );
 }
 
