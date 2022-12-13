@@ -29,15 +29,23 @@ class Room {
     this.add(owner);
   }
 
-  start() {
+  nextRound() {
+    if (this.round.state !== gc.ROOM_MATCH_STATES.waiting) {
+      this.currentRound++;
+      this._reset();
+    }
     this.round.state = gc.ROOM_MATCH_STATES.choosingWord;
-    this.choosePlayerInTurn();
-    this.chooseRoundTheme();
+    this._choosePlayerInTurn();
+    this._chooseRoundTheme();
   }
 
-  choosePlayerInTurn() {
-    const players = Array.from(this.players.values());
-    const notPlayed = players.filter((p) => !this.alreadyPlayed.players.includes(p.id));
+  _reset() {
+    this.getPlayers().forEach(p => p.resetRound())
+  }
+
+  _choosePlayerInTurn() {
+    const players = this.getPlayers();
+    const notPlayed = players.filter((p) => !this.alreadyPlayed.players.includes(p.socketId));
 
     let chosenPlayer;
 
@@ -48,11 +56,14 @@ class Room {
       chosenPlayer = lodash.sample(players);
     }
     this.playerInTurn = chosenPlayer;
-    this.alreadyPlayed.players.push(chosenPlayer);
-    chosenPlayer.isWatching = false;
+    this.alreadyPlayed.players.push(chosenPlayer.socketId);
+
+    players.forEach(p => {
+      p.isWatching = p.socketId === this.playerInTurn.socketId;
+    });
   }
 
-  chooseRoundTheme() {
+  _chooseRoundTheme() {
     const unplayedThemes = this.themes.filter(t => !this.alreadyPlayed.themes.includes(t));
 
     let chosenTheme;
@@ -70,7 +81,7 @@ class Room {
     if (!socketId || socketId !== this.playerInTurn.socketId) return false;
 
     this.round.word = word;
-    const hiddenWord = this.hideWord(word.length);
+    const hiddenWord = this._hideWord(word.length);
     this.getPlayers().forEach(p => {
       p.round.word = hiddenWord;
       if (p.socketId !== this.playerInTurn.socketId) {
@@ -92,8 +103,27 @@ class Room {
     const player = this.players.get(socketId);
     if (!player) return false;
 
-    return player.guessLetter(this.round.word, letter);
+    const guessed = player.guessLetter(this.round.word, letter);
 
+    if (guessed && this._checkPlayerEndedRound(player)) {
+      this._checkRoundEnd();
+    }
+
+    return guessed;
+  }
+
+  _checkRoundEnd() {
+    const playersNotWatching = this.getPlayers().filter(p => !p.isWatching);
+    const ended = playersNotWatching.every((p) => this._checkPlayerEndedRound(p));
+
+    if (ended) {
+      this.nextRound();
+    }
+  }
+
+  _checkPlayerEndedRound(player) {
+    return player.round.word === this.round.word ||
+      player.getErrorsCount() >= gc.MAX_PLAYER_ROUND_ERRORS;
   }
 
   add(player) {
@@ -116,7 +146,7 @@ class Room {
     return this.players.size;
   }
 
-  hideWord(length) {
+  _hideWord(length) {
     return gc.HIDDEN_LETTER.repeat(length);
   }
 

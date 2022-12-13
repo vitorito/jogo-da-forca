@@ -39,6 +39,14 @@ class Player {
     return true;
   }
 
+  resetRound() {
+    this.round = {
+      word: '',
+      correctLetters: [],
+      wrongLetters: [],
+    };
+  }
+
   getErrorsCount() {
     return this.round.wrongLetters.length;
   }

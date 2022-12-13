@@ -49,21 +49,83 @@ describe('room creation', () => {
 });
 
 
-describe('room start', () => {
+describe('next round', () => {
   test('should start the room', () => {
-    room.start();
+    room.nextRound();
 
     expect(room.currentRound).toBe(1);
     expect(room.playerInTurn).toStrictEqual(player);
+    expect(room.alreadyPlayed.players).toContain(player.socketId);
+    expect(room.alreadyPlayed.themes).toContain(room.round.theme);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
-    expect(roomData.themes).toContain(room.round.theme);
   });
-});
 
-describe('room next round', () => {
-  test('should choose room round word', () => {
+  test('should choose another player and theme', () => {
+    const player2 = new Player('socketId2', '300002', 'nick2');
+
+    room.nextRound();
+    room.add(player2);
+
+    const expectedTheme = room.round.theme === room.themes[0] ? room.themes[1] : room.themes[0];
+
+    room.nextRound();
+
+    expect(room.currentRound).toBe(2);
+    expect(room.playerInTurn).toStrictEqual(player2);
+    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
+    expect(room.alreadyPlayed.players).toEqual([player.socketId, player2.socketId]);
+    expect(room.alreadyPlayed.themes).toContain(room.themes[0]);
+    expect(room.alreadyPlayed.themes).toContain(room.themes[1]);
+    expect(room.round.theme).toBe(expectedTheme);
+  });
+
+  test('should go to next round when the player complete the word', () => {
+    const player2 = new Player('socketId2', '300002', 'nick2');
+    const word = 'aaaaaaa';
+
+    room.add(player2);
+    room.nextRound();
+
+
+    room.chooseRoundWord(room.playerInTurn.socketId, word);
+
+    const playerNotInTurn = room.playerInTurn === player ? player2 : player;
+
+    room.guessLetter(playerNotInTurn.socketId, 'a');
+
+    expect(room.currentRound).toBe(2);
+    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
+  });
+
+  test('should go to next round when the max errors are reached', () => {
+    const player2 = new Player('socketId2', '300002', 'nick2');
+    const word = 'aaaaaaa';
+
+    room.add(player2);
+    room.nextRound();
+
+
+    room.chooseRoundWord(room.playerInTurn.socketId, word);
+
+    const playerNotInTurn = room.playerInTurn === player ? player2 : player;
+
+    room.guessLetter(playerNotInTurn.socketId, 'j');
+    room.guessLetter(playerNotInTurn.socketId, 'k');
+    room.guessLetter(playerNotInTurn.socketId, 'l');
+    room.guessLetter(playerNotInTurn.socketId, 'm');
+    room.guessLetter(playerNotInTurn.socketId, 'n');
+
+    expect(room.currentRound).toBe(1);
+    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
+
+    room.guessLetter(playerNotInTurn.socketId, 'o');
+    expect(room.currentRound).toBe(2);
+    expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
+  });
+
+  test('should choose the word of the round', () => {
     const word = 'banana';
-    room.start();
+    room.nextRound();
     room.chooseRoundWord(player.socketId, word);
 
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
@@ -79,6 +141,7 @@ describe('room next round', () => {
     ));
     expect(allPlayersNotWatching).toBe(true);
   });
+
 });
 
 describe('guess letter', () => {
@@ -107,7 +170,7 @@ describe('guess letter', () => {
   test("should return false when the room doesn't have a round word chosen", () => {
     const letter = 'a';
 
-    room.start();
+    room.nextRound();
     const guessed = room.guessLetter(player.socketId, letter);
 
     expect(guessed).toBe(false);
@@ -117,7 +180,7 @@ describe('guess letter', () => {
     const letter = 'a';
     const word = 'banana';
 
-    room.start();
+    room.nextRound();
     room.chooseRoundWord(player.socketId, word);
 
     const guessed = room.guessLetter(player.socketId, letter);
@@ -128,7 +191,7 @@ describe('guess letter', () => {
   test('should return false when the room does not contain the player', () => {
     const word = 'banana';
     const letter = 'a';
-    room.start();
+    room.nextRound();
     room.chooseRoundWord(word);
 
     const socketId = 'randomId';
