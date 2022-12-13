@@ -151,14 +151,6 @@ class Room {
       player.getErrorsCount() >= gc.MAX_PLAYER_ROUND_ERRORS;
   }
 
-  _calculatePlayersScore(players) {
-    players.forEach(p => {
-      const score = this._calculatePlayerScore(p);
-      p.points += score;
-      p.round.score = score;
-    });
-  }
-
   dto() {
     return {
       id: this.id,

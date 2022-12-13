@@ -25,7 +25,7 @@ function RankingItem({ player, position }) {
       <span className="px-1 grow text-center whitespace-nowrap overflow-auto">
         {player.nick}
       </span>
-      <span className="w-6 min-w-[1.5rem] text-right">{player.points}</span>
+      <span className="w-6 min-w-[1.5rem] text-right">{player.score}</span>
     </li>
   );
 }
@@ -33,7 +33,7 @@ function RankingItem({ player, position }) {
 RankingItem.propTypes = {
   player: PropTypes.shape({
     nick: PropTypes.string.isRequired,
-    points: PropTypes.number.isRequired,
+    score: PropTypes.number.isRequired,
   }).isRequired,
   position: PropTypes.number.isRequired,
 };

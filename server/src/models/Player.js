@@ -5,7 +5,7 @@ class Player {
     this.socketId = socketId;
     this.id = id;
     this.nick = nick;
-    this.points = 0;
+    this.score = 0;
     this.isWatching = true;
     this.round = {
       word: '',
@@ -49,7 +49,7 @@ class Player {
     score += new Set(roundWord.split('')).size;
     score -= this.getErrorsCount();
     this.round.score = score;
-    this.points += score;
+    this.score += score;
   }
 
   resetRound() {
@@ -69,7 +69,7 @@ class Player {
     return {
       id: this.id,
       nick: this.nick,
-      points: this.points,
+      score: this.score,
       isWatching: this.isWatching,
       round: {
         ...this.round,

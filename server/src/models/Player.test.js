@@ -97,10 +97,10 @@ describe('calculate score', () => {
     const playerPrevScore = 10;
 
     player.round.word = word;
-    player.points = playerPrevScore;
+    player.score = playerPrevScore;
     player.calculateScore(word);
 
-    expect(player.points).toBe(playerPrevScore + expectedScore);
+    expect(player.score).toBe(playerPrevScore + expectedScore);
     expect(player.round.score).toBe(expectedScore);
   });
 
@@ -112,7 +112,7 @@ describe('calculate score', () => {
     player.round.wrongLetters = ['j', 'k', 'd', 'p', 'q'];
     player.calculateScore(word);
 
-    expect(player.points).toBe(expectedScore);
+    expect(player.score).toBe(expectedScore);
     expect(player.round.score).toBe(expectedScore);
   });
 
@@ -124,7 +124,7 @@ describe('calculate score', () => {
     player.round.wrongLetters = ['j', 'k', 'd', 'p', 'l', 'o'];
     player.calculateScore(word);
 
-    expect(player.points).toBe(expectedScore);
+    expect(player.score).toBe(expectedScore);
     expect(player.round.score).toBe(expectedScore);
   });
 
