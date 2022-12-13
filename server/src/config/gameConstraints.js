@@ -20,5 +20,6 @@ export default {
     waiting: 'waiting',
     running: 'running',
     choosingWord: 'choosing_word'
-  }
+  },
+  CORRECT_WORD_POINTS: 10,
 };

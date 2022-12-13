@@ -56,9 +56,9 @@ describe('guess letter', () => {
     expect(guessed).toBe(false);
 
     expect(player.round.word).toBe(word);
-    expect(player.round.correctLetters).toStrictEqual(['b', 'a', 'n'])
+    expect(player.round.correctLetters).toStrictEqual(['b', 'a', 'n']);
     expect(player.round.wrongLetters).toStrictEqual([]);
-  })
+  });
 
   test('should not guess a letter when the max errors are reached', () => {
     const word = 'banana';
@@ -88,4 +88,44 @@ describe('guess letter', () => {
     expect(player.round.correctLetters).toStrictEqual([]);
     expect(player.round.wrongLetters).toStrictEqual(['z', 'x', 'c', 'v', 'm', 'q']);
   });
+});
+
+describe('calculate score', () => {
+  test("should calculate the score when the word has been completed without errors", () => {
+    const word = 'banana';
+    const expectedScore = 13;
+    const playerPrevScore = 10;
+
+    player.round.word = word;
+    player.points = playerPrevScore;
+    player.calculateScore(word);
+
+    expect(player.points).toBe(playerPrevScore + expectedScore);
+    expect(player.round.score).toBe(expectedScore);
+  });
+
+  test("should calculate the score when the word has been completed with errors", () => {
+    const word = 'banana';
+    const expectedScore = 8;
+
+    player.round.word = word;
+    player.round.wrongLetters = ['j', 'k', 'd', 'p', 'q'];
+    player.calculateScore(word);
+
+    expect(player.points).toBe(expectedScore);
+    expect(player.round.score).toBe(expectedScore);
+  });
+
+  test("should calculate the score when the word has not been completed", () => {
+    const word = 'banana';
+    const expectedScore = 0;
+
+    player.round.word = '*anana';
+    player.round.wrongLetters = ['j', 'k', 'd', 'p', 'l', 'o'];
+    player.calculateScore(word);
+
+    expect(player.points).toBe(expectedScore);
+    expect(player.round.score).toBe(expectedScore);
+  });
+
 });

@@ -39,44 +39,6 @@ class Room {
     this._chooseRoundTheme();
   }
 
-  _reset() {
-    this.getPlayers().forEach(p => p.resetRound())
-  }
-
-  _choosePlayerInTurn() {
-    const players = this.getPlayers();
-    const notPlayed = players.filter((p) => !this.alreadyPlayed.players.includes(p.socketId));
-
-    let chosenPlayer;
-
-    if (notPlayed.length) {
-      chosenPlayer = lodash.sample(notPlayed);
-    } else {
-      this.alreadyPlayed.players = [];
-      chosenPlayer = lodash.sample(players);
-    }
-    this.playerInTurn = chosenPlayer;
-    this.alreadyPlayed.players.push(chosenPlayer.socketId);
-
-    players.forEach(p => {
-      p.isWatching = p.socketId === this.playerInTurn.socketId;
-    });
-  }
-
-  _chooseRoundTheme() {
-    const unplayedThemes = this.themes.filter(t => !this.alreadyPlayed.themes.includes(t));
-
-    let chosenTheme;
-    if (unplayedThemes.length) {
-      chosenTheme = lodash.sample(unplayedThemes);
-    } else {
-      this.alreadyPlayed.themes = [];
-      chosenTheme = lodash.sample(this.themes);
-    }
-    this.alreadyPlayed.themes.push(chosenTheme);
-    this.round.theme = chosenTheme;
-  }
-
   chooseRoundWord(socketId, word) {
     if (!socketId || socketId !== this.playerInTurn.socketId) return false;
 
@@ -112,20 +74,6 @@ class Room {
     return guessed;
   }
 
-  _checkRoundEnd() {
-    const playersNotWatching = this.getPlayers().filter(p => !p.isWatching);
-    const ended = playersNotWatching.every((p) => this._checkPlayerEndedRound(p));
-
-    if (ended) {
-      this.nextRound();
-    }
-  }
-
-  _checkPlayerEndedRound(player) {
-    return player.round.word === this.round.word ||
-      player.getErrorsCount() >= gc.MAX_PLAYER_ROUND_ERRORS;
-  }
-
   add(player) {
     this.players.set(player.socketId, player);
   }
@@ -146,8 +94,69 @@ class Room {
     return this.players.size;
   }
 
+  _chooseRoundTheme() {
+    const unplayedThemes = this.themes.filter(t => !this.alreadyPlayed.themes.includes(t));
+
+    let chosenTheme;
+    if (unplayedThemes.length) {
+      chosenTheme = lodash.sample(unplayedThemes);
+    } else {
+      this.alreadyPlayed.themes = [];
+      chosenTheme = lodash.sample(this.themes);
+    }
+    this.alreadyPlayed.themes.push(chosenTheme);
+    this.round.theme = chosenTheme;
+  }
+
+  _reset() {
+    this.getPlayers().forEach(p => p.resetRound());
+  }
+
+  _choosePlayerInTurn() {
+    const players = this.getPlayers();
+    const notPlayed = players.filter((p) => !this.alreadyPlayed.players.includes(p.socketId));
+
+    let chosenPlayer;
+
+    if (notPlayed.length) {
+      chosenPlayer = lodash.sample(notPlayed);
+    } else {
+      this.alreadyPlayed.players = [];
+      chosenPlayer = lodash.sample(players);
+    }
+    this.playerInTurn = chosenPlayer;
+    this.alreadyPlayed.players.push(chosenPlayer.socketId);
+
+    players.forEach(p => {
+      p.isWatching = p.socketId === this.playerInTurn.socketId;
+    });
+  }
+
   _hideWord(length) {
     return gc.HIDDEN_LETTER.repeat(length);
+  }
+
+  _checkRoundEnd() {
+    const playersNotWatching = this.getPlayers().filter(p => !p.isWatching);
+    const ended = playersNotWatching.every((p) => this._checkPlayerEndedRound(p));
+
+    if (ended) {
+      playersNotWatching.forEach(p => p.calculateScore(this.round.word));
+      this.nextRound();
+    }
+  }
+
+  _checkPlayerEndedRound(player) {
+    return player.round.word === this.round.word ||
+      player.getErrorsCount() >= gc.MAX_PLAYER_ROUND_ERRORS;
+  }
+
+  _calculatePlayersScore(players) {
+    players.forEach(p => {
+      const score = this._calculatePlayerScore(p);
+      p.points += score;
+      p.round.score = score;
+    });
   }
 
   dto() {
@@ -172,6 +181,5 @@ class Room {
   }
 
 }
-
 
 export default Room;

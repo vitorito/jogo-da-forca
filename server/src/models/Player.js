@@ -9,6 +9,7 @@ class Player {
     this.isWatching = true;
     this.round = {
       word: '',
+      score: 0,
       correctLetters: [],
       wrongLetters: [],
     };
@@ -39,9 +40,22 @@ class Player {
     return true;
   }
 
+  calculateScore(roundWord) {
+    if (this.round.word !== roundWord) {
+      return;
+    }
+
+    let score = gc.CORRECT_WORD_POINTS;
+    score += new Set(roundWord.split('')).size;
+    score -= this.getErrorsCount();
+    this.round.score = score;
+    this.points += score;
+  }
+
   resetRound() {
     this.round = {
       word: '',
+      score: 0,
       correctLetters: [],
       wrongLetters: [],
     };
