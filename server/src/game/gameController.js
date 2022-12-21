@@ -1,3 +1,4 @@
+import gc from '../config/gameConstraints.js';
 import roomControler from '../room/roomControler.js';
 import { io } from '../server.js';
 import gameEvents from './gameEvents.js';
@@ -48,9 +49,18 @@ function setupGameEvents(socket) {
 
   function guessLetter(roomId, letter) {
     const room = gameService.guessLetter(socket.id, roomId, letter);
-    if (room) {
-      const roomOwnerSocketId = room.owner.socketId;
-      io.to([socket.id, roomOwnerSocketId]).emit(gameEvents.roomUpdate, room.dto());
+
+    if (!room) return;
+
+    if (room.round.state === gc.ROOM_MATCH_STATES.choosingWord) {
+      io.to(room.id).emit(gameEvents.roomUpdate, room.dto());
+    }
+
+    if (room.round.state === gc.ROOM_MATCH_STATES.running) {
+      const sockets = room.getPlayers()
+        .filter(p => p.isWatching)
+        .map(p => p.socketId);
+      io.to([socket.id, ...sockets]).emit(gameEvents.roomUpdate, room.dto());
     }
   }
 }
