@@ -30,7 +30,7 @@ function CreateRoomForm({ roomData, setRoomData }) {
             min={gc.MIN_MATCH_ROUNDS}
             max={gc.MAX_MATCH_ROUNDS}
             required
-            placeholder={`Max: ${gc.MAX_MATCH_ROUNDS}`}
+            placeholder={`Min: ${gc.MIN_MATCH_ROUNDS}  Máx: ${gc.MAX_MATCH_ROUNDS}`}
             value={roomData.totalRounds}
             onChange={handleRoundsChange}
             className="input placeholder:text-base"
