@@ -7,14 +7,7 @@ import Trophy from './Trophy';
 
 function FinishedMatchView() {
   const { room, player } = useContext(MatchContext);
-  const winner = findWinner();
-
-  function findWinner() {
-    const sortedPlayers = [...room.players].sort(
-      (p1, p2) => p2.score - p1.score
-    );
-    return sortedPlayers[0];
-  }
+  const winner = room.players[0];
 
   return (
     <>

@@ -179,6 +179,12 @@ class Room {
       player.getErrorsCount() >= gc.MAX_PLAYER_ROUND_ERRORS;
   }
 
+  _getPlayersDtos() {
+    return this.getPlayers()
+      .sort((p1, p2) => p2.score - p1.score)
+      .map(player => player.dto());
+  }
+
   dto() {
     return {
       id: this.id,
@@ -192,7 +198,7 @@ class Room {
         id: this.playerInTurn.id,
         nick: this.playerInTurn.nick,
       },
-      players: this.getPlayers().map(p => p.dto()),
+      players: this._getPlayersDtos(),
       round: {
         state: this.round.state,
         theme: this.round.theme,
