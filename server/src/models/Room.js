@@ -31,6 +31,10 @@ class Room {
 
   nextRound() {
     if (this.round.state !== gc.ROOM_MATCH_STATES.waiting) {
+      if (this.currentRound >= this.totalRounds) {
+        this.round.state = gc.ROOM_MATCH_STATES.finished;
+        return;
+      }
       this.currentRound++;
       this._reset();
     }

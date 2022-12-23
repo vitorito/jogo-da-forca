@@ -5,6 +5,7 @@ import { MatchContext } from '../../../../providers/MatchProvider';
 import startGame from '../../../../socket/startGame';
 import Gallow from '../gallow/Gallow';
 import Keyboard from '../gallow/Keyboard';
+import FinishedMatchView from './FinishedMatchView';
 import InTurnChoosingWordView from './InTurnChoosingWordView';
 import NotInTurnChoosingWordView from './NotInTurnChoosingWordView';
 import WaitingRoomView from './WaitingRoomView';
@@ -28,6 +29,10 @@ function Match() {
     ) : (
       <NotInTurnChoosingWordView />
     );
+  }
+
+  if (room.round.state === gc.ROOM_MATCH_STATES.finished) {
+    return <FinishedMatchView />;
   }
 
   return (

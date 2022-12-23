@@ -52,16 +52,15 @@ function setupGameEvents(socket) {
 
     if (!room) return;
 
-    if (room.round.state === gc.ROOM_MATCH_STATES.choosingWord) {
-      io.to(room.id).emit(gameEvents.roomUpdate, room.dto());
-    }
-
     if (room.round.state === gc.ROOM_MATCH_STATES.running) {
       const sockets = room.getPlayers()
         .filter(p => p.isWatching)
         .map(p => p.socketId);
       io.to([socket.id, ...sockets]).emit(gameEvents.roomUpdate, room.dto());
+      return;
     }
+
+    io.to(room.id).emit(gameEvents.roomUpdate, room.dto());
   }
 }
 

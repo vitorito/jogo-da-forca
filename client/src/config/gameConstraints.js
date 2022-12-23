@@ -19,6 +19,7 @@ export default {
     waiting: 'waiting',
     running: 'running',
     choosingWord: 'choosing_word',
+    finished: 'finished',
   },
   HIDDEN_LETTER: '*',
 };

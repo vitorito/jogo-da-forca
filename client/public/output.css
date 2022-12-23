@@ -696,6 +696,31 @@ video {
   background-color: rgb(209 213 219 / var(--tw-bg-opacity));
 }
 
+.flash::after {
+  -webkit-animation: flash 2s infinite;
+          animation: flash 2s infinite;
+}
+
+@-webkit-keyframes flash {
+  from {
+    transform: translateX(-200%) skew(45deg);
+  }
+
+  to {
+    transform: translateX(350%) skew(45deg);
+  }
+}
+
+@keyframes flash {
+  from {
+    transform: translateX(-200%) skew(45deg);
+  }
+
+  to {
+    transform: translateX(350%) skew(45deg);
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -770,6 +795,10 @@ video {
 
 .top-6 {
   top: 1.5rem;
+}
+
+.bottom-0 {
+  bottom: 0px;
 }
 
 .z-10 {
@@ -934,6 +963,10 @@ video {
 
 .h-8 {
   height: 2rem;
+}
+
+.h-4\/5 {
+  height: 80%;
 }
 
 .max-h-\[96\%\] {
@@ -1641,14 +1674,14 @@ video {
   line-height: 2rem;
 }
 
-.text-5xl {
-  font-size: 3rem;
-  line-height: 1;
-}
-
 .text-3xl {
   font-size: 1.875rem;
   line-height: 2.25rem;
+}
+
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
 }
 
 .font-normal {
@@ -1856,9 +1889,24 @@ video {
   background-repeat: no-repeat;
 }
 
+.after\:absolute::after {
+  content: var(--tw-content);
+  position: absolute;
+}
+
+.after\:top-0::after {
+  content: var(--tw-content);
+  top: 0px;
+}
+
 .after\:block::after {
   content: var(--tw-content);
   display: block;
+}
+
+.after\:h-full::after {
+  content: var(--tw-content);
+  height: 100%;
 }
 
 .after\:w-fit::after {
@@ -1868,9 +1916,19 @@ video {
   width: fit-content;
 }
 
+.after\:w-2\/5::after {
+  content: var(--tw-content);
+  width: 40%;
+}
+
 .after\:cursor-text::after {
   content: var(--tw-content);
   cursor: text;
+}
+
+.after\:bg-white\/30::after {
+  content: var(--tw-content);
+  background-color: rgb(255 255 255 / 0.3);
 }
 
 .after\:text-center::after {
@@ -2006,6 +2064,11 @@ video {
   .sm\:text-3xl {
     font-size: 1.875rem;
     line-height: 2.25rem;
+  }
+
+  .sm\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
   }
 
   .sm\:text-6xl {

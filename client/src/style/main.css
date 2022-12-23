@@ -38,4 +38,17 @@
   .rounded-gray-bg {
     @apply bg-gray-300 rounded-xl;
   }
+
+  .flash::after {
+    animation: flash 2s infinite;
+  }
+
+  @keyframes flash {
+    from {
+      transform: translateX(-200%) skew(45deg);
+    }
+    to {
+      transform: translateX(350%) skew(45deg);
+    }
+  }
 }

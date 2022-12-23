@@ -19,7 +19,8 @@ export default {
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
     running: 'running',
-    choosingWord: 'choosing_word'
+    choosingWord: 'choosing_word',
+    finished: 'finished',
   },
   CORRECT_WORD_POINTS: 10,
 };
