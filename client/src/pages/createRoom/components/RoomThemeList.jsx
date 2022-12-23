@@ -1,19 +1,21 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import ScrollableContainer from '../../../components/ScrollableContainer';
 import gc from '../../../config/gameConstraints';
 import RoomTheme from './RoomTheme';
 
 function RoomThemeList({ roomData, setRoomData }) {
   const [theme, setTheme] = useState('');
+  const { themes } = roomData;
+  const themeListRef = useRef();
 
   function handleDeleteTheme(index) {
     setRoomData((prev) => {
-      const themes = [...prev.themes];
-      themes.splice(index, 1);
+      const prevThemes = [...prev.themes];
+      prevThemes.splice(index, 1);
       return {
         ...prev,
-        themes,
+        themes: prevThemes,
       };
     });
   }
@@ -22,23 +24,33 @@ function RoomThemeList({ roomData, setRoomData }) {
     e.preventDefault();
 
     setRoomData((prev) => {
-      const themes = prev.themes.filter((t) => t !== theme);
-      themes.push(theme);
+      const prevThemes = prev.themes.filter((t) => t !== theme);
+      prevThemes.push(theme);
       return {
         ...prev,
-        themes,
+        themes: prevThemes,
       };
     });
 
     setTheme('');
+    setTimeout(scrollThemes, 10);
+  }
+
+  function scrollThemes() {
+    const themesDiv = themeListRef.current.parentElement;
+    themesDiv.scrollTop = themesDiv.scrollHeight;
   }
 
   return (
     <div className="flex flex-col overflow-auto">
       <span>Lista de Temas (Máx: 20)</span>
       <ScrollableContainer className="bg-white shadow-none h-[18vh] rounded-t rounded-b-none">
-        <ul id="themes" className="flex flex-wrap gap-2 py-1">
-          {roomData.themes.map((t, index) => (
+        <ul
+          ref={themeListRef}
+          id="themes"
+          className="flex flex-wrap gap-2 py-1"
+        >
+          {themes.map((t, index) => (
             <RoomTheme
               value={t}
               key={t}
@@ -60,9 +72,7 @@ function RoomThemeList({ roomData, setRoomData }) {
         />
         <button
           type="submit"
-          disabled={
-            roomData.themes.length >= gc.MAX_ROOM_THEMES || theme === ''
-          }
+          disabled={themes.length >= gc.MAX_ROOM_THEMES || theme === ''}
           className="btn flex items-center justify-center font-mono text-4xl
             w-12 h-10 sm:h-12 rounded-t-none rounded-l-none overflow-hidden"
         >
