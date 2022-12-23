@@ -7,6 +7,7 @@ import gameService from './gameService.js';
 
 function setupGameEvents(socket) {
   socket.on(gameEvents.start, start);
+  socket.on(gameEvents.restart, restart);
   socket.on(gameEvents.chooseWord, chooseWord);
   socket.on(gameEvents.createRoom, createRoom);
   socket.on(gameEvents.joinRoom, joinRoom);
@@ -14,6 +15,13 @@ function setupGameEvents(socket) {
 
   function start(roomId) {
     const room = gameService.start(socket.id, roomId);
+    if (room) {
+      io.to(room.id).emit(gameEvents.roomUpdate, room.dto());
+    }
+  }
+
+  function restart(roomId) {
+    const room = gameService.restart(socket.id, roomId);
     if (room) {
       io.to(room.id).emit(gameEvents.roomUpdate, room.dto());
     }

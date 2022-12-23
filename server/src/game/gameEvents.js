@@ -5,4 +5,5 @@ export default {
   createRoom: 'create_room',
   joinRoom: 'join_room',
   guessLetter: 'guess_letter',
+  restart: 'restart',
 };

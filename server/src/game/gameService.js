@@ -10,6 +10,15 @@ const start = (socketId, roomId) => {
   return started && room;
 };
 
+const restart = (socketId, roomId) => {
+  const room = roomService.findRoomById(roomId);
+
+  if (!room || room.owner.socketId !== socketId) return null;
+
+  room.restart();
+  return room;
+};
+
 const chooseWord = (socketId, roomId, word) => {
   const room = roomService.findRoomById(roomId);
 
@@ -36,6 +45,7 @@ const guessLetter = (socketId, roomId, letter) => {
 
 export default {
   start,
+  restart,
   chooseWord,
   guessLetter
 };

@@ -1,6 +1,18 @@
 import lodash from 'lodash';
 import gc from '../config/gameConstraints.js';
 
+
+const EMPTY_PLAYERINTURN = {
+  id: '',
+  nick: '',
+  isWatching: false,
+};
+const EMPTY_ROUND = {
+  state: gc.ROOM_MATCH_STATES.waiting,
+  theme: '',
+  word: ''
+};
+
 class Room {
   constructor({ id, owner, password, themes, speed, totalRounds }) {
     this.id = id;
@@ -11,16 +23,8 @@ class Room {
     this.isPrivate = !!password;
     this.totalRounds = totalRounds;
     this.currentRound = 1;
-    this.playerInTurn = {
-      id: '',
-      nick: '',
-      isWatching: false,
-    };
-    this.round = {
-      state: gc.ROOM_MATCH_STATES.waiting,
-      theme: '',
-      word: ''
-    };
+    this.playerInTurn = { ...EMPTY_PLAYERINTURN };
+    this.round = { ...EMPTY_ROUND };
     this.alreadyPlayed = {
       players: [],
       themes: []
@@ -45,6 +49,22 @@ class Room {
     this._choosePlayerInTurn();
     this._chooseRoundTheme();
     return true;
+  }
+
+  restart() {
+    this.currentRound = 1;
+    this.playerInTurn = { ...EMPTY_PLAYERINTURN };
+    this.round = { ...EMPTY_ROUND };
+    this.alreadyPlayed = {
+      players: [],
+      themes: []
+    };
+
+    this.getPlayers().forEach(p => {
+      p.score = 0;
+      p.isWatching = true;
+      p.resetRound();
+    });
   }
 
   chooseRoundWord(socketId, word) {

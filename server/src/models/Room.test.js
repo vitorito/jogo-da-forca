@@ -6,7 +6,7 @@ import Room from './Room';
 let player, player2, room, roomData;
 
 const setup = () => {
-  player = new Player('socketId', '300001', 'nickname');
+  player = new Player('socketId', '300001', 'nickn');
   player2 = new Player('socketId2', '300002', 'nick2');
 
   roomData = {
@@ -203,5 +203,27 @@ describe('guess letter', () => {
     const socketId = 'randomId';
     const guessed = room.guessLetter(socketId, letter);
     expect(guessed).toBe(false);
+  });
+});
+
+describe('restart', () => {
+  test('should restart the room', () => {
+    const expectedRoom = new Room(roomData);
+    const playerCopy = new Player('socketId', '300001', 'nickn');
+    const player2Copy = new Player('socketId2', '300002', 'nick2');
+    expectedRoom.add(playerCopy);
+    expectedRoom.add(player2Copy);
+
+    room.add(player2);
+    room.nextRound();
+
+    const playerNotInTurn = room.playerInTurn.socketId === player.socketId ? player2 : player;
+
+    room.chooseRoundWord(room.playerInTurn.socketId, 'banana');
+    room.guessLetter(playerNotInTurn.socketId, 'a');
+
+    room.restart();
+
+    expect(room).toStrictEqual(expectedRoom);
   });
 });

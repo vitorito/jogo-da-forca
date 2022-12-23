@@ -1,11 +1,12 @@
 import { Fireworks } from '@fireworks-js/react';
 import React, { useContext } from 'react';
 import { MatchContext } from '../../../../providers/MatchProvider';
+import restartRoom from '../../../../socket/restartRoom';
 import AnimatedText from '../gallow/AnimatedText';
 import Trophy from './Trophy';
 
 function FinishedMatchView() {
-  const { room } = useContext(MatchContext);
+  const { room, player } = useContext(MatchContext);
   const winner = findWinner();
 
   function findWinner() {
@@ -28,7 +29,11 @@ function FinishedMatchView() {
           <span className="text-2xl sm:text-4xl">{winner.score}</span>
           <span className="sm:text-lg">pontos</span>
         </span>
-        <button type="button" className="btn">
+        <button
+          type="button"
+          onClick={() => restartRoom(room.id)}
+          className={room.owner === player.id ? 'btn' : 'hidden'}
+        >
           Recomeçar
         </button>
       </div>
