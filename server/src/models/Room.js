@@ -30,10 +30,13 @@ class Room {
   }
 
   nextRound() {
+    if (this.size() < gc.MIN_ROOM_PLAYERS ||
+      this.round.state === gc.ROOM_MATCH_STATES.finished) return false;
+
     if (this.round.state !== gc.ROOM_MATCH_STATES.waiting) {
       if (this.currentRound >= this.totalRounds) {
         this.round.state = gc.ROOM_MATCH_STATES.finished;
-        return;
+        return true;
       }
       this.currentRound++;
       this._reset();
@@ -41,6 +44,7 @@ class Room {
     this.round.state = gc.ROOM_MATCH_STATES.choosingWord;
     this._choosePlayerInTurn();
     this._chooseRoundTheme();
+    return true;
   }
 
   chooseRoundWord(socketId, word) {

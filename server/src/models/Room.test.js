@@ -3,10 +3,12 @@ import gc from '../config/gameConstraints';
 import Player from './Player';
 import Room from './Room';
 
-let player, room, roomData;
+let player, player2, room, roomData;
 
 const setup = () => {
   player = new Player('socketId', '300001', 'nickname');
+  player2 = new Player('socketId2', '300002', 'nick2');
+
   roomData = {
     id: '3000',
     owner: player,
@@ -51,29 +53,30 @@ describe('room creation', () => {
 
 describe('next round', () => {
   test('should start the room', () => {
+    room.add(player2);
     room.nextRound();
 
     expect(room.currentRound).toBe(1);
-    expect(room.playerInTurn).toStrictEqual(player);
-    expect(room.alreadyPlayed.players).toContain(player.socketId);
+    expect([player, player2]).toContain(room.playerInTurn);
+    expect(room.alreadyPlayed.players.length).toBe(1);
     expect(room.alreadyPlayed.themes).toContain(room.round.theme);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
   });
 
   test('should choose another player and theme', () => {
-    const player2 = new Player('socketId2', '300002', 'nick2');
-
-    room.nextRound();
     room.add(player2);
+    room.nextRound();
 
     const expectedTheme = room.round.theme === room.themes[0] ? room.themes[1] : room.themes[0];
+    const expectedPlayer = room.playerInTurn === player ? player2 : player;
 
     room.nextRound();
 
     expect(room.currentRound).toBe(2);
-    expect(room.playerInTurn).toStrictEqual(player2);
+    expect(room.playerInTurn).toStrictEqual(expectedPlayer);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
-    expect(room.alreadyPlayed.players).toEqual([player.socketId, player2.socketId]);
+    expect(room.alreadyPlayed.players).toContain(player.socketId);
+    expect(room.alreadyPlayed.players).toContain(player2.socketId);
     expect(room.alreadyPlayed.themes).toContain(room.themes[0]);
     expect(room.alreadyPlayed.themes).toContain(room.themes[1]);
     expect(room.round.theme).toBe(expectedTheme);
@@ -125,8 +128,11 @@ describe('next round', () => {
 
   test('should choose the word of the round', () => {
     const word = 'banana';
+
+    room.add(player2);
+
     room.nextRound();
-    room.chooseRoundWord(player.socketId, word);
+    room.chooseRoundWord(room.playerInTurn.socketId, word);
 
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
     expect(room.round.word).toBe(word);

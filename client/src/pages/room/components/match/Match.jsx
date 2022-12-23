@@ -19,6 +19,7 @@ function Match() {
       <WaitingRoomView
         isOwner={room.owner === player.id}
         start={() => startGame(room.id)}
+        canStart={room.players.length >= gc.MIN_ROOM_PLAYERS}
       />
     );
   }

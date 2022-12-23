@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
+import gc from '../../../../config/gameConstraints';
 import AnimatedText from '../gallow/AnimatedText';
 import Gallow from '../gallow/Gallow';
 
@@ -90,7 +91,7 @@ const playersStates = [
   },
 ];
 
-function WaitingRoomView({ isOwner, start }) {
+function WaitingRoomView({ isOwner, start, canStart }) {
   const [playerState, setPlayerState] = useState(0);
 
   function updateGallow() {
@@ -106,9 +107,11 @@ function WaitingRoomView({ isOwner, start }) {
     <div className="sm-container justify-evenly items-center grow mt-6">
       <AnimatedText text="Aguardando Jogadores..." />
       <Gallow player={playersStates[playerState]} className="w-[105%]" />
+      {isOwner && <span>Min. de jogadores: {gc.MIN_ROOM_PLAYERS}</span>}
       <button
         type="button"
         onClick={start}
+        disabled={!canStart}
         className={isOwner ? 'btn' : 'hidden'}
       >
         Iniciar Partida
@@ -120,6 +123,7 @@ function WaitingRoomView({ isOwner, start }) {
 WaitingRoomView.propTypes = {
   isOwner: PropTypes.bool.isRequired,
   start: PropTypes.func.isRequired,
+  canStart: PropTypes.bool.isRequired,
 };
 
 export default WaitingRoomView;

@@ -5,8 +5,9 @@ const start = (socketId, roomId) => {
 
   if (!room || room.owner.socketId !== socketId) return null;
 
-  room.nextRound();
-  return room;
+  const started = room.nextRound();
+
+  return started && room;
 };
 
 const chooseWord = (socketId, roomId, word) => {
@@ -26,7 +27,7 @@ const guessLetter = (socketId, roomId, letter) => {
 
   if (!room) return null;
 
-  const guessed  = room.guessLetter(socketId, letter);
+  const guessed = room.guessLetter(socketId, letter);
 
   if (!guessed) return null;
 
