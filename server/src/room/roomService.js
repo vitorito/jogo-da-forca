@@ -1,3 +1,4 @@
+import lodash from 'lodash';
 import gc from '../config/gameConstraints.js';
 import Player from '../models/Player.js';
 import Room from '../models/Room.js';
@@ -8,7 +9,9 @@ const isValidPassword = (roomPassword, passwordAttemp) => {
 };
 
 const generateRoomId = () => {
-  return String(gc.MIN_ROOM_ID + roomRepo.size());
+  const id = String(lodash.random(gc.MIN_ROOM_ID, gc.MAX_ROOM_ID));
+  const notInUseId = !roomRepo.contains(id);
+  return notInUseId ? id : generateRoomId();
 };
 
 const generatePlayerId = (roomId, roomSize) => {

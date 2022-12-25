@@ -12,6 +12,8 @@ const deleteAll = () => rooms.clear();
 
 const size = () => rooms.size;
 
+const contains = (id) => rooms.has(id);
+
 export default {
   findAll,
   findById,
@@ -19,4 +21,5 @@ export default {
   delete: deleteRoom,
   deleteAll,
   size,
+  contains,
 };
