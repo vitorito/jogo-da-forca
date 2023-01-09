@@ -6,5 +6,6 @@ export default {
   joinRoom: 'join_room',
   guessLetter: 'guess_letter',
   restart: 'restart',
-  leaveRoom: 'leave_room'
+  leaveRoom: 'leave_room',
+  disconnect: 'disconnect',
 };

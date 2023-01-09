@@ -14,6 +14,7 @@ function setupGameEvents(socket) {
   socket.on(gameEvents.joinRoom, joinRoom);
   socket.on(gameEvents.guessLetter, guessLetter);
   socket.on(gameEvents.leaveRoom, leaveRoom);
+  socket.on(gameEvents.disconnect, leaveRoom);
 
   function start(roomId) {
     const room = gameService.start(socket.id, roomId);
