@@ -1,15 +1,16 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { FaClock, FaLock, FaUser } from 'react-icons/fa';
 import { SlReload } from 'react-icons/sl';
 import { VscBook } from 'react-icons/vsc';
-import { Link } from 'react-router-dom';
 import gc from '../../../config/gameConstraints';
 import { MatchContext } from '../../../providers/MatchProvider';
 import InfoItem from './InfoItem';
+import LeaveRoomModal from './LeaveRoomModal';
 import RoomThemes from './RoomThemes';
 
 function RoomInfo() {
   const { room } = useContext(MatchContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div
@@ -25,7 +26,7 @@ function RoomInfo() {
       </div>
       <div
         className="flex justify-center flex-wrap sm:flex-nowrap gap-5
-      max-w-xs sm:max-w-none"
+        max-w-xs sm:max-w-none"
       >
         <InfoItem
           title="Jogadores"
@@ -49,9 +50,17 @@ function RoomInfo() {
         />
       </div>
       <RoomThemes themes={room.themes} />
-      <Link to="/rooms" className="btn block w-full mb-1">
-        Voltar
-      </Link>
+      <button
+        type="button"
+        onClick={() => setIsModalOpen(true)}
+        className="btn bg-red-600 hover:bg-red-700 w-full mb-1"
+      >
+        Sair da Sala
+      </button>
+      <LeaveRoomModal
+        isOpen={isModalOpen}
+        close={() => setIsModalOpen(false)}
+      />
     </div>
   );
 }

@@ -39,8 +39,26 @@
     @apply bg-gray-300 rounded-xl;
   }
 
+  .modal-animation {
+    animation: modal 300ms ease-out;
+  }
+
   .flash::after {
     animation: flash 2s infinite;
+  }
+
+  @keyframes modal {
+    0% {
+      transform: translateY(-20px);
+    }
+
+    50% {
+      transform: translateY(10px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
   }
 
   @keyframes flash {

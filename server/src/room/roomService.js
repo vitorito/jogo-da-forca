@@ -31,6 +31,7 @@ const disconnectPlayer = (socketId) => {
   }
 
   room.remove(socketId);
+  return room;
 };
 
 const findRoomById = (id) => roomRepo.findById(id);
@@ -72,4 +73,5 @@ export default {
   findAll,
   create,
   joinRoom,
+  disconnectPlayer
 };

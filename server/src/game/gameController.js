@@ -1,5 +1,6 @@
 import gc from '../config/gameConstraints.js';
 import roomControler from '../room/roomControler.js';
+import roomService from '../room/roomService.js';
 import { io } from '../server.js';
 import gameEvents from './gameEvents.js';
 import gameService from './gameService.js';
@@ -12,6 +13,7 @@ function setupGameEvents(socket) {
   socket.on(gameEvents.createRoom, createRoom);
   socket.on(gameEvents.joinRoom, joinRoom);
   socket.on(gameEvents.guessLetter, guessLetter);
+  socket.on(gameEvents.leaveRoom, leaveRoom);
 
   function start(roomId) {
     const room = gameService.start(socket.id, roomId);
@@ -53,6 +55,14 @@ function setupGameEvents(socket) {
     }
 
     cb(res);
+  }
+
+  function leaveRoom() {
+    const room = roomService.disconnectPlayer(socket.id);
+
+    if (room) {
+      socket.to(room.id).emit(gameEvents.roomUpdate, room.dto());
+    }
   }
 
   function guessLetter(roomId, letter) {
