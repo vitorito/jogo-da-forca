@@ -14,8 +14,8 @@ const generateRoomId = () => {
   return notInUseId ? id : generateRoomId();
 };
 
-const generatePlayerId = (roomId, roomSize) => {
-  return roomId + (roomSize + 1).toString().padStart(2, '0');
+const generatePlayerId = (roomId, roomTotalPlayers) => {
+  return roomId + (roomTotalPlayers + 1).toString().padStart(2, '0');
 };
 
 const deleteRoom = (roomId) => roomRepo.delete(roomId);
@@ -42,7 +42,7 @@ const create = (owner, roomData) => {
   disconnectPlayer(owner.socketId);
 
   const roomId = generateRoomId();
-  const playerId = generatePlayerId(roomId, 0);
+  const playerId = generatePlayerId(roomId, 1);
   const player = new Player(owner.socketId, playerId, owner.nick);
   const room = new Room({
     ...roomData,
@@ -61,7 +61,7 @@ const joinRoom = (socketId, { roomId, password, nick }) => {
 
   disconnectPlayer(socketId);
 
-  const playerId = generatePlayerId(room.id, room.size());
+  const playerId = generatePlayerId(room.id, room.totalPlayers + 1);
   const player = new Player(socketId, playerId, nick);
   room.add(player);
 

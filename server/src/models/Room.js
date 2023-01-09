@@ -29,6 +29,7 @@ class Room {
       players: [],
       themes: []
     };
+    this.totalPlayers = 1;
     this.players = new Map();
     this.add(owner);
   }
@@ -109,6 +110,7 @@ class Room {
 
   add(player) {
     this.players.set(player.socketId, player);
+    this.totalPlayers++;
   }
 
   contains(socketId) {
@@ -116,7 +118,11 @@ class Room {
   }
 
   remove(socketId) {
-    return this.players.delete(socketId);
+    this.players.delete(socketId);
+
+    if (socketId === this.owner.socketId) {
+      this.owner = lodash.sample(this.getPlayers());
+    }
   }
 
   getPlayers() {
