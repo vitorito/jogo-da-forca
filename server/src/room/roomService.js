@@ -26,8 +26,9 @@ const disconnectPlayer = (socketId) => {
 
   if (!room) return;
 
-  if (room.size === 1) {
+  if (room.size() <= 1) {
     deleteRoom(room.id);
+    return null;
   }
 
   room.remove(socketId);
