@@ -29,7 +29,7 @@ class Room {
       players: [],
       themes: []
     };
-    this.totalPlayers = 1;
+    this.totalPlayers = 0;
     this.players = new Map();
     this.add(owner);
   }

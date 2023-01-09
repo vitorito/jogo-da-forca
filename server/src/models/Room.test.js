@@ -209,9 +209,7 @@ describe('guess letter', () => {
 describe('restart', () => {
   test('should restart the room', () => {
     const expectedRoom = new Room(roomData);
-    const playerCopy = new Player('socketId', '300001', 'nickn');
     const player2Copy = new Player('socketId2', '300002', 'nick2');
-    expectedRoom.add(playerCopy);
     expectedRoom.add(player2Copy);
 
     room.add(player2);
