@@ -44,6 +44,7 @@ function create(playerData, roomData) {
   if (!data) {
     return { error: true };
   }
+
   return {
     room: data.room.dto(),
     player: data.player.dto()

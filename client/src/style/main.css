@@ -47,6 +47,15 @@
     animation: flash 2s infinite;
   }
 
+  @keyframes shrinking {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0%;
+    }
+  }
+
   @keyframes modal {
     0% {
       transform: translateY(-20px);

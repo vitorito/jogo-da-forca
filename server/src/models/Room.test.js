@@ -54,7 +54,7 @@ describe('room creation', () => {
 describe('next round', () => {
   test('should start the room', () => {
     room.add(player2);
-    room.nextRound();
+    room.nextRound(true);
 
     expect(room.currentRound).toBe(1);
     expect([player, player2]).toContain(room.playerInTurn);
@@ -65,12 +65,12 @@ describe('next round', () => {
 
   test('should choose another player and theme', () => {
     room.add(player2);
-    room.nextRound();
+    room.nextRound(true);
 
     const expectedTheme = room.round.theme === room.themes[0] ? room.themes[1] : room.themes[0];
     const expectedPlayer = room.playerInTurn === player ? player2 : player;
 
-    room.nextRound();
+    room.nextRound(false);
 
     expect(room.currentRound).toBe(2);
     expect(room.playerInTurn).toStrictEqual(expectedPlayer);
@@ -87,7 +87,7 @@ describe('next round', () => {
     const word = 'aaaaaaa';
 
     room.add(player2);
-    room.nextRound();
+    room.nextRound(true);
 
 
     room.chooseRoundWord(room.playerInTurn.socketId, word);
@@ -105,7 +105,7 @@ describe('next round', () => {
     const word = 'aaaaaaa';
 
     room.add(player2);
-    room.nextRound();
+    room.nextRound(true);
 
 
     room.chooseRoundWord(room.playerInTurn.socketId, word);
@@ -131,7 +131,7 @@ describe('next round', () => {
 
     room.add(player2);
 
-    room.nextRound();
+    room.nextRound(false);
     room.chooseRoundWord(room.playerInTurn.socketId, word);
 
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
@@ -176,7 +176,7 @@ describe('guess letter', () => {
   test("should return false when the room doesn't have a round word chosen", () => {
     const letter = 'a';
 
-    room.nextRound();
+    room.nextRound(true);
     const guessed = room.guessLetter(player.socketId, letter);
 
     expect(guessed).toBe(false);
@@ -186,7 +186,7 @@ describe('guess letter', () => {
     const letter = 'a';
     const word = 'banana';
 
-    room.nextRound();
+    room.nextRound(false);
     room.chooseRoundWord(player.socketId, word);
 
     const guessed = room.guessLetter(player.socketId, letter);
@@ -197,7 +197,7 @@ describe('guess letter', () => {
   test('should return false when the room does not contain the player', () => {
     const word = 'banana';
     const letter = 'a';
-    room.nextRound();
+    room.nextRound(false);
     room.chooseRoundWord(word);
 
     const socketId = 'randomId';
@@ -213,7 +213,7 @@ describe('restart', () => {
     expectedRoom.add(player2Copy);
 
     room.add(player2);
-    room.nextRound();
+    room.nextRound(false);
 
     const playerNotInTurn = room.playerInTurn.socketId === player.socketId ? player2 : player;
 

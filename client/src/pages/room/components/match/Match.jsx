@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ScrollableContainer from '../../../../components/ScrollableContainer';
+import Timer from '../../../../components/Timer';
 import gc from '../../../../config/gameConstraints';
 import { MatchContext } from '../../../../providers/MatchProvider';
 import startGame from '../../../../socket/startGame';
@@ -25,10 +26,18 @@ function Match() {
   }
 
   if (room.round.state === gc.ROOM_MATCH_STATES.choosingWord) {
-    return player.id === room.playerInTurn.id ? (
-      <InTurnChoosingWordView roomId={room.id} theme={room.round.theme} />
-    ) : (
-      <NotInTurnChoosingWordView />
+    return (
+      <>
+        <Timer
+          endTime={room.round.stageEndTime}
+          totalTime={room.round.stageDuration}
+        />
+        {player.id === room.playerInTurn.id ? (
+          <InTurnChoosingWordView roomId={room.id} theme={room.round.theme} />
+        ) : (
+          <NotInTurnChoosingWordView />
+        )}
+      </>
     );
   }
 
@@ -45,6 +54,10 @@ function Match() {
         <WatchingPlayerView />
       ) : (
         <>
+        <Timer
+          endTime={room.round.stageEndTime}
+          totalTime={room.round.stageDuration}
+        />
           <p className="page-title">{room.round.theme}</p>
           <Gallow player={player} />
           <ScrollableContainer className="shadow-none px-0">

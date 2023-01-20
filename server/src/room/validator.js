@@ -32,8 +32,7 @@ export function validateRoomData(room) {
       return false;
     }
 
-    const availableSpeeds = Object.keys(gc.ROOM_SPEED_IN_SECONDS);
-    if (!availableSpeeds.includes(speed)) {
+    if (!gc.ROOM_SPEEDS.includes(speed)) {
       return false;
     }
 

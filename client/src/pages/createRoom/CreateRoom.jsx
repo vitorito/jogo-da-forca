@@ -44,7 +44,6 @@ function CreateRoom() {
 
     createRoom(data, (res) => {
       if (res.errors) return;
-
       setMatch(res);
       navigate(`/${res.room.id}`);
     });

@@ -1,5 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import ScrollableContainer from '../../../../components/ScrollableContainer';
+import Timer from '../../../../components/Timer';
 import { MatchContext } from '../../../../providers/MatchProvider';
 import Gallow from '../gallow/Gallow';
 
@@ -12,6 +13,10 @@ function WatchingPlayerView() {
 
   return (
     <>
+      <Timer
+        endTime={room.round.stageEndTime}
+        totalTime={room.round.stageDuration}
+      />
       <p className="page-title">{room.round.theme}</p>
       <ScrollableContainer className="lg:max-w-[90%] rounded-xl">
         <ul className="grid grid-cols-1 lg:grid-cols-2 gap-2 rounded-xl">

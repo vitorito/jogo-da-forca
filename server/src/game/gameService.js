@@ -5,7 +5,7 @@ const start = (socketId, roomId) => {
 
   if (!room || room.owner.socketId !== socketId) return null;
 
-  const started = room.nextRound();
+  const started = room.nextRound(true);
 
   return started && room;
 };

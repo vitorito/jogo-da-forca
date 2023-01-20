@@ -1,5 +1,6 @@
 import lodash from 'lodash';
 import gc from '../config/gameConstraints.js';
+import roomTimerController from '../room/roomTimerController.js';
 
 
 const EMPTY_PLAYERINTURN = {
@@ -9,6 +10,8 @@ const EMPTY_PLAYERINTURN = {
 };
 const EMPTY_ROUND = {
   state: gc.ROOM_MATCH_STATES.waiting,
+  stageDuration: 0,
+  stageEndTime: 0,
   theme: '',
   word: ''
 };
@@ -34,22 +37,28 @@ class Room {
     this.add(owner);
   }
 
-  nextRound() {
+  nextRound(skippedRound) {
     if (this.round.state === gc.ROOM_MATCH_STATES.finished) return false;
 
-    if (this.currentRound >= this.totalRounds || !this.hasMinimumPlayers()) {
+    if ((this.currentRound >= this.totalRounds && !skippedRound) || !this.hasMinimumPlayers()) {
       this.round.state = gc.ROOM_MATCH_STATES.finished;
+      roomTimerController.clear(this.id);
       return true;
     }
 
-    if (this.round.state !== gc.ROOM_MATCH_STATES.waiting) {
+    if (!skippedRound) {
       this.currentRound++;
-      this._reset();
     }
 
     this.round.state = gc.ROOM_MATCH_STATES.choosingWord;
+    this._reset();
     this._choosePlayerInTurn();
     this._chooseRoundTheme();
+    this._setRoundTimers();
+
+    roomTimerController.add(this, () => {
+      this.nextRound(true);
+    }, this.round.stageDuration);
     return true;
   }
 
@@ -82,6 +91,12 @@ class Room {
     });
     this.playerInTurn.isWatching = true;
     this.round.state = gc.ROOM_MATCH_STATES.running;
+
+    this._setRoundTimers();
+
+    roomTimerController.add(this, () => {
+      this.nextRound(false);
+    }, this.round.stageDuration);
 
     return true;
   }
@@ -175,13 +190,22 @@ class Room {
     return gc.HIDDEN_LETTER.repeat(length);
   }
 
+  _setRoundTimers() {
+    this.round.stageDuration = this._getStageDuration() + gc.ADDITION_OF_REQUEST_TIME;
+    this.round.stageEndTime = Date.now() + this.round.stageDuration;
+  }
+
+  _getStageDuration() {
+    return gc.ROOM_ROUND_STAGE_DURATIONS[this.round.state][this.speed];
+  }
+
   _checkRoundEnd() {
     const playersNotWatching = this.getPlayers().filter(p => !p.isWatching);
     const ended = playersNotWatching.every((p) => this._checkPlayerEndedRound(p));
 
     if (ended) {
       playersNotWatching.forEach(p => p.calculateScore(this.round.word));
-      this.nextRound();
+      this.nextRound(false);
     }
   }
 
@@ -213,6 +237,8 @@ class Room {
       round: {
         state: this.round.state,
         theme: this.round.theme,
+        stageDuration: this.round.stageDuration,
+        stageEndTime: this.round.stageEndTime
       }
     };
   }
