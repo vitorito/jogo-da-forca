@@ -19,6 +19,7 @@ export default {
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
     running: 'running',
+    skippedRound: 'skipped_round',
     choosingWord: 'choosing_word',
     finished: 'finished',
   },

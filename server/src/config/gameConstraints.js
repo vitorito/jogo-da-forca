@@ -16,6 +16,7 @@ export default {
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
     running: 'running',
+    skippedRound: 'skipped_round',
     choosingWord: 'choosing_word',
     finished: 'finished',
   },
@@ -25,6 +26,11 @@ export default {
       lazy: 15000,
       medium: 15000,
       fast: 15000,
+    },
+    skipped_round: {
+      lazy: 50000,
+      medium: 50000,
+      fast: 50000,
     },
     running: {
       lazy: 60000,

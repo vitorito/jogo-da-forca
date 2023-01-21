@@ -57,7 +57,7 @@ class Room {
     this._setRoundTimers();
 
     roomTimerController.add(this, () => {
-      this.nextRound(true);
+      this._skipRound();
     }, this.round.stageDuration);
     return true;
   }
@@ -146,6 +146,15 @@ class Room {
 
   size() {
     return this.players.size;
+  }
+
+  _skipRound() {
+    this.round.state = gc.ROOM_MATCH_STATES.skippedRound;
+    this._setRoundTimers();
+
+    roomTimerController.add(this, () => {
+      this.nextRound(true);
+    }, this.round.stageDuration);
   }
 
   _chooseRoundTheme() {
