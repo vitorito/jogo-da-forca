@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import Timer from '../../../../components/Timer';
 import { MatchContext } from '../../../../providers/MatchProvider';
-import InTurnChoosingWordView from './InTurnChoosingWordView';
-import NotInTurnChoosingWordView from './NotInTurnChoosingWordView';
+import InTurnChoosingWord from './InTurnChoosingWord';
+import NotInTurnChoosingWord from './NotInTurnChoosingWord';
 
-function ChoosingWordView() {
+function ChoosingWord() {
   const { room, player } = useContext(MatchContext);
   return (
     <>
@@ -13,12 +13,12 @@ function ChoosingWordView() {
         totalTime={room.round.stageDuration}
       />
       {player.id === room.playerInTurn.id ? (
-        <InTurnChoosingWordView roomId={room.id} theme={room.round.theme} />
+        <InTurnChoosingWord roomId={room.id} theme={room.round.theme} />
       ) : (
-        <NotInTurnChoosingWordView />
+        <NotInTurnChoosingWord />
       )}
     </>
   );
 }
 
-export default ChoosingWordView;
+export default ChoosingWord;

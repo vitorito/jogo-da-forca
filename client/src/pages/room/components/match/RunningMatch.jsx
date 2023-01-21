@@ -4,9 +4,9 @@ import Timer from '../../../../components/Timer';
 import { MatchContext } from '../../../../providers/MatchProvider';
 import Gallow from '../gallow/Gallow';
 import Keyboard from '../gallow/Keyboard';
-import WatchingPlayerView from './WatchingPlayerView';
+import WatchingPlayer from './WatchingPlayer';
 
-function RunningMatchView() {
+function RunningMatch() {
   const { room, player } = useContext(MatchContext);
 
   return (
@@ -15,7 +15,7 @@ function RunningMatchView() {
       gap-2 grow w-full p-0.5 overflow-hidden"
     >
       {player.isWatching ? (
-        <WatchingPlayerView />
+        <WatchingPlayer />
       ) : (
         <>
           <Timer
@@ -33,4 +33,4 @@ function RunningMatchView() {
   );
 }
 
-export default RunningMatchView;
+export default RunningMatch;

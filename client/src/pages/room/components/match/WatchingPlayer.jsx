@@ -4,7 +4,7 @@ import Timer from '../../../../components/Timer';
 import { MatchContext } from '../../../../providers/MatchProvider';
 import Gallow from '../gallow/Gallow';
 
-function WatchingPlayerView() {
+function WatchingPlayer() {
   const { room, player } = useContext(MatchContext);
   const players = useMemo(
     () => room.players.filter((p) => p.id !== player.id && !p.isWatching),
@@ -39,4 +39,4 @@ function WatchingPlayerView() {
   );
 }
 
-export default WatchingPlayerView;
+export default WatchingPlayer;

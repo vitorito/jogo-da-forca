@@ -1,27 +1,27 @@
 import React, { useContext } from 'react';
 import gc from '../../../../config/gameConstraints';
 import { MatchContext } from '../../../../providers/MatchProvider';
-import ChoosingWordView from './ChoosingWordView';
-import FinishedMatchView from './FinishedMatchView';
-import RunningMatchView from './RunningMatchView';
-import WaitingRoomView from './WaitingRoomView';
+import ChoosingWord from './ChoosingWord';
+import FinishedMatch from './FinishedMatch';
+import RunningMatch from './RunningMatch';
+import WaitingRoom from './WaitingRoom';
 
 function Match() {
   const { room } = useContext(MatchContext);
 
   if (room.round.state === gc.ROOM_MATCH_STATES.waiting) {
-    return <WaitingRoomView />;
+    return <WaitingRoom />;
   }
 
   if (room.round.state === gc.ROOM_MATCH_STATES.choosingWord) {
-    return <ChoosingWordView />;
+    return <ChoosingWord />;
   }
 
   if (room.round.state === gc.ROOM_MATCH_STATES.finished) {
-    return <FinishedMatchView />;
+    return <FinishedMatch />;
   }
 
-  return <RunningMatchView />;
+  return <RunningMatch />;
 }
 
 export default Match;

@@ -92,7 +92,7 @@ const playersStates = [
   },
 ];
 
-function WaitingRoomView() {
+function WaitingRoom() {
   const { room, player } = useContext(MatchContext);
   const [playerState, setPlayerState] = useState(0);
 
@@ -124,4 +124,4 @@ function WaitingRoomView() {
   );
 }
 
-export default WaitingRoomView;
+export default WaitingRoom;

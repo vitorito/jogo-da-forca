@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import gc from '../../../../config/gameConstraints';
 import chooseWord from '../../../../socket/chooseWord';
 
-function InTurnChoosingWordView({ roomId, theme }) {
+function InTurnChoosingWord({ roomId, theme }) {
   const [word, setWord] = useState('');
 
   function handleWordSubmit(e) {
@@ -44,9 +44,9 @@ function InTurnChoosingWordView({ roomId, theme }) {
   );
 }
 
-InTurnChoosingWordView.propTypes = {
+InTurnChoosingWord.propTypes = {
   roomId: PropTypes.string.isRequired,
   theme: PropTypes.string.isRequired,
 };
 
-export default InTurnChoosingWordView;
+export default InTurnChoosingWord;

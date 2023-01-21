@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { MatchContext } from '../../../../providers/MatchProvider';
 import Gallow from '../gallow/Gallow';
 
-function NotInTurnChoosingWordView() {
+function NotInTurnChoosingWord() {
   const { player, room } = useContext(MatchContext);
-  // const { correctLetters, wrongLetters } = player.round;
 
   return (
     <div
@@ -13,14 +12,6 @@ function NotInTurnChoosingWordView() {
     >
       <p className="page-title">{room.round.theme}</p>
       <Gallow player={player} className="grow-0 animate-pulse" />
-      {/* {player.round.word ? (
-        <ScrollableContainer className="shadow-none px-0">
-          <Keyboard
-            correctLetters={correctLetters}
-            wrongLetters={wrongLetters}
-          />
-        </ScrollableContainer>
-      ) : ( */}
       <span className="max-w-full">
         <span className="block w-full text-3xl font-mono text-center break-words">
           {room.playerInTurn.nick}
@@ -33,4 +24,4 @@ function NotInTurnChoosingWordView() {
   );
 }
 
-export default NotInTurnChoosingWordView;
+export default NotInTurnChoosingWord;

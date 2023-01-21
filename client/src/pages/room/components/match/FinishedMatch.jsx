@@ -5,7 +5,7 @@ import restartRoom from '../../../../socket/restartRoom';
 import AnimatedText from '../gallow/AnimatedText';
 import Trophy from './Trophy';
 
-function FinishedMatchView() {
+function FinishedMatch() {
   const { room, player } = useContext(MatchContext);
   const winner = room.players[0];
 
@@ -43,4 +43,4 @@ function FinishedMatchView() {
   );
 }
 
-export default FinishedMatchView;
+export default FinishedMatch;
