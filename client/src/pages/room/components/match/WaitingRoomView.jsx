@@ -1,6 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import gc from '../../../../config/gameConstraints';
+import { MatchContext } from '../../../../providers/MatchProvider';
+import startGame from '../../../../socket/startGame';
 import AnimatedText from '../gallow/AnimatedText';
 import Gallow from '../gallow/Gallow';
 
@@ -91,7 +92,8 @@ const playersStates = [
   },
 ];
 
-function WaitingRoomView({ isOwner, start, canStart }) {
+function WaitingRoomView() {
+  const { room, player } = useContext(MatchContext);
   const [playerState, setPlayerState] = useState(0);
 
   function updateGallow() {
@@ -107,23 +109,19 @@ function WaitingRoomView({ isOwner, start, canStart }) {
     <div className="sm-container justify-evenly items-center grow mt-6">
       <AnimatedText text="Aguardando Jogadores..." />
       <Gallow player={playersStates[playerState]} className="w-[105%]" />
-      {isOwner && <span>Min. de jogadores: {gc.MIN_ROOM_PLAYERS}</span>}
+      {room.owner === player.id && (
+        <span>Min. de jogadores: {gc.MIN_ROOM_PLAYERS}</span>
+      )}
       <button
         type="button"
-        onClick={start}
-        disabled={!canStart}
-        className={isOwner ? 'btn' : 'hidden'}
+        onClick={() => startGame(room.id)}
+        disabled={room.players.length < gc.MIN_ROOM_PLAYERS}
+        className={room.owner === player.id ? 'btn' : 'hidden'}
       >
         Iniciar Partida
       </button>
     </div>
   );
 }
-
-WaitingRoomView.propTypes = {
-  isOwner: PropTypes.bool.isRequired,
-  start: PropTypes.func.isRequired,
-  canStart: PropTypes.bool.isRequired,
-};
 
 export default WaitingRoomView;
