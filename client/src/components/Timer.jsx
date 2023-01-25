@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { BsFillClockFill } from 'react-icons/bs';
 
-function Timer({ endTime, totalTime }) {
+function Timer({ endTime, totalTime, className }) {
   const [remainingTime, setRemainingTime] = useState(calcRemainingTimePercent);
 
   useEffect(() => {
@@ -19,9 +19,9 @@ function Timer({ endTime, totalTime }) {
   }
 
   return (
-    <div className="flex items-center w-full max-w-sm">
+    <div className={`flex items-center w-full max-w-sm ${className}`}>
       <span className="bg-white p-1.5 rounded-full">
-        <BsFillClockFill size={44} className="fill-slate-900" />
+        <BsFillClockFill size={40} className="fill-slate-900" />
       </span>
       <div className="w-full p-1.5 -ml-1.5 bg-white rounded-r-lg overflow-hidden">
         <span
@@ -35,9 +35,14 @@ function Timer({ endTime, totalTime }) {
   );
 }
 
+Timer.defaultProps = {
+  className: '',
+};
+
 Timer.propTypes = {
   endTime: PropTypes.number.isRequired,
   totalTime: PropTypes.number.isRequired,
+  className: PropTypes.string,
 };
 
 export default Timer;

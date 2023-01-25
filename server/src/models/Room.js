@@ -95,7 +95,7 @@ class Room {
     this._setRoundTimers();
 
     roomTimerController.add(this, () => {
-      this.nextRound(false);
+      this._endRound();
     }, this.round.stageDuration);
 
     return true;
@@ -142,6 +142,10 @@ class Room {
 
   getPlayers() {
     return Array.from(this.players.values());
+  }
+
+  getPlayer(socketId) {
+    return this.players.get(socketId);
   }
 
   size() {
@@ -212,10 +216,30 @@ class Room {
     const playersNotWatching = this.getPlayers().filter(p => !p.isWatching);
     const ended = playersNotWatching.every((p) => this._checkPlayerEndedRound(p));
 
-    if (ended) {
-      playersNotWatching.forEach(p => p.calculateScore(this.round.word));
+    if (!ended) return;
+
+    this._endRound();
+  }
+
+  _validateRoundWord() {
+    const isInvalidCount = this.getPlayers()
+      .filter(p => !p.isValidRoundWord())
+      .length;
+    const votesToInvalidate = (this.size() - 1) / 2;
+    return isInvalidCount < votesToInvalidate;
+  }
+
+  _endRound() {
+    this.round.state = gc.ROOM_MATCH_STATES.endedRound;
+    this._setRoundTimers();
+
+    roomTimerController.add(this, () => {
+      const isValidWord = this._validateRoundWord();
+      if (isValidWord) {
+        this.getPlayers().forEach(p => p.calculateScore(this.round.word));
+      }
       this.nextRound(false);
-    }
+    }, this.round.stageDuration);
   }
 
   _checkPlayerEndedRound(player) {
@@ -247,7 +271,8 @@ class Room {
         state: this.round.state,
         theme: this.round.theme,
         stageDuration: this.round.stageDuration,
-        stageEndTime: this.round.stageEndTime
+        stageEndTime: this.round.stageEndTime,
+        word: this.round.state === gc.ROOM_MATCH_STATES.endedRound ? this.round.word : ''
       }
     };
   }

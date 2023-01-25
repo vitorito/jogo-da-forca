@@ -15,6 +15,7 @@ function setupGameEvents(socket) {
   socket.on(gameEvents.guessLetter, guessLetter);
   socket.on(gameEvents.leaveRoom, leaveRoom);
   socket.on(gameEvents.disconnect, leaveRoom);
+  socket.on(gameEvents.validateRoundWord, validateRoundWord);
 
   function start(roomId) {
     const room = gameService.start(socket.id, roomId);
@@ -64,6 +65,14 @@ function setupGameEvents(socket) {
     if (room) {
       socket.to(room.id).emit(gameEvents.roomUpdate, room.dto());
     }
+  }
+
+  function validateRoundWord(roomId) {
+    const room = gameService.validateRoundWord(socket.id, roomId);
+
+    if (!room) return;
+
+    socket.emit(gameEvents.roomUpdate, room.dto());
   }
 
   function guessLetter(roomId, letter) {

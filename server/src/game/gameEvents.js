@@ -8,4 +8,5 @@ export default {
   restart: 'restart',
   leaveRoom: 'leave_room',
   disconnect: 'disconnect',
+  validateRoundWord: 'validate_round_word',
 };

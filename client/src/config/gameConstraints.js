@@ -20,6 +20,7 @@ export default {
     waiting: 'waiting',
     running: 'running',
     skippedRound: 'skipped_round',
+    endedRound: 'ended_round',
     choosingWord: 'choosing_word',
     finished: 'finished',
   },

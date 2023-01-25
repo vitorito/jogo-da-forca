@@ -10,6 +10,7 @@ class Player {
     this.round = {
       word: '',
       score: 0,
+      isValidRoundWord: true,
       correctLetters: [],
       wrongLetters: [],
     };
@@ -41,7 +42,7 @@ class Player {
   }
 
   calculateScore(roundWord) {
-    if (this.round.word !== roundWord) {
+    if (this.round.word !== roundWord || !this.round.isValidRoundWord) {
       return;
     }
 
@@ -55,6 +56,7 @@ class Player {
   resetRound() {
     this.round = {
       word: '',
+      isValidRoundWord: true,
       score: 0,
       correctLetters: [],
       wrongLetters: [],
@@ -63,6 +65,14 @@ class Player {
 
   getErrorsCount() {
     return this.round.wrongLetters.length;
+  }
+
+  validateRoundWord() {
+    this.round.isValidRoundWord = !this.round.isValidRoundWord;
+  }
+
+  isValidRoundWord() {
+    return this.round.isValidRoundWord;
   }
 
   dto() {

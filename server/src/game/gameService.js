@@ -43,9 +43,23 @@ const guessLetter = (socketId, roomId, letter) => {
   return room;
 };
 
+function validateRoundWord(socketId, roomId) {
+  const room = roomService.findRoomById(roomId);
+
+  if (!room || room.playerInTurn.socketId === socketId) return null;
+
+  const player = room.getPlayer(socketId);
+
+  if (!player) return null;
+
+  player.validateRoundWord();
+  return room;
+}
+
 export default {
   start,
   restart,
   chooseWord,
-  guessLetter
+  guessLetter,
+  validateRoundWord
 };

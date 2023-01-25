@@ -17,6 +17,7 @@ export default {
     waiting: 'waiting',
     running: 'running',
     skippedRound: 'skipped_round',
+    endedRound: 'ended_round',
     choosingWord: 'choosing_word',
     finished: 'finished',
   },
@@ -28,9 +29,14 @@ export default {
       fast: 15000,
     },
     skipped_round: {
-      lazy: 50000,
-      medium: 50000,
-      fast: 50000,
+      lazy: 3000,
+      medium: 3000,
+      fast: 3000,
+    },
+    ended_round: {
+      lazy: 8000,
+      medium: 8000,
+      fast: 8000,
     },
     running: {
       lazy: 60000,
