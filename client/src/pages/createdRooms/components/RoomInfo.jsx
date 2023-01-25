@@ -10,13 +10,16 @@ import RoomDetails from './RoomDetails';
 import RoomThemes from './RoomThemes';
 
 function RoomInfo({ room, handleSelectRoom }) {
-  const [roomPassword, setRoomPassword] = useState('');
   const { nick } = useContext(PlayerContext);
   const { setMatch } = useContext(MatchContext);
+  const [roomPassword, setRoomPassword] = useState('');
+  const [isWrongPassword, setIsWrongPassword] = useState(false);
 
   const navigate = useNavigate();
 
-  async function handleEnterRoom() {
+  function handleEnterRoom(e) {
+    e.preventDefault();
+
     const data = {
       roomId: room.id,
       password: roomPassword,
@@ -24,11 +27,19 @@ function RoomInfo({ room, handleSelectRoom }) {
     };
 
     joinRoom(data, (res) => {
-      if (res.errors) return;
+      if (res.errors) {
+        setIsWrongPassword(true);
+        return;
+      }
 
       setMatch(res);
       navigate(`/${res.room.id}`);
     });
+  }
+
+  function handlePasswordChange(e) {
+    setRoomPassword(e.target.value.trim());
+    setIsWrongPassword(false);
   }
 
   return (
@@ -49,25 +60,36 @@ function RoomInfo({ room, handleSelectRoom }) {
           <RoomThemes themes={room.themes} />
         </div>
         {room.isPrivate && (
-          <label htmlFor="password">
-            Senha
-            <input
-              type="password"
-              id="password"
-              placeholder="4 Dígitos..."
-              maxLength={gc.ROOM_PASSWORD_LENGTH}
-              value={roomPassword}
-              onChange={(e) => setRoomPassword(e.target.value)}
-              className="block w-full px-2 placeholder:text-black placeholder:text-base
+          <form id="password-form" onSubmit={handleEnterRoom}>
+            <label htmlFor="password">
+              Senha
+              <input
+                type="password"
+                id="password"
+                placeholder="4 Dígitos..."
+                maxLength={gc.ROOM_PASSWORD_LENGTH}
+                value={roomPassword}
+                onChange={handlePasswordChange}
+                className="block w-full px-2 placeholder:text-black placeholder:text-base
               border-b border-gray-900 outline-none rounded"
-            />
-          </label>
+              />
+            </label>
+            {isWrongPassword && (
+              <span className="inline-block w-full text-center">
+                Senha Inválida
+              </span>
+            )}
+          </form>
         )}
       </div>
       <button
-        type="button"
+        type="submit"
+        form="password-form"
         onClick={handleEnterRoom}
-        disabled={room.isPrivate && !hasCorrectPasswordLength(roomPassword)}
+        disabled={
+          (room.isPrivate && !hasCorrectPasswordLength(roomPassword)) ||
+          isWrongPassword
+        }
         className="btn mt-3"
       >
         Entrar na Sala

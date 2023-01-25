@@ -50,7 +50,7 @@ function setupGameEvents(socket) {
   function joinRoom(data, cb) {
     const res = roomControler.join(socket.id, data);
 
-    if (!res.error) {
+    if (!res.errors) {
       const { room } = res;
       socket.join(room.id);
       socket.to(room.id).emit(gameEvents.roomUpdate, room);

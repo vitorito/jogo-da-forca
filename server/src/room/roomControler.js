@@ -54,7 +54,7 @@ function create(playerData, roomData) {
 function join(socketId, joiningData) {
   const data = roomService.joinRoom(socketId, joiningData);
 
-  if (!data) return { error: true };
+  if (!data) return { errors: true };
 
   return {
     room: data.room.dto(),
