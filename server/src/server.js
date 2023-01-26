@@ -9,7 +9,6 @@ import gameController from './game/gameController.js';
 import router from './routes/router.js';
 
 const PORT = process.env.PORT;
-const CLIENT_URL = process.env.CLIENT_URL;
 
 export const app = Express();
 
@@ -17,7 +16,7 @@ const httpServer = createServer(app);
 
 export const io = new Server(httpServer, {
   cors: {
-    origin: [CLIENT_URL],
+    origin: "*",
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   }
 });
