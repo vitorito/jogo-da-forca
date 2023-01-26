@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
+    "start": "node src/server.js",
     "dev": "nodemon src/server.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --detectOpenHandles",
     "debug": "node --experimental-vm-modules --nolazy --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --colors --verbose"
@@ -14,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
     "socket.io": "^4.5.2"
