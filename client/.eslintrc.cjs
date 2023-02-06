@@ -7,6 +7,7 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:react/recommended",
+        "airbnb",
         "prettier"
     ],
     "overrides": [
@@ -24,5 +25,10 @@ module.exports = {
     "ignorePatterns": ["dist"],
     "rules": {
         "react/react-in-jsx-scope": "off",
+        "no-console": "off",
+        "import/prefer-default-export": "off",
+        "no-use-before-define": "off",
+        "react/no-array-index-key": "off"
+
     }
 };

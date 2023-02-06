@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .sm-container {
+    @apply flex flex-col max-w-xs sm:max-w-sm w-full;
+  }
+
+  .text-shadow {
+    text-shadow: 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-shadow-md {
+    text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .btn {
+    @apply bg-blue-600 hover:bg-blue-800 disabled:bg-slate-700 block
+    text-white text-lg sm:text-xl text-center font-medium font-bangers tracking-[1.5px]
+    p-2 sm:p-3 w-full rounded-lg shadow-sm shadow-black text-shadow;
+  }
+
+  .btn.selected {
+    @apply bg-blue-800 text-yellow-400 outline outline-2 outline-white z-10;
+  }
+
+  .input {
+    @apply block border-b-2 border-white rounded-lg caret-blue-800
+    font-poppins text-2xl autofill:text-2xl placeholder:text-lg
+    w-full h-10 sm:h-12 px-2 pt-2 focus:outline-none shadow-sm shadow-black/50;
+  }
+
+  .page-title {
+    @apply text-white text-4xl sm:text-5xl text-center font-bangers text-shadow;
+  }
+
+  .rounded-gray-bg {
+    @apply bg-gray-300 rounded-xl;
+  }
+
+  .modal-animation {
+    animation: modal 300ms ease-out;
+  }
+
+  .flash::after {
+    animation: flash 2s infinite;
+  }
+
+  @keyframes shrinking {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 0%;
+    }
+  }
+
+  @keyframes modal {
+    0% {
+      transform: translateY(-20px);
+    }
+
+    50% {
+      transform: translateY(10px);
+    }
+
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes flash {
+    from {
+      transform: translateX(-200%) skew(45deg);
+    }
+    to {
+      transform: translateX(350%) skew(45deg);
+    }
+  }
+}

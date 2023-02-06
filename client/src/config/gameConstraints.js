@@ -1,0 +1,28 @@
+export default {
+  MAX_PLAYER_ROUND_ERRORS: 6,
+  MIN_MATCH_ROUNDS: 2,
+  MAX_MATCH_ROUNDS: 20,
+  ROOM_PASSWORD_LENGTH: 4,
+  MIN_ROOM_THEMES: 1,
+  MAX_ROOM_THEMES: 20,
+  MAX_ROOM_THEME_LENGTH: 20,
+  MAX_WORD_LENGTH: 20,
+  MIN_WORD_LENGTH: 4,
+  MIN_ROOM_PLAYERS: 2,
+  MAX_ROOM_PLAYERS: 10,
+  MAX_NICK_LENGTH: 20,
+  SPEED_NAMES: {
+    lazy: 'Lento',
+    medium: 'Médio',
+    fast: 'Rápido',
+  },
+  ROOM_MATCH_STATES: {
+    waiting: 'waiting',
+    running: 'running',
+    skippedRound: 'skipped_round',
+    endedRound: 'ended_round',
+    choosingWord: 'choosing_word',
+    finished: 'finished',
+  },
+  HIDDEN_LETTER: '*',
+};
