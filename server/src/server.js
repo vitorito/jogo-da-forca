@@ -16,12 +16,13 @@ const httpServer = createServer(app);
 
 export const io = new Server(httpServer, {
   cors: {
-    origin: "*",
+    origin: true,
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE"
   }
 });
 
 app.use(cors());
+app.use(Express.static('./public'));
 app.use(Express.json());
 
 app.use(router);
