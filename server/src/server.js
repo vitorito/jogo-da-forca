@@ -22,6 +22,7 @@ export const io = new Server(httpServer, {
 });
 
 app.use(cors());
+app.use(Express.static('./public'));
 app.use(Express.json());
 
 app.use(router);
