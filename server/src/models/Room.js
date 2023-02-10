@@ -247,7 +247,7 @@ class Room {
       if (isValidWord) {
         this.getPlayers().forEach(p => p.calculateScore(this.round.word));
       }
-      this.nextRound(false);
+      this.nextRound(!isValidWord);
     }, this.round.stageDuration);
   }
 
