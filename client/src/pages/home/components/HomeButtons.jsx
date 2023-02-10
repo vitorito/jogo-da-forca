@@ -17,7 +17,7 @@ function HomeButtons({ disabled }) {
       <button
         type="button"
         disabled={disabled}
-        onClick={() => navigate('/room/create')}
+        onClick={() => navigate('/create')}
         className="btn"
       >
         Criar Sala
