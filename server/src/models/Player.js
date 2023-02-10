@@ -1,5 +1,15 @@
 import gc from '../config/gameConstraints.js';
 
+const LETTERS_VARIATIONS = {
+  'áàäãâ': 'a',
+  'éèëẽê': 'e',
+  'íìïĩî': 'i',
+  'óòöõô': 'o',
+  'úùüũû': 'u',
+  'ñ': 'n',
+  'ç': 'c',
+};
+
 class Player {
   constructor(socketId, id, nick) {
     this.socketId = socketId;
@@ -23,9 +33,13 @@ class Player {
     const splitedWord = this.round.word.split('');
 
     let includes = false;
+    const letterLowercase = letter.toLowerCase();
+    const roundWordLowercase = roundWord.toLowerCase();
 
     for (const i in roundWord) {
-      if (roundWord[i] === letter) {
+      const roundWordLetterLowercase = roundWordLowercase[i];
+      if (letterLowercase === roundWordLetterLowercase ||
+        letterLowercase === getLetterVariation(roundWordLetterLowercase)) {
         splitedWord.splice(i, 1, roundWord[i]);
         includes = true;
       }
@@ -89,6 +103,13 @@ class Player {
       }
     };
   }
+}
+
+function getLetterVariation(letter) {
+  for (const varation in LETTERS_VARIATIONS) {
+    if (varation.includes(letter)) return LETTERS_VARIATIONS[varation];
+  }
+  return null;
 }
 
 export default Player;
