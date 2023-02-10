@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import gc from '../../../config/gameConstraints';
 
+const MIN_ROUNDS_INPUT = 1;
+
 function CreateRoomForm({ roomData, setRoomData }) {
   function handleRoundsChange(e) {
     const totalRounds = validateRoundsNumber(e.target.value);
@@ -27,7 +29,7 @@ function CreateRoomForm({ roomData, setRoomData }) {
           <input
             id="rounds"
             type="number"
-            min={gc.MIN_MATCH_ROUNDS}
+            min={MIN_ROUNDS_INPUT}
             max={gc.MAX_MATCH_ROUNDS}
             required
             placeholder={`Min: ${gc.MIN_MATCH_ROUNDS}  Máx: ${gc.MAX_MATCH_ROUNDS}`}
@@ -59,7 +61,7 @@ function validateRoundsNumber(rounds) {
   if (rounds > gc.MAX_MATCH_ROUNDS) {
     return '20';
   }
-  if (rounds < gc.MIN_MATCH_ROUNDS) {
+  if (rounds < MIN_ROUNDS_INPUT) {
     return '';
   }
   return rounds;
