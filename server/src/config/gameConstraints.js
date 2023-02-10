@@ -40,9 +40,9 @@ export default {
       fast: 8000,
     },
     running: {
-      lazy: 60000,
-      medium: 45000,
-      fast: 30000,
+      lazy: 90000,
+      medium: 60000,
+      fast: 45000,
     }
   },
   ADDITION_OF_REQUEST_TIME: 2000,
