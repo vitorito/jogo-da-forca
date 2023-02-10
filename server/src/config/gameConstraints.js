@@ -12,6 +12,7 @@ export default {
   MIN_ROOM_PLAYERS: 2,
   MAX_ROOM_PLAYERS: 10,
   MAX_NICK_LENGTH: 20,
+  MAX_ROOM_SKIPPED_ROUNDS: 3,
   HIDDEN_LETTER: '*',
   ROOM_MATCH_STATES: {
     waiting: 'waiting',
