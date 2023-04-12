@@ -1,9 +1,12 @@
 /* eslint-disable no-undef */
+import { jest } from '@jest/globals';
 import gc from '../config/gameConstraints';
 import Player from './Player';
 import Room from './Room';
 
 let player, player2, room, roomData;
+
+jest.useFakeTimers();
 
 const setup = () => {
   player = new Player('socketId', '300001', 'nickn');
@@ -95,6 +98,7 @@ describe('next round', () => {
     const playerNotInTurn = room.playerInTurn === player ? player2 : player;
 
     room.guessLetter(playerNotInTurn.socketId, 'a');
+    jest.runOnlyPendingTimers();
 
     expect(room.currentRound).toBe(2);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
@@ -122,6 +126,8 @@ describe('next round', () => {
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.running);
 
     room.guessLetter(playerNotInTurn.socketId, 'o');
+    jest.runOnlyPendingTimers();
+
     expect(room.currentRound).toBe(2);
     expect(room.round.state).toBe(gc.ROOM_MATCH_STATES.choosingWord);
   });

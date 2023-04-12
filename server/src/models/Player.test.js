@@ -88,6 +88,20 @@ describe('guess letter', () => {
     expect(player.round.correctLetters).toStrictEqual([]);
     expect(player.round.wrongLetters).toStrictEqual(['z', 'x', 'c', 'v', 'm', 'q']);
   });
+
+  test("should guess a letter when its a variation", () => {
+    const lettertsLower = 'abcdefghijklmnopqrstuvwxyz';
+    const lettertsUpper = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const letterVariations = 'ááäãâÁÁÄÃÂéèëẽêÉÈËẼÊíìïĩîÍÌÏĨÎóòöõôÓÒÖÕÔúùüũûÚÙÜŨÛNñÑçÇ';
+    const word = lettertsLower + lettertsUpper + letterVariations;
+    player.round.word = "*".repeat(word.length);
+
+    for (const l of lettertsLower) {
+      const guessed = player.guessLetter(word, l);
+      expect(guessed).toBe(true);
+    }
+    expect(player.round.word).toBe(word);
+  });
 });
 
 describe('calculate score', () => {
@@ -127,5 +141,4 @@ describe('calculate score', () => {
     expect(player.score).toBe(expectedScore);
     expect(player.round.score).toBe(expectedScore);
   });
-
 });

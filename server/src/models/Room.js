@@ -26,6 +26,7 @@ class Room {
     this.isPrivate = !!password;
     this.totalRounds = totalRounds;
     this.currentRound = 1;
+    this.skippedRoundsCount = 0;
     this.playerInTurn = { ...EMPTY_PLAYERINTURN };
     this.round = { ...EMPTY_ROUND };
     this.alreadyPlayed = {
@@ -46,7 +47,10 @@ class Room {
       return true;
     }
 
-    if (!skippedRound) {
+    if (skippedRound) {
+      this.skippedRoundsCount++;
+    } else {
+      this.skippedRoundsCount = 0;
       this.currentRound++;
     }
 
@@ -56,8 +60,13 @@ class Room {
     this._chooseRoundTheme();
     this._setRoundTimers();
 
+    const canSkip = this.skippedRoundsCount <= gc.MAX_ROOM_SKIPPED_ROUNDS;
     roomTimerController.add(this, () => {
-      this._skipRound();
+      if (canSkip) {
+        this._skipRound();
+      } else {
+        this.nextRound(false);
+      }
     }, this.round.stageDuration);
     return true;
   }
@@ -238,7 +247,7 @@ class Room {
       if (isValidWord) {
         this.getPlayers().forEach(p => p.calculateScore(this.round.word));
       }
-      this.nextRound(false);
+      this.nextRound(!isValidWord);
     }, this.round.stageDuration);
   }
 
