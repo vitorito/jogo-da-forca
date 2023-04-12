@@ -7,7 +7,7 @@ function Ranking() {
   const { room } = useContext(MatchContext);
 
   return (
-    <ScrollableContainer className="sm-container bg-yellow-700 max-h-[700px]">
+    <ScrollableContainer className="sm-container bg-yellow-700 max-h-[43.75rem]">
       <ul className="flex flex-col gap-2 w-full h-full overflow-auto">
         {room.players.map((player, index) => (
           <RankingItem key={player.id} player={player} position={index + 1} />
