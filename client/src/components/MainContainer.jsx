@@ -10,8 +10,8 @@ function MainContainer({ children, className }) {
     >
       <div
         className={`bg-yellow-500 relative overflow-hidden flex flex-col items-center
-        xl:border-4 xl:border-yellow-700 xl:rounded-[50px] shadow-md shadow-black/70
-        py-6 xsm:py-10 sm:py-16 px-8 w-screen max-w-[1280px] h-screen xl:h-[90vh] xl:max-h-[900px] font-poppins ${className}`}
+        xl:border-4 xl:border-yellow-700 xl:rounded-[3.125rem] shadow-md shadow-black/70
+        py-6 xsm:py-10 sm:py-16 px-8 w-screen max-w-7xl h-screen xl:h-[90vh] xl:max-h-[56.25rem] font-poppins ${className}`}
       >
         {children}
       </div>

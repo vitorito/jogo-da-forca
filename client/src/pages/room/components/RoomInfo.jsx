@@ -15,7 +15,7 @@ function RoomInfo() {
   return (
     <div
       className="flex flex-col gap-5 items-center justify-evenly grow
-      max-h-[768px] overflow-hidden"
+      max-h-[48rem] overflow-hidden"
     >
       <div
         className="rounded-gray-bg flex items-center gap-2 my-2
